@@ -12,4 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require ./vendor/modernizr-2.6.2.min
+//= require nypl-header

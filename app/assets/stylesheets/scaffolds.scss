@@ -1,0 +1,50 @@
+@import "vendor/css3-mixins";
+@import "nypl-header";
+
+html,
+.pure-g-r,
+.pure-g-r [class *="pure-u"] {
+  font-family: 'Lato', sans-serif;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+p {
+  line-height: 1.4;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.padded {
+  padding: 1em;
+}
+
+// Fonts
+// -------------------------
+@font-face {
+  font-family: 'icomoon';
+  src: url('icomoon.eot');
+  src: url('icomoon.eot?#iefix') format('embedded-opentype'),
+       url('icomoon.woff') format('woff'),
+       url('icomoon.ttf')  format('truetype'),
+       url('icomoon.svg#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('lato-reg-webfont.eot');
+  src: url('lato-reg-webfont.eot?#iefix') format('embedded-opentype'),
+       url('lato-reg-webfont.woff') format('woff'),
+       url('lato-reg-webfont.ttf')  format('truetype'),
+       url('lato-reg-webfont.svg#lato') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
