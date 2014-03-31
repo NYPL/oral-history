@@ -16,3 +16,6 @@
 
 /_dev
 .project
+
+# Ignore application configuration
+/config/application.yml
