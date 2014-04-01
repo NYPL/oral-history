@@ -1,0 +1,21 @@
+@import "vendor/css3-mixins";
+
+@mixin clearfix(){  
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }  
+  &:after {
+    clear: both;
+  }
+  
+}
+
+@mixin transition-list($values...){
+  -moz-transition:    $values;
+  -o-transition:      $values;
+  -webkit-transition: $values;
+  -ms-transition:     $values;
+  transition:         $values;
+}

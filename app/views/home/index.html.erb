@@ -1,21 +1,53 @@
-<div class="pure-g-r container">
+<% content_for :head do %>
+  <%= javascript_include_tag "application-audio" %>
+  <%= javascript_include_tag "home" %>
+<% end %>
 
-  <div class="pure-u-1-2">
-    <div class="padded">
-      <h1>Your Village, Your Story</h1>
-      <h3>Greenwich Village Oral History Project by NYPL</h3>
+<%= render "shared/nypl-header" %>
+
+<div id="home-container">
+  <div class="home-sidebar">
+    <div class="home-description padded">
+      <h4><a href="http://nypl.org">New York Public Library</a></h4>
+      <h1>Your Village, Your Story:</h1>
+      <h3>Greenwich Village Oral History Project</h3>
       <p>
-        Your Village, Your Story: Greenwich Village Oral History Projectis an oral history project that works to both preserve and 
-        document neighborhood history through the stories of longtime residents. This project will collect stories of people who have 
-        lived in the neighborhood for over 20 years, train community members to conduct these interviews, and share all interviews 
-        in a public archive and on the New York Public Library website, using these recordings as a springboard for public programming.
+        This is a community-based oral history project at Jefferson Market Library that works to both preserve and document neighborhood history through 
+        the stories of people who have experienced it.  
       </p>
+      <p>
+        From December 2013 - April 2014, trained volunteer interviewers worked to collect over 90 oral histories of people who have a longtime 
+        relationship with Greenwich Village.  This collection represents the voices of individuals who have lived, worked or spent over 20 years in the neighborhood.
+      </p>
+      <p>
+        We invite you to browse these oral histories - unedited interviews between Interviewers and Storytellers.  This collection can also be 
+        found at The New York Public Library in a collection at Jefferson Market Library.
+      </p>
+      <p><small>
+        For more information about this project, please contact Alexandra Kelly at Outreach Services and Adult Programs, 
+        <a href="mailto:alexandrakelly@nypl.org">AlexandraKelly@nypl.org</a> or (212) 592-7555. 
+      </small></p>
     </div>
   </div>
-  <div class="pure-u-1-2">
-    <div class="padded">
-    <img src="http://placehold.it/600x400" />
-    </div>
-  </div>
-
+  <div class="home-content">
+    <ul class="interviews-list">
+      <% @interviews.each do |interview| %>
+      <li>
+        <%= image_tag(interview.image.thumb.url) if interview.image %>
+        <div class="overlay">
+          <div class="caption"><%= link_to interview.storyteller_name, interview %></div>
+          <div class="player"></div>
+        </div>
+      </li>
+      <% end %>
+      <% (0..9).each do |i| %>
+      <li>
+        <div class="overlay">
+          <div class="caption"><a href="#">Placeholder Title</a></div>
+          <div class="player"></div>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>  
 </div>

@@ -1,0 +1,70 @@
+<h1><%= @interview.storyteller_name %></h1>
+
+<p>
+  <b>Interviewer name:</b>
+  <%= @interview.interviewer_name %>
+</p>
+
+<p>
+  <b>Interviewed at:</b>
+  <%= @interview.interviewed_at.to_formatted_s(:long) %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @interview.location %>
+</p>
+
+<p>
+  <b>Date of birth:</b>
+  <%= @interview.date_of_birth.to_formatted_s(:long) %>
+</p>
+
+<p>
+  <b>Place of birth:</b>
+  <%= @interview.place_of_birth %>
+</p>
+
+<p>
+  <b>Occupations:</b>
+  <%= @interview.occupations %>
+</p>
+
+<p>
+  <b>Dates in location:</b>
+  <%= @interview.dates_in_location %>
+</p>
+
+<p>
+  <b>Other locations:</b>
+  <%= @interview.other_locations %>
+</p>
+
+<p>
+  <b>Family members:</b>
+  <%= @interview.family_members %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @interview.notes %>
+</p>
+
+<p>
+  <b>Summary:</b>
+  <%= @interview.summary %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @interview.url %>
+</p>
+
+<p>
+  <%= image_tag(@interview.image.url) if @interview.image %>
+</p>
+
+<p>
+  <%= image_tag(@interview.image.thumb.url) if @interview.image %>
+</p>
+

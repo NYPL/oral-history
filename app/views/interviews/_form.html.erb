@@ -1,0 +1,76 @@
+<%= form_for(@interview, :html => { :class => "form",  :multipart => true }) do |f| %>
+  <% if @interview.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@interview.errors.count, "error") %> prohibited this interview from being saved:</h2>
+
+      <ul>
+      <% @interview.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :interviewer_name %>
+    <%= f.text_field :interviewer_name %>
+  </div>
+  <div class="field">
+    <%= f.label :summary %>
+    <%= f.text_area :summary %>
+  </div>
+  <div class="field">
+    <%= f.label :interviewed_at, "Interview date" %>
+    <%= f.date_select :interviewed_at %>
+  </div>
+  <div class="field">
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.label :storyteller_name %>
+    <%= f.text_field :storyteller_name %>
+  </div>
+  <div class="field">
+    <%= f.label :date_of_birth %>
+    <%= f.date_select :date_of_birth, :start_year => 1900, :end_year => 2000 %>
+  </div>
+  <div class="field">
+    <%= f.label :place_of_birth %>
+    <%= f.text_field :place_of_birth %>
+  </div>
+  <div class="field">
+    <%= f.label :occupations %>
+    <%= f.text_area :occupations %>
+  </div>
+  <div class="field">
+    <%= f.label :dates_in_location %>
+    <%= f.text_area :dates_in_location %>
+  </div>
+  <div class="field">
+    <%= f.label :other_locations %>
+    <%= f.text_area :other_locations %>
+  </div>
+  <div class="field">
+    <%= f.label :family_members %>
+    <%= f.text_area :family_members %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %>
+    <%= f.text_area :notes %>
+  </div>
+  <div class="field">
+    <%= f.label :url, "URL to .mp3 file" %>
+    <%= f.text_field :url %>
+  </div>
+  <div class="field">
+    <%= f.label :image %>    
+    <div class="image-wrapper">
+      <%= image_tag(@interview.image.thumb.url) if @interview.image %>
+    </div>
+    <%= f.file_field :image %>    
+  </div>
+  <div class="actions">
+    <button type="submit" class="button expand">Submit</button>
+  </div>
+<% end %>

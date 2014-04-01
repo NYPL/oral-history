@@ -11,7 +11,34 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140331184037) do
+ActiveRecord::Schema.define(:version => 20140401182736) do
+
+  create_table "interviews", :force => true do |t|
+    t.string   "slug",                              :null => false
+    t.integer  "user_id",           :default => 0,  :null => false
+    t.string   "interviewer_name",  :default => "", :null => false
+    t.datetime "interviewed_at"
+    t.string   "location"
+    t.string   "storyteller_name",  :default => "", :null => false
+    t.datetime "date_of_birth"
+    t.string   "place_of_birth"
+    t.text     "occupations"
+    t.text     "dates_in_location"
+    t.text     "other_locations"
+    t.text     "family_members"
+    t.text     "notes"
+    t.text     "summary"
+    t.string   "url"
+    t.integer  "duration",          :default => 0,  :null => false
+    t.string   "image"
+    t.string   "thumb"
+    t.text     "annotations"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "interviews", ["slug"], :name => "index_interviews_on_slug", :unique => true
+  add_index "interviews", ["user_id"], :name => "index_interviews_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name",                   :default => "", :null => false

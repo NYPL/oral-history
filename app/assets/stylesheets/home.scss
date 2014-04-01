@@ -1,0 +1,31 @@
+@import "variables";
+@import "mixins";
+
+#home-container {
+  @include clearfix();
+}
+.home-sidebar {
+  width: 300px;
+  float: left;
+  @media (max-width: 550px) {
+    float: none;
+    width: auto;
+  }
+}
+.home-content {
+  width: auto;
+  margin-left: 300px;
+  @media (max-width: 550px) {
+    margin-left: 0;
+  }
+}
+.home-description {
+  background: rgba(255,255,255,0.9);
+  h1, h2, h3, h4 {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+  }
+  a {
+    
+  }
+}

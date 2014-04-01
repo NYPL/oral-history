@@ -59,6 +59,7 @@ module OralHistory
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     
+    config.assets.paths << Rails.root.join('app', 'assets', 'flash')
     config.assets.initialize_on_precompile = false
     
   end

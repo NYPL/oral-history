@@ -23,21 +23,15 @@ end
 gem 'jquery-rails'
 gem 'ejs'
 gem 'devise'
+gem 'omniauth-google-oauth2'
 gem 'figaro'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
+# image manipulation/upload
+gem 'mini_magick', '3.5.0'
+gem 'fog', '~> 1.3.1'
+gem 'carrierwave'
 
 # Use unicorn on linux only
 platforms :ruby do # linux
   gem 'unicorn'
 end
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'

@@ -1,9 +1,8 @@
-@import "vendor/css3-mixins";
+@import "variables";
+@import "mixins";
 @import "nypl-header";
 
-html,
-.pure-g-r,
-.pure-g-r [class *="pure-u"] {
+html {
   font-family: 'Lato', sans-serif;
 }
 
@@ -15,14 +14,113 @@ ul, li {
 p {
   line-height: 1.4;
 }
+a {
+  color: $blue;
+  text-decoration: none;
+  &:hover {
+    color: lighten($blue, 10%);
+  }
+}
 
+// Scaffold
+// -------------------------
 .container {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
+  position: relative;
 }
 .padded {
   padding: 1em;
+}
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+
+// Components
+// -------------------------
+table {
+  width: 100%;
+  td {
+    border-bottom: 1px solid $grayLight;
+    padding: 1em 0;
+  }
+}
+.form {
+  width: 80%;
+  label {
+    display: block;
+    text-transform: uppercase;
+  }
+  .field {
+    margin: 1.2em 0;
+  }
+  input,
+  select,
+  textarea {
+    margin: 0.5em 0 0;
+  }
+  input,
+  textarea {
+    width: 100%;
+  }
+  textarea {
+    height: 150px;
+  }
+  .image-wrapper {
+    border: 1px solid $grayLighter;
+  }
+}
+.button {
+  background: $blue;
+  color: $white;
+  display: inline-block;
+  padding: 1em 2em;
+  margin: 1em 0;
+  border: 0;
+  &:hover {
+    background: lighten($blue, 10%);
+    color: $white;
+  }
+  &.large {
+    font-size: 1.5em;
+  }
+  &.expand {
+    text-align: center;
+    display: block;
+    width: 100%;
+  }
+}
+.alert,
+#error_explanation {
+  padding: 1em;
+  background: $highlight;
+  border: 1px solid $grayLighter;
+  h2 {
+    margin-top: 0;
+  }
+}
+
+// Common Page Components
+// -------------------------
+.page-title {
+  @include clearfix();
+}
+.header-container {
+  h2 {
+    font-size: 1.2em;
+    margin: 0;
+    a {
+      color: $grayDarkest;
+      &:hover {
+        color: $grayDark;
+      }
+    }
+    
+  }
 }
 
 // Fonts

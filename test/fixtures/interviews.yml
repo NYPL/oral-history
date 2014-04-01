@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  slug: MyString
+  user_id: 1
+  interviewer_name: MyString
+  interviewed_at: 2014-04-01 14:27:36
+  location: MyString
+  storyteller_name: MyString
+  date_of_birth: 2014-04-01 14:27:36
+  place_of_birth: MyString
+  occupations: MyText
+  dates_in_location: MyText
+  other_locations: MyText
+  family_members: MyText
+  notes: MyText
+  summary: MyText
+  url: MyString
+  duration: 1
+  image: MyString
+  thumb: MyString
+  annotations: MyText
+
+two:
+  slug: MyString
+  user_id: 1
+  interviewer_name: MyString
+  interviewed_at: 2014-04-01 14:27:36
+  location: MyString
+  storyteller_name: MyString
+  date_of_birth: 2014-04-01 14:27:36
+  place_of_birth: MyString
+  occupations: MyText
+  dates_in_location: MyText
+  other_locations: MyText
+  family_members: MyText
+  notes: MyText
+  summary: MyText
+  url: MyString
+  duration: 1
+  image: MyString
+  thumb: MyString
+  annotations: MyText
