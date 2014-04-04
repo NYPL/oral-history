@@ -10,7 +10,11 @@
       </ul>
     </div>
   <% end %>
-
+  
+  <div class="field">
+    <%= f.label :storyteller_name %>
+    <%= f.text_field :storyteller_name %>
+  </div>
   <div class="field">
     <%= f.label :interviewer_name %>
     <%= f.text_field :interviewer_name %>
@@ -26,11 +30,7 @@
   <div class="field">
     <%= f.label :location %>
     <%= f.text_field :location %>
-  </div>
-  <div class="field">
-    <%= f.label :storyteller_name %>
-    <%= f.text_field :storyteller_name %>
-  </div>
+  </div>  
   <div class="field">
     <%= f.label :date_of_birth %>
     <%= f.date_select :date_of_birth, :start_year => 1900, :end_year => 2000 %>
