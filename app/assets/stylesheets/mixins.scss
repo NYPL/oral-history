@@ -12,6 +12,40 @@
   
 }
 
+@mixin background-gradient-opacity($startColor: #3C3C3C, $endColor: #999999, $startOpacity: 1, $endOpacity: 0) {  
+  background: -moz-linear-gradient(top, rgba($startColor,$startOpacity) 0%, rgba($endColor,$endOpacity) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba($startColor,$startOpacity)), color-stop(100%,rgba($endColor,$endOpacity))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba($startColor,$startOpacity) 0%,rgba($endColor,$endOpacity) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba($startColor,$startOpacity) 0%,rgba($endColor,$endOpacity) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba($startColor,$startOpacity) 0%,rgba($endColor,$endOpacity) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba($startColor,$startOpacity) 0%,rgba($endColor,$endOpacity) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$startColor}', endColorstr='#{$endColor}',GradientType=0 ); /* IE6-9 */
+}
+
+@mixin font-icon($content: "none") {
+  &:before {
+    @if ( $content != "none") {
+      content: "#{$content}";
+    }   
+    font-family: icomoon;  
+    display: inline-block;
+    width: auto;
+    height: auto;
+    vertical-align: baseline;
+    background-image: none;
+    background-position: 0% 0%; 
+    background-repeat: repeat;
+    margin-top: 0;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    text-transform: none;
+    line-height: 1;
+    font-weight: normal;
+    font-variant: normal;
+    font-style: normal;
+  }  
+}
+
 @mixin transition-list($values...){
   -moz-transition:    $values;
   -o-transition:      $values;
@@ -19,3 +53,4 @@
   -ms-transition:     $values;
   transition:         $values;
 }
+

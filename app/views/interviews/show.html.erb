@@ -1,70 +1,66 @@
-<h1><%= @interview.storyteller_name %></h1>
+<% content_for :head do %>
+  <%= stylesheet_link_tag    "interviews", :media => "all" %>
+  <%= javascript_include_tag "player" %>
+  <%= javascript_include_tag "interview" %>
+<% end %>
 
-<p>
-  <b>Interviewer name:</b>
-  <%= @interview.interviewer_name %>
-</p>
+<div class="interview-banner" style="background-image: url(<%= @interview.image.url %>)">
+  <div class="banner-gradient top">
+    <div class="banner-title main">
+      <a href="<%= root_url %>"><span class="icon-nypl"></span> Your Village, Your Story: Greenwich Village Oral History Project</a>
+    </div>
+  </div>
+  <div class="banner-gradient bottom">
+    <div class="banner-title"><%= @interview.storyteller_name %></div>
+  </div>
+  <div class="banner-player">
+    <div class="player big with-status" data-id="<%= @interview.id %>">
+      <audio id="audio-<%= @interview.id %>" class="auto-load" src="<%= @interview.url %>" data-show-duration="true"></audio>
+    </div>
+  </div>  
+</div>
 
-<p>
-  <b>Interviewed at:</b>
-  <%= @interview.interviewed_at.to_formatted_s(:long) %>
-</p>
+<div class="container">
+  <div class="padded interview-data">
 
-<p>
-  <b>Location:</b>
-  <%= @interview.location %>
-</p>
+    <dl>
+          
+      <dt>Summary</dt>
+      <dd><%= @interview.summary %></dd>
+      
+      <dt>Interviewer name</dt>
+      <dd><%= @interview.interviewer_name %></dd>
+      
+      <dt>Interviewed at</dt>
+      <dd><%= @interview.interviewed_at.strftime("%B %e, %Y") %></dd>
+      
+      <dt>Location</dt>
+      <dd><%= @interview.location %></dd>
+      
+      <dt>Date of birth</dt>
+      <dd><%= @interview.date_of_birth.strftime("%B %e, %Y") %></dd>
+      
+      <dt>Place of birth</dt>
+      <dd><%= @interview.place_of_birth %></dd>
+      
+      <dt>Occupations</dt>
+      <dd><%= @interview.occupations %></dd>
+      
+      <dt>Dates in location</dt>
+      <dd><%= @interview.dates_in_location %></dd>
+      
+      <dt>Other locations</dt>
+      <dd><%= @interview.other_locations %></dd>
+      
+      <dt>Family members</dt>
+      <dd><%= @interview.family_members %></dd>
+      
+      <dt>Notes</dt>
+      <dd><%= @interview.notes %></dd>
+    
+    </dl>
+  
+  </div>
 
-<p>
-  <b>Date of birth:</b>
-  <%= @interview.date_of_birth.to_formatted_s(:long) %>
-</p>
-
-<p>
-  <b>Place of birth:</b>
-  <%= @interview.place_of_birth %>
-</p>
-
-<p>
-  <b>Occupations:</b>
-  <%= @interview.occupations %>
-</p>
-
-<p>
-  <b>Dates in location:</b>
-  <%= @interview.dates_in_location %>
-</p>
-
-<p>
-  <b>Other locations:</b>
-  <%= @interview.other_locations %>
-</p>
-
-<p>
-  <b>Family members:</b>
-  <%= @interview.family_members %>
-</p>
-
-<p>
-  <b>Notes:</b>
-  <%= @interview.notes %>
-</p>
-
-<p>
-  <b>Summary:</b>
-  <%= @interview.summary %>
-</p>
-
-<p>
-  <b>Url:</b>
-  <%= @interview.url %>
-</p>
-
-<p>
-  <%= image_tag(@interview.image.url) if @interview.image %>
-</p>
-
-<p>
-  <%= image_tag(@interview.image.thumb.url) if @interview.image %>
-</p>
+</div>
 

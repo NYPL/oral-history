@@ -1,0 +1,45 @@
+@import "mixins";
+
+@mixin animation($animation) {
+  -webkit-animation: $animation;
+  -moz-animation:    $animation;
+  -o-animation:      $animation;
+  animation:         $animation;
+}
+@mixin animation-duration($animation_duration) {
+  -webkit-animation-duration: $animation_duration;
+  -moz-animation-duration:    $animation_duration;
+  -o-animation-duration:      $animation_duration;
+  animation-duration:         $animation_duration;
+}
+@mixin animation-delay($animation_delay) {
+  -webkit-animation-delay: $animation_delay;
+  -moz-animation-delay:    $animation_delay;
+  -o-animation-delay:      $animation_delay;
+  animation-delay:         $animation_delay;
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content; 
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  } 
+}
+
+@include keyframes(rotate) {  
+  from {
+    @include transform(rotate(0deg));
+  }
+  
+  to{
+    @include transform(rotate(360deg));
+  }
+}

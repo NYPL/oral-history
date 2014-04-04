@@ -1,107 +1,63 @@
 @import "variables";
 @import "mixins";
+@import "player";
 
-.interviews-list {
-  @include clearfix();
-  > li {
-    position: relative;
-    float: left;
+.interview-banner {
+  position: relative;
+  min-height: 0;
+  width: 100%;
+  height: 400px;
+  background: $grayDarker 50% 40% no-repeat;
+  background-size: cover;
+  @include transition(min-height, 2s);
+  .banner-gradient {
     width: 100%;
-    height: 240px;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    @include opacity(0.9);
-    @include transition-list(opacity 0.5s, width 0.5s);
-    &:hover {
-      @include opacity(1);
-    }
-    &:nth-child(6n+0) { 
-      background:$grayDarker;
-      a { color: $grayLightest; }
-    }
-    &:nth-child(6n+1) { 
-      background:$grayLighter;
-      a { color: $grayDarkest; }
-    }
-    &:nth-child(6n+2) { 
-      background:$gray;
-      a { color: $white; }
-    }
-    &:nth-child(6n+3) {
-      background:$grayLight;
-      a { color: $white; }
-    }
-    &:nth-child(6n+4) {
-      background:$grayDark;
-      a { color: $white; }
-    }
-    &:nth-child(6n+5) {
-      background:$grayLightest;
-      a { color: $grayDarker; }
-    }
-    @media (min-width: 700px) {
-      width: percentage(1/2);
-    }
-    @media (min-width: 940px) {
-      width: percentage(1/3);
-    }
-    @media (min-width: 1200px) {
-      width: percentage(1/4);
-    }
-    @media (min-width: 1500px) {
-      width: percentage(1/5);
-    }
-  }
-  img {    
-    position: absolute;
-    width: auto;
-    height: auto;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: 2;
-    top: 0;
+    height: 120px;
+    position: absolute;    
     left: 0;
-    @include transition(top, 0.5s);
-  }
-  .overlay {
-    position: absolute;
-    bottom: -36px;
-    left: 0;
-    width: 100%;
-    height: 68px;
-    z-index: 1;
-    background: rgba($grayDarker, 0);
-    @include transition-list(bottom 0.5s, background 0.5s);
-  }
-  .caption {
-    height: 20px;
-    line-height: 20px;
-    padding: 6px;
-    a {
-      font-size: 1.1em;
-      white-space: nowrap;
+    &.top {
+      top: 0;
+      @include background-gradient-opacity($grayDarkest, $grayDarkest, 0.6, 0);
     }
-  }
-  .player {
-    background: rgba($grayDarkest, 0.5);
-    width: 100%;
-    height: 36px;
-  }
-  > li:hover {
-    img {
-      top: -10px;
-    }
-    .overlay {
-      z-index: 3;
+    &.bottom {
       bottom: 0;
-      background: rgba($grayDarker, 1);
-      a {
-        color: $grayLighter;
-        &:hover {
-          color: $white;
-        }
+      @include background-gradient-opacity($grayDarkest, $grayDarkest, 0, 0.6);
+    }
+  }
+  .banner-title {
+    padding: 12px;
+    color: $white;
+    font-weight: bold;
+    font-size: 3em;
+    @include text-shadow();    
+    &.main {      
+      font-size: 1.5em; 
+      font-weight: normal;     
+    }
+    a {
+      color: $grayLightest;
+      &:hover {
+        color: $white;
       }
-    }    
+    }
+  }
+  .banner-player {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  } 
+}
+
+.interview-data {
+  dt {
+    margin-top: 1.2em;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  dd {
+    margin-top: 1.2em;
   }
 }
+
+

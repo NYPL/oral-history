@@ -13,4 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require ./vendor/modernizr-2.6.2.min
+//= require ./vendor/hammer.min
+//= require ./vendor/jquery.hammer.min
+//= require ./vendor/mediaelement-and-player.min
+//= require helpers
 //= require nypl-header

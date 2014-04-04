@@ -11,6 +11,4 @@
  *= require_self
  *= require ./vendor/normalize
  *= require scaffolds
- *= require home
- *= require interviews
  */

@@ -1,5 +1,6 @@
 <% content_for :head do %>
-  <%= javascript_include_tag "application-audio" %>
+  <%= stylesheet_link_tag    "home", :media => "all" %>
+  <%= javascript_include_tag "player" %>
   <%= javascript_include_tag "home" %>
 <% end %>
 
@@ -36,7 +37,13 @@
         <%= image_tag(interview.image.thumb.url) if interview.image %>
         <div class="overlay">
           <div class="caption"><%= link_to interview.storyteller_name, interview %></div>
-          <div class="player"></div>
+          <div class="player" data-id="<%= interview.id %>">
+            <div class="player-placeholder">
+              <a href="#audio-<%= interview.id %>" class="player-load-button"></a>
+              <div class="placeholder-bar"></div>
+            </div>
+            <audio id="audio-<%= interview.id %>" src="<%= interview.url %>" data-show-duration="false"></audio>
+          </div>
         </div>
       </li>
       <% end %>

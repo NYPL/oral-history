@@ -1,0 +1,127 @@
+@import "variables";
+@import "mixins";
+@import "animate";
+@import "vendor/mediaelementplayer.min";
+
+/* MediaElement overrides */
+.mejs-container {
+  background: none;
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+.mejs-container .mejs-controls {
+  background: none;
+  height: 100%;
+}
+.mejs-controls .mejs-time-rail .mejs-time-total {
+  background: $grayDark;
+  @include border-radius(0);
+}
+.mejs-controls .mejs-time-rail .mejs-time-loaded,
+.mejs-controls .mejs-time-rail .mejs-time-current {
+  background: $grayLighter;
+  @include border-radius(0);
+}
+.mejs-controls .mejs-time-rail .mejs-time-loaded {
+  @include opacity(0.2);
+}
+.mejs-controls .mejs-time-rail span {
+  @include border-radius(0);
+}
+.mejs-controls .mejs-button button,
+.mejs-controls .mejs-play button {
+  background: none;
+  color: $grayLightest;
+  font-size: 1.4em;
+  line-height: 1;
+  border: 0;
+  @include font-icon('$');
+  &:hover {
+    color: $white;
+  }
+  &:active,
+  &:focus {
+    outline: 0;
+    outline-style: none;
+    outline-width: 0;
+  }
+}
+.mejs-controls .mejs-play button {
+  @include font-icon('#');
+}
+
+$regular-unit: 30px;
+$big-unit: 48px;
+.player {
+  background: $grayDarkest;
+  width: 100%;
+  height: $regular-unit;
+  .player-placeholder {
+    width: 100%;
+    position: relative;
+    @include clearfix();
+    .player-load-button {
+      width: $regular-unit;
+      height: $regular-unit;
+      line-height: $regular-unit;
+      text-align: center;
+      color: $grayLightest;
+      float: left;
+      @include font-icon('#');
+      &:hover {
+        color: $white;
+      }
+    }
+    .placeholder-bar {
+      width: auto;
+      height: 10px;
+      margin: 10px 5px 0 $regular-unit;
+      background: $grayDark;
+    }
+  }
+  &.active {
+    .player-toggle:before {
+      content: '$';
+    }
+  }
+  &.loading {
+    .player-toggle {        
+      @include animation(rotate 1s linear infinite);
+      &:before {
+        content: 'n';
+      }        
+    }
+  }
+  &.big {
+    height: $big-unit;
+    .mejs-container .mejs-controls div {
+      height: $big-unit;
+    }
+    .mejs-container .mejs-controls .mejs-playpause-button {
+      width: $big-unit;
+    }
+    .mejs-controls .mejs-button button {
+      width: $big-unit;
+      height: $big-unit;
+      font-size: 3em;
+      margin: 0;
+    }
+    .mejs-controls .mejs-time-rail span {
+      height: 28px;
+    }
+    .mejs-controls .mejs-time-rail .mejs-time-float {
+      height: 17px;
+    }
+    .mejs-controls .mejs-time-rail .mejs-time-float-current {
+      height: 10px;
+    }
+    .mejs-container .mejs-controls .mejs-time {
+      padding-top: 16px;
+    }
+  }
+}
+
+

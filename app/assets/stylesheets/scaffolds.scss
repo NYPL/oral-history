@@ -103,6 +103,9 @@ table {
     margin-top: 0;
   }
 }
+.icon-nypl {
+  @include font-icon('N');
+}
 
 // Common Page Components
 // -------------------------
