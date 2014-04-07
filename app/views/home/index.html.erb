@@ -35,6 +35,7 @@
       <% @interviews.each do |interview| %>
       <li>
         <%= image_tag(interview.image.thumb.url) if interview.image %>
+        <%= link_to "", interview, :class => "link-overlay" %>
         <div class="overlay">
           <div class="caption"><%= link_to interview.storyteller_name, interview %></div>
           <div class="player" data-id="<%= interview.id %>">

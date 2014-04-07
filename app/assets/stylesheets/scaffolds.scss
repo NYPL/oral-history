@@ -39,6 +39,21 @@ a {
 .pull-right {
   float: right;
 }
+.text-center {
+  text-align: center;
+}
+.span-half {
+  width: 50%;
+}
+.span-third {
+  width: 33.33333333%;
+}
+.span-fourth {
+  width: 25%;
+}
+.hide {
+  display: none;
+}
 
 // Components
 // -------------------------
@@ -85,6 +100,10 @@ table {
     background: lighten($blue, 10%);
     color: $white;
   }
+  &.inline {
+    margin: 0 0.2em;
+    padding: 0.4em 0.8em;
+  }
   &.large {
     font-size: 1.5em;
   }
@@ -105,6 +124,9 @@ table {
 }
 .icon-nypl {
   @include font-icon('N');
+}
+.icon-alert {
+  @include font-icon('c');
 }
 
 // Common Page Components

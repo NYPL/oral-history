@@ -1,0 +1,54 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag    "annotations", :media => "all" %>
+  <%= javascript_include_tag "annotations" %>
+<% end %>
+
+<div id="interview-mark" class="annotations-container">
+  
+  <div id="media" data-url="<%= @interview.url %>"></div>
+  
+  <%= link_to "&nbsp; &lt; Go Back To Interview Page".html_safe, @interview, :class => "go-back-button" %>
+  
+  <div id="status" class="status">
+    <span id="current-time">-:--:--</span> /
+    <span id="duration">-:--:--</span>
+  </div>
+  
+  <%= link_to "Done? Next: Transcribe", transcribe_url(:id => @interview.slug), :class => "done-button button hide" %>
+
+  <div class="action button-mark">
+    <div class="inner">
+      Click, Tap, or Press &lt;Enter&gt;
+      <small>When you hear an important person, place, event, or thing</small>
+    </div>
+    <a href="#" class="start-button button expand hide">Start</a>
+  </div>
+  
+  <div id="annotations" class="annotations">
+    
+  </div>
+  
+  <div id="timeline" class="timeline">
+    <div id="progress" class="progress"></div>    
+  </div>
+  
+  <div id="buttons" class="buttons">
+    <a href="#" class="annotation-button button-play span-fourth">
+      <span class="label">Play</span>
+      <span class="key">space bar</span>
+    </a>
+    <a href="#" class="annotation-button button-back span-fourth">
+      <span class="label">Back 4s</span>
+      <span class="key"><i class="fa "></i> left arrow</span>
+    </a>
+    <a href="#" class="annotation-button button-undo span-fourth">
+      <span class="label">Undo</span>
+      <span class="key">backspace</span>
+    </a>
+    <a href="#" class="annotation-button button-restart span-fourth">
+      <span class="label">Restart</span>
+      <span class="key">r</span>
+    </a>
+  </div>
+    
+</div>

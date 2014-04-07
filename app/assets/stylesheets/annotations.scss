@@ -1,0 +1,200 @@
+@import "variables";
+@import "mixins";
+@import "animate";
+
+.annotations-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $grayDarker;
+}
+
+.go-back-button {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  top: 0;
+  left: 0;
+  background: $grayDarkest;
+  color: $white;
+  font-size: 0.8em;
+  &:hover {
+    color: $white;
+    background: lighten($grayDarkest, 10%);
+  }
+}
+
+.status {
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  color: $white;
+  font-size: 2em;
+}
+
+.done-button {
+  position: absolute;
+  top: 40px;
+  right: 10px;  
+  margin: 0;
+  z-index: 10;
+  display: block;
+  padding: 1em;
+  &.hide {
+    display: none;
+  }
+}
+
+.action {
+  display: block;
+  background: $grayDark;
+  color: $white;
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  margin: -200px 0 0 -150px;
+  cursor: pointer;
+  font-size: 2em;
+  @include border-radius(150px);
+  @include transition(background-color, 0.2s);
+  small {
+    display: block;
+    margin-top: 12px;
+    font-size: 0.6em;
+  }
+  .inner {
+    width: 80%;
+    margin: 80px auto 0;
+  }
+  .start-button {
+    position: absolute;
+    bottom: -80px;
+    font-size: 0.5em;
+    margin: 0;
+    padding: 1em 0;
+    display: block;
+    &.hide {
+      display: none;
+    }
+  }
+  &.active {
+    background: $grayLight;
+  }
+  @media (max-height: 580px) {
+    margin-top: 0px;
+    top: 50px;
+    .start-button {
+      bottom: -60px; 
+    }
+  }
+}
+
+.annotations {
+  width: 100%;
+  min-height: 30px;
+  position: absolute;
+  left: 0;
+  bottom: 90px;
+  @include clearfix();
+  .annotation {
+    font-size: 0.8em;
+    min-width: 30px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 6px;
+    float: left;
+    color: $white;
+    cursor: pointer;
+    text-align: center;
+    @include transition(padding, 0.5s);
+    @include animation(fade-in-right-big 0.5s);
+    &:nth-child(6n+0) { 
+      background:$green;
+    }
+    &:nth-child(6n+1) { 
+      background:$red;
+    }
+    &:nth-child(6n+2) {
+      background:$yellow;
+      color: $grayDarker;
+    }
+    &:nth-child(6n+3) { 
+      background:$purple;
+    }
+    &:nth-child(6n+4) {
+      background:$orange;
+    }
+    &:nth-child(6n+5) {
+      background:$pink;
+      color: $grayDarker;
+    }
+    &.selected {
+      padding: 0 20px;
+    }
+  }
+}
+
+.timeline {
+  background: $grayDarkest;
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  left: 0;
+  bottom: 60px;  
+  .progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    min-width: 1px;
+    background: $gray;
+  }
+}
+
+.buttons {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  @include clearfix();
+  .annotation-button {
+    display: block;
+    float: left;
+    background: $blue;
+    color: $white;
+    &:nth-child(odd) {
+      background: darken($blue, 10%);
+    }
+    &:hover {
+      background: lighten($blue, 10%);
+      color: $white;
+    }
+    &.hide {
+      display: none;
+    }
+    .key {
+      background: $white;
+      color: $gray;
+      padding: 6px 12px;
+      margin-left: 3px;
+      @include box-shadow(0, 0, 2px 2px, rgba(0,0,0,.2), inset);
+      @media (max-width: 700px) {
+        display: none;
+      }
+    }
+  }
+}
+
+#media {
+  display: none;
+}

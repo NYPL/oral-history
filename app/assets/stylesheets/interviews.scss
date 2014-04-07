@@ -9,7 +9,7 @@
   height: 400px;
   background: $grayDarker 50% 40% no-repeat;
   background-size: cover;
-  @include transition(min-height, 2s);
+  @include transition(min-height, 1s);
   .banner-gradient {
     width: 100%;
     height: 120px;

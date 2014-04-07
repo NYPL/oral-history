@@ -43,3 +43,15 @@
     @include transform(rotate(360deg));
   }
 }
+
+@include keyframes(fade-in-right-big) {  
+  from {
+    @include opacity(0);
+    @include transform(translateX(1000px));
+  }
+
+  to {
+    @include opacity(1);
+    @include transform(translateX(0));
+  }
+}
