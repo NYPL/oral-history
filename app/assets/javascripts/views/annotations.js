@@ -10,6 +10,7 @@ app.views.Annotation = Backbone.View.extend({
   initialize: function(options){
     this.options = options;
     if (options.parent) this.parent = options.parent;
+    console.log(this.model)
     this.listenTo(this.model, "change", this.handleChange);
   },
   
@@ -18,6 +19,7 @@ app.views.Annotation = Backbone.View.extend({
     if( !this.model.id ) {
       this.$el.remove();
     }
+    this.updateLabel();
   },
   
   isSelected: function(){
@@ -25,12 +27,11 @@ app.views.Annotation = Backbone.View.extend({
   },
   
   render: function() {
-    var id = this.model.get('id'),
-        time_f = helper.formatTime(this.model.get('start'));
+    var id = this.model.get('id');
     // set identifiers
     this.$el.attr('id', 'annotation-'+id);
     this.$el.attr('data-id', this.model.id);
-    this.$el.text(time_f);
+    this.updateLabel();
     return this;
   },
   
@@ -42,6 +43,14 @@ app.views.Annotation = Backbone.View.extend({
   selectAndGoToAnnotation: function(){
     this.select();
     if (this.parent) this.parent.goToAnnotation(this.model);
+  },
+  
+  updateLabel: function(){
+    var time_f = helper.formatTime(this.model.get('start')),
+        text = this.model.get('text'),
+        label = time_f;
+    if ( text && text.length )  label = text + ' ('+time_f+')';
+    this.$el.text(label);
   }
   
 });

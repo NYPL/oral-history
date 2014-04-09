@@ -64,8 +64,8 @@ app.views.Interviews = Backbone.View.extend({
     this.timeline_duration = duration;
   },
   
-  addAnnotationToView: function(annotation, index){
-    var that = this,
+  addAnnotationToView: function(annotation, index, _this){
+    var that = _this || this,
         annotation_view;
     annotation_view = new app.views.Annotation({
       model: annotation, 

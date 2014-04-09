@@ -5,16 +5,9 @@
 
 <div id="interview-mark" class="annotations-container">
   
-  <div id="media" data-url="<%= @interview.url %>"></div>
-  
   <%= link_to "&nbsp; &lt; Go Back To Interview Page".html_safe, @interview, :class => "go-back-button" %>
   
-  <div id="status" class="status">
-    <span id="current-time">-:--:--</span> /
-    <span id="duration">-:--:--</span>
-  </div>
-  
-  <%= link_to "Done? Next: Transcribe", transcribe_url(:id => @interview.slug), :class => "done-button button hide" %>
+  <%= link_to "Done? Next: Transcribe", transcribe_url(:id => @interview.slug), :class => "done-button top-button button hide" %>
 
   <div class="action button-mark">
     <div class="inner">
@@ -24,13 +17,7 @@
     <a href="#" class="start-button button expand hide">Start</a>
   </div>
   
-  <div id="annotations" class="annotations">
-    
-  </div>
-  
-  <div id="timeline" class="timeline">
-    <div id="progress" class="progress"></div>    
-  </div>
+  <%= render "player" %>
   
   <div id="buttons" class="buttons">
     <a href="#" class="annotation-button button-play span-fourth">

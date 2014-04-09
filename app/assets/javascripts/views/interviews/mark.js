@@ -32,7 +32,7 @@ app.views.MarkInterview = app.views.Interviews.extend({
         i = 0;
     // add annotations to view
     interview.get('annotations').each(function(m){
-      that.addAnnotationToView(m,i);
+      that.addAnnotationToView(m,i,that);
       i++;
     });
     // show start button

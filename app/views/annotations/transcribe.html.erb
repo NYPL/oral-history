@@ -1,4 +1,44 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag    "annotations", :media => "all" %>
-  <%= javascript_include_tag "annotations" %>
+  <%= javascript_include_tag "annotations"  %>
 <% end %>
+
+<div id="interview-transcribe" class="annotations-container">  
+  
+  <%= link_to "&nbsp; &lt; Go Back To Interview Page".html_safe, @interview, :class => "go-back-button" %>  
+  
+  <%= link_to "Add More Markers", mark_url(:id => @interview.slug), :class => "top-button button" %>
+
+  <div class="form-wrapper">
+    <div class="padded">
+      <h4>Type the person/place/event/thing that you hear in each played segment</h4>
+      <form class="annotation-form">
+        <input id="input-text" value="" />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <a href="#" class="start-button button expand hide">Start</a>
+  </div>
+  
+  <%= render "player" %>
+  
+  <div id="buttons" class="buttons">
+    <a href="#" class="annotation-button button-replay span-fourth">
+      <span class="label">Replay</span>
+      <span class="key">tab</span>
+    </a>
+    <a href="#" class="annotation-button button-previous span-fourth">
+      <span class="label">Previous</span>
+      <span class="key">shift+tab</span>
+    </a>
+    <a href="#" class="annotation-button button-nudge-left span-fourth">
+      <span class="label">Nudge Left</span>
+      <span class="key">shift+left</span>
+    </a>
+    <a href="#" class="annotation-button button-nudge-right span-fourth">
+      <span class="label">Nudge Right</span>
+      <span class="key">shift+right</span>
+    </a>
+  </div>
+    
+</div>

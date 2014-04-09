@@ -3,26 +3,25 @@ app.views.TranscribeInterview = app.views.Interviews.extend({
   el: '#interview-transcribe',
   
   nudge_seconds: 2,
-  current_segment_index: 0,
-  current_segment: null,
-  save_on_change: true,
-  entities: [],
+  current_annotation_index: 0,
+  current_annotation: null,
+  save_on_change: false,
+  autocomplete_texts: [],
   autocomplete_initialized: false,
   cue_index: [],
   
   events: {
-    "click .button-replay": "replayCurrentSegment",
-    "click .button-previous": "playLastSegment",
-    "click .button-next": "submitSegment",
+    "click .start-button": "replayCurrentAnnotation",
+    "click .button-replay": "replayCurrentAnnotation",
+    "click .button-previous": "playLastAnnotation",
+    "submit .annotation-form": "submit",
     "click .button-nudge-left": "nudgeLeft",
     "click .button-nudge-right": "nudgeRight",
-    "click .save-interview": "saveInterview",
-    "click #timeline": "deselectAnnotations"
+    "click .save-interview": "saveInterview"
   },
   
   initialize: function(){    
     this.initPopcorn();
-    // this.initAutoSave();
   },
   
   initAfterMediaLoaded: function(player){
@@ -35,19 +34,31 @@ app.views.TranscribeInterview = app.views.Interviews.extend({
   initAfterInterviewLoaded: function(interview){    
     // add annotations to view
     this.initAnnotations(interview);
-    // select first segment
-    this.initSegment(interview);
+    // select first annotation
+    this.initAnnotation(interview);
     // init cues
     this.initCues(interview);
     // init autocomplete
     this.initAutocomplete();
+    // show start button
+    this.$('.start-button').removeClass('hide');
+  },
+  
+  initAnnotations: function(interview){
+    var that = this,
+        i = 0;    
+    interview.get('annotations').each(function(m){
+      that.addAnnotationToView(m,i,that);
+      that.addAutocompleteText(m.get('text'));
+      i++;
+    });
   },
   
   initAutocomplete: function(){
-    var entities = _.uniq( this.model.get('annotations').pluck('entity_value') );
-    this.entities = entities;
+    var autocomplete_texts = _.uniq( this.model.get('annotations').pluck('text') );
+    this.autocomplete_texts = autocomplete_texts;
     $("#input-text").autocomplete({
-      source: entities
+      source: autocomplete_texts
     });
     this.autocomplete_initialized = true;
   },
@@ -67,14 +78,10 @@ app.views.TranscribeInterview = app.views.Interviews.extend({
         case 9: // tab
           e.preventDefault();
           if ( e.shiftKey ) {
-            that.playLastSegment(); 
+            that.playLastAnnotation(); 
           } else {
-            that.replayCurrentSegment();
+            that.replayCurrentAnnotation();
           }                    
-          break;
-        case 13: // enter
-          e.preventDefault();
-          that.submitSegment();
           break;
         case 37: // left arrow
           if ( e.shiftKey ) {
@@ -92,24 +99,22 @@ app.views.TranscribeInterview = app.views.Interviews.extend({
     });
   },
   
-  initAnnotations: function(interview){
-    var that = this,
-        i = 0;
-    interview.get('annotations').each(function(m){
-      that.addAnnotationToView(m,i);
-      that.addEntity(m.get('entity_value'));
-      i++;
-    });
+  initAnnotation: function(interview){    
+    var first_empty_annotation = interview.get('annotations').findWhere({'text':""});
+    this.current_annotation_index = 0;
+    if ( first_empty_annotation ) this.current_annotation_index = this.model.get('annotations').indexOf(first_empty_annotation);
+    this.current_annotation = this.model.get('annotations').at(this.current_annotation_index);
+    this.$current_annotation = this.annotations[ this.current_annotation.get('id') ];
+    this.goToCurrentAnnotation();
+    this.focusInput(this.current_annotation.get('text'));
   },
   
-  initSegment: function(interview){    
-    var first_empty_annotation = interview.get('annotations').findWhere({'entity_value':""});
-    this.current_segment_index = 0;
-    if ( first_empty_annotation ) this.current_segment_index = this.model.get('annotations').indexOf(first_empty_annotation);
-    this.current_segment = this.model.get('annotations').at(this.current_segment_index);
-    this.$current_segment = this.annotations[ this.current_segment.get('id') ];
-    this.goToCurrentSegment();
-    this.focusInput(this.current_segment.get('entity_value'));
+  addAutocompleteText: function(value){    
+    // if not already here, add entity to autocomplete
+    if ( this.autocomplete_initialized && this.autocomplete_texts.indexOf(value) < 0 ) {
+      this.autocomplete_texts.push(value);
+      $( "#input-text" ).autocomplete( "option", "source", this.autocomplete_texts );
+    }
   },
   
   addCue: function(annotation, time){
@@ -119,22 +124,14 @@ app.views.TranscribeInterview = app.views.Interviews.extend({
     if (this.cue_index.indexOf(key) < 0) {
       this.cue_index.push(key);
       this.player.cue( time, function() {
-        if ( that.current_segment.id == annotation.id )
+        if ( that.current_annotation.id == annotation.id )
           this.pause();
       });      
     }    
-  },
-  
-  addEntity: function(value){    
-    // if not already here, add entity to autocomplete
-    if ( this.autocomplete_initialized && this.entities.indexOf(value) < 0 ) {
-      this.entities.push(value);
-      $( "#input-text" ).autocomplete( "option", "source", this.entities );
-    }
-  },
+  }, 
   
   focusInput: function(value) {
-    value = value || this.current_segment.get('entity_value');
+    value = value || this.current_annotation.get('text');
     // set entity value and focus
     if ( value ) {
       $('#input-text').val(value);
@@ -144,127 +141,111 @@ app.views.TranscribeInterview = app.views.Interviews.extend({
     $('#input-text').focus();
   },
   
-  goToCurrentSegment: function(){
-    if ( !this.$current_segment.isSelected() ) this.$current_segment.select();
-    this.player.currentTime(this.current_segment.get('start'));
-    this.scrollToCurrentSegment();
+  goToCurrentAnnotation: function(){
+    if ( !this.$current_annotation.isSelected() ) this.$current_annotation.select();
+    this.player.currentTime(this.current_annotation.get('start'));
   },
   
-  goToLastSegment: function(){
-    this.current_segment_index -= 1;
-    if ( this.current_segment_index < 0 ) this.current_segment_index = 0;
-    this.current_segment = this.model.get('annotations').at(this.current_segment_index);
-    this.$current_segment = this.annotations[ this.current_segment.get('id') ];
-    this.goToCurrentSegment();
+  goToLastAnnotation: function(){
+    this.current_annotation_index -= 1;
+    if ( this.current_annotation_index < 0 ) this.current_annotation_index = 0;
+    this.current_annotation = this.model.get('annotations').at(this.current_annotation_index);
+    this.$current_annotation = this.annotations[ this.current_annotation.get('id') ];
+    this.goToCurrentAnnotation();
   },
   
   goToAnnotation: function(annotation){
-    this.current_segment_index = this.model.get('annotations').indexOf(annotation);    
-    this.current_segment = this.model.get('annotations').at(this.current_segment_index);
-    this.$current_segment = this.annotations[ this.current_segment.get('id') ];
-    this.goToCurrentSegment();
+    this.current_annotation_index = this.model.get('annotations').indexOf(annotation);    
+    this.current_annotation = this.model.get('annotations').at(this.current_annotation_index);
+    this.$current_annotation = this.annotations[ this.current_annotation.get('id') ];
+    this.goToCurrentAnnotation();
   },
   
-  goToNextSegment: function(){
-    this.current_segment_index ++;
-    if ( this.current_segment_index >= this.model.get('annotations').length ) {
-      this.current_segment_index = 0;
-      this.invokeFinishedModal();
+  goToNextAnnotation: function(autoplay){
+    this.current_annotation_index ++;
+    if ( this.current_annotation_index >= this.model.get('annotations').length ) {
+      // this.current_annotation_index = 0;
+      // TODO: this.invokeFinishedModal();
+      this.saveInterview();
+    } else {
+      this.current_annotation = this.model.get('annotations').at(this.current_annotation_index);
+      this.$current_annotation = this.annotations[ this.current_annotation.get('id') ];
+      this.goToCurrentAnnotation();
+      if (autoplay) this.replayCurrentAnnotation();
     }
-    this.current_segment = this.model.get('annotations').at(this.current_segment_index);
-    this.$current_segment = this.annotations[ this.current_segment.get('id') ];
-    this.goToCurrentSegment();
+    
   },
   
   invokeFinishedModal: function(){
     this.$('#finished-modal').modal('show');
   },
   
-  isTyping: function(value){
-    var $input = $('#input-text'),
-        val = $input.val();
-    // I'm typing if input is focused and input string is > 0
-    return ( $input.is( ":focus" ) && val.length > 0 );
-  },
-  
   nudgeLeft: function(e){
     if (e) e.preventDefault();
-    if ( !this.$current_segment.isSelected() ) this.$current_segment.select();
-    this.player.currentTime(this.current_segment.get('start')-this.nudge_seconds);
+    if ( !this.$current_annotation.isSelected() ) this.$current_annotation.select();
+    this.player.currentTime(this.current_annotation.get('start')-this.nudge_seconds);
     this.player.play();
     this.focusInput();
   },
   
   nudgeRight: function(e){
     if (e) e.preventDefault();
-    if ( !this.$current_segment.isSelected() ) this.$current_segment.select();
-    this.addCue(this.current_segment, this.current_segment.get('end')+this.nudge_seconds);
+    if ( !this.$current_annotation.isSelected() ) this.$current_annotation.select();
+    this.addCue(this.current_annotation, this.current_annotation.get('end')+this.nudge_seconds);
     this.player.play();
     this.focusInput();
   },
   
-  playLastSegment: function(e){
+  playLastAnnotation: function(e){
     if (e) e.preventDefault();
-    this.goToLastSegment();
-    this.replayCurrentSegment();
+    this.goToLastAnnotation();
+    this.replayCurrentAnnotation();
   },
   
-  playSegment: function(annotation){
+  playAnnotation: function(annotation){
     this.goToAnnotation(annotation);
-    this.replayCurrentSegment();
+    this.replayCurrentAnnotation();
   },
   
-  replayCurrentSegment: function(e){
+  replayCurrentAnnotation: function(e){
     if (e) e.preventDefault();
-    var value = this.current_segment.get('entity_value');
+    var value = this.current_annotation.get('text');
     
-    this.goToCurrentSegment();
+    this.goToCurrentAnnotation();
     this.player.play();
     
     // set entity value and focus
     this.focusInput(value);
+    
+    // hide start button
+    this.$('.start-button').addClass('hide');
   },
   
-  scrollToCurrentSegment: function(){
-    // scroll annotation into view
-    var $timeline = $('#timeline'),
-        pos = this.$current_segment.$el.position(),
-        timeline_width = parseInt( $timeline.width() ),
-        left_offset = timeline_width * 2 / 5,
-        left = pos.left - left_offset;
-    if ( left < 0 ) left = 0;    
-    $timeline.animate({ scrollLeft: left });
-  },
-  
-  selectEntity: function(value){
-    $('#input-text').val(value);
-    this.submitSegment(null, value);
-  },
-  
-  submitSegment: function(e, value){
+  submit: function(e, value){
     if (e) e.preventDefault();
     var value = value || $('#input-text').val();    
     
     if ( value.length <= 0 ) return false;
     
     // only change if different
-    if ( value != this.current_segment.get('entity_value') ) {
+    if ( value != this.current_annotation.get('text') ) {
       
       // set entity value in model
-      this.current_segment.set('entity_value',value);
-      this.model.get('annotations').at(this.current_segment_index).set('entity_value',value);
+      this.current_annotation.set('text',value);
+      this.model.get('annotations').at(this.current_annotation_index).set('text',value);
       
-      // add entity
-      this.addEntity(value);
+      // add autocomplete
+      this.addAutocompleteText(value);
       
       // log change
-      this.logChange('edit',this.current_segment.id);
+      this.logChange('edit',this.current_annotation.id);
+      
+      // console.log( this.model.get('annotations').toJSON() );
       
     }    
     
-    // go to and play next segment
-    this.goToNextSegment();
-    this.replayCurrentSegment();
+    // go to and play next annotation
+    this.goToNextAnnotation(true);
   }
 
 });
