@@ -19,6 +19,11 @@ app.models.Interview = Backbone.Model.extend({
   },
   
   parse: function(resp) {
+    // no response means successful update
+    if (!resp) {
+      console.log('Saved.');
+      return false;
+    }
     var annotations = new app.collections.Annotations;
     // convert annotations string to json
     if ( resp.annotations && resp.annotations.length ) {      

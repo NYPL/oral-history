@@ -10,7 +10,6 @@ app.views.Annotation = Backbone.View.extend({
   initialize: function(options){
     this.options = options;
     if (options.parent) this.parent = options.parent;
-    console.log(this.model)
     this.listenTo(this.model, "change", this.handleChange);
   },
   

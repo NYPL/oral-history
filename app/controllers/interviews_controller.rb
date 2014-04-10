@@ -69,7 +69,7 @@ class InterviewsController < ApplicationController
     respond_to do |format|
       if @interview.update_attributes(params[:interview])
         format.html { redirect_to @interview, notice: 'Interview was successfully updated.' }
-        format.json { render json: @interview }
+        format.json { head :no_content }
       else
         format.html { render action: "edit" }
         format.json { render json: @interview.errors, status: :unprocessable_entity }

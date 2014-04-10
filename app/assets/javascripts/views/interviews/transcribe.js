@@ -5,7 +5,7 @@ app.views.TranscribeInterview = app.views.Interviews.extend({
   nudge_seconds: 2,
   current_annotation_index: 0,
   current_annotation: null,
-  save_on_change: false,
+  save_on_change: true,
   autocomplete_texts: [],
   autocomplete_initialized: false,
   cue_index: [],
@@ -166,7 +166,6 @@ app.views.TranscribeInterview = app.views.Interviews.extend({
     if ( this.current_annotation_index >= this.model.get('annotations').length ) {
       // this.current_annotation_index = 0;
       // TODO: this.invokeFinishedModal();
-      this.saveInterview();
     } else {
       this.current_annotation = this.model.get('annotations').at(this.current_annotation_index);
       this.$current_annotation = this.annotations[ this.current_annotation.get('id') ];

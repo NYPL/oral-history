@@ -110,7 +110,7 @@ app.views.Interviews = Backbone.View.extend({
   saveInterview: function(e){
     if (e) e.preventDefault();
     if ( this.change_made ) {
-      this.change_made = false;      
+      this.change_made = false;   
       this.model.save();      
       this.$('.save-interview').addClass('disabled');
     }
