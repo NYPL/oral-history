@@ -18,16 +18,20 @@ class ApplicationController < ActionController::Base
   end
   
   def after_sign_in_path_for(resource)
-    interviews_path
+    if is_admin?
+      admin_path
+    else
+      root_path
+    end    
   end
   
   def is_admin?
-    user_signed_in? and current_user.email.split("@").last == "nypl.org"
+    # Admin must have @nypl.org email address
+    user_signed_in? and ( current_user.email.split("@").last == "nypl.org" or not Rails.env.production? )
   end
   
-  def authenticate_admin!
-    # Check if user has an @nypl.org email address
-    unless user_signed_in? and current_user.email.split("@").last == "nypl.org" or not Rails.env.production?
+  def authenticate_admin!    
+    unless is_admin?
       flash[:notice] = "You do not have permission to perform this action"
       redirect_to root_path
     end

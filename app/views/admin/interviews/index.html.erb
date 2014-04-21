@@ -1,6 +1,6 @@
 <div class="page-title">
   <h1 class="pull-left">Interviews</h1>  
-  <%= link_to 'Add A New Interview', new_interview_path, :class => "button pull-right" %>
+  <%= link_to 'Add A New Interview', new_admin_interview_path, :class => "button pull-right" %>
 </div>
 
 <table>    
@@ -11,8 +11,8 @@
     <td><%= interview.interviewed_at %></td>
     <td><%= interview.location %></td>    
     <td><%= link_to 'Show', interview %></td>
-    <td><%= link_to 'Edit', edit_interview_path(interview) %></td>
-    <td><%= link_to 'Delete', interview, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Edit', edit_admin_interview_path(interview) %></td>
+    <td><%= link_to 'Delete', admin_interview_path(interview), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
