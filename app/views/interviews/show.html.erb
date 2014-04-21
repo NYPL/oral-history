@@ -6,12 +6,19 @@
 
 <div class="interview-banner" style="background-image: url(<%= @interview.image.url %>)">
   <div class="banner-gradient top">
-    <div class="banner-title main">
-      <a href="<%= root_url %>"><span class="icon-nypl"></span> Your Village, Your Story: Greenwich Village Oral History Project</a>
+    <div class="banner-title">
+      <div class="subtitle"><a href="<%= root_url %>"><span class="icon-nypl"></span> Your Village, Your Story: Greenwich Village Oral History Project</a></div>
+      <div class="title"><%= @interview.storyteller_name %></div>
     </div>
   </div>
+  <div class="annotations">
+    <% @annotations.each do |annotation| %>
+    <div class="annotation seek-to" data-seconds="<%= annotation['start'] %>"><%= annotation['text'] %> (<%= seconds_to_string(annotation['start'].to_i) %>)</div>
+    <% end %>
+  </div>
   <div class="banner-gradient bottom">
-    <div class="banner-title"><%= @interview.storyteller_name %></div>
+    <%= link_to("Show Annotations", "#", :class => "button-toggle-annotations") unless @annotations.blank? %>
+    <%= link_to "Add Annotations <small>BETA</small>".html_safe, mark_url(@interview.slug), :class => "button small button-add-annotations" %>
   </div>
   <div class="banner-player">
     <div class="player big with-status" data-id="<%= @interview.id %>">
@@ -21,45 +28,41 @@
 </div>
 
 <div class="container padded interview-data">
-    
-    <div class="alert text-center">
-      Help the library annotate this interview using our experimental <%= link_to "audio annotation tool", mark_url(:id => @interview.slug), :class => "button inline" %>
-    </div>
 
     <dl>
           
-      <dt>Summary</dt>
-      <dd><%= @interview.summary %></dd>
+      <%= content_tag(:dt, "Summary") unless @interview.summary.blank? %>
+      <%= content_tag(:dd, @interview.summary) unless @interview.summary.blank? %>
       
-      <dt>Interviewer name</dt>
-      <dd><%= @interview.interviewer_name %></dd>
+      <%= content_tag(:dt, "Interviewer name") unless @interview.interviewer_name.blank? %>
+      <%= content_tag(:dd, @interview.interviewer_name) unless @interview.interviewer_name.blank? %>
       
-      <dt>Interviewed at</dt>
-      <dd><%= @interview.interviewed_at.strftime("%B %e, %Y") %></dd>
+      <%= content_tag(:dt, "Interviewed at") unless @interview.interviewed_at.blank? %>
+      <%= content_tag(:dd, @interview.interviewed_at.strftime("%B %e, %Y")) unless @interview.interviewed_at.blank? %>
       
-      <dt>Location</dt>
-      <dd><%= @interview.location %></dd>
+      <%= content_tag(:dt, "Location") unless @interview.location.blank? %>
+      <%= content_tag(:dd, @interview.location) unless @interview.location.blank? %>
       
-      <dt>Date of birth</dt>
-      <dd><%= @interview.date_of_birth.strftime("%B %e, %Y") %></dd>
+      <%= content_tag(:dt, "Date of birth") unless @interview.date_of_birth.blank? or @interview.date_of_birth.year < 1901 %>
+      <%= content_tag(:dd, @interview.date_of_birth.strftime("%B %e, %Y")) unless @interview.date_of_birth.blank? or @interview.date_of_birth.year < 1901 %>
       
-      <dt>Place of birth</dt>
-      <dd><%= @interview.place_of_birth %></dd>
+      <%= content_tag(:dt, "Place of birth") unless @interview.place_of_birth.blank? %>
+      <%= content_tag(:dd, @interview.place_of_birth) unless @interview.place_of_birth.blank? %>
       
-      <dt>Occupations</dt>
-      <dd><%= @interview.occupations %></dd>
+      <%= content_tag(:dt, "Occupations") unless @interview.occupations.blank? %>
+      <%= content_tag(:dd, @interview.occupations) unless @interview.occupations.blank? %>
       
-      <dt>Dates in location</dt>
-      <dd><%= @interview.dates_in_location %></dd>
+      <%= content_tag(:dt, "Dates in location") unless @interview.dates_in_location.blank? %>
+      <%= content_tag(:dd, @interview.dates_in_location) unless @interview.dates_in_location.blank? %>
       
-      <dt>Other locations</dt>
-      <dd><%= @interview.other_locations %></dd>
+      <%= content_tag(:dt, "Other locations") unless @interview.other_locations.blank? %>
+      <%= content_tag(:dd, @interview.other_locations) unless @interview.other_locations.blank? %>
       
-      <dt>Family members</dt>
-      <dd><%= @interview.family_members %></dd>
+      <%= content_tag(:dt, "Family members") unless @interview.family_members.blank? %>
+      <%= content_tag(:dd, @interview.family_members) unless @interview.family_members.blank? %>
       
-      <dt>Notes</dt>
-      <dd><%= @interview.notes %></dd>
+      <%= content_tag(:dt, "Notes") unless @interview.notes.blank? %>
+      <%= content_tag(:dd, @interview.notes) unless @interview.notes.blank? %>
     
     </dl>
 

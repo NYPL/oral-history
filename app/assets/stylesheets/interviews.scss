@@ -1,6 +1,8 @@
 @import "variables";
 @import "mixins";
 @import "player";
+@import "animate";
+@import "annotations";
 
 .interview-banner {
   position: relative;
@@ -15,6 +17,12 @@
     height: 120px;
     position: absolute;    
     left: 0;
+    a {
+      color: $grayLightest;
+      &:hover {
+        color: $white;
+      }
+    }
     &.top {
       top: 0;
       @include background-gradient-opacity($grayDarkest, $grayDarkest, 0.6, 0);
@@ -27,18 +35,15 @@
   .banner-title {
     padding: 12px;
     color: $white;
-    font-weight: bold;
-    font-size: 3em;
-    @include text-shadow();    
-    &.main {      
+    
+    @include text-shadow();
+    .title {
+      font-weight: bold;
+      font-size: 3em;
+    }   
+    .subtitle {      
       font-size: 1.5em; 
       font-weight: normal;     
-    }
-    a {
-      color: $grayLightest;
-      &:hover {
-        color: $white;
-      }
     }
   }
   .banner-player {
@@ -46,7 +51,34 @@
     position: absolute;
     bottom: 0;
     left: 0;
-  } 
+  }
+  .annotations {
+    bottom: 110px;
+    z-index: 10;
+    display: none;
+  }
+  .button-toggle-annotations,
+  .button-add-annotations {
+    position: absolute;
+    left: 0;
+    bottom: 48px;
+  }
+  .button-toggle-annotations {
+    padding: 1em;
+  }
+  .button-add-annotations {    
+    left: auto;
+    right: 0;
+    @include animation(fade-in-right-big 0.5s);
+    small {
+      display: inline-block;
+      font-weight: bold;
+      padding: 0.2em 0.6em;
+      margin-left: 3px;
+      background: darken($blue, 10%);
+      @include animation(swing 1s 5);
+    }
+  }
 }
 
 .interview-data {

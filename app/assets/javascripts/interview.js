@@ -12,15 +12,21 @@
     
     Interview.prototype.init = function(){
       this.growBanner();
-      this.initResizeListener();
+      this.initListeners();
     };
     
-    Interview.prototype.initResizeListener = function(){
+    Interview.prototype.initListeners = function(){
       var that = this;
       
       // listen for window resize
       $(window).resize(function() {
         that.growBanner();
+      });
+      
+      // listen for toggle annotations
+      $('.button-toggle-annotations').on('click',function(e){
+        e.preventDefault();
+        $('.annotations').toggle();
       });
 
     };

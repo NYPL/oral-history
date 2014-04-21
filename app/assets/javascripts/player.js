@@ -10,19 +10,26 @@
       this.init();      
     }   
     
-    Player.prototype.init = function(){      
+    Player.prototype.init = function(){
+      this.initStartTime(); 
       this.initPlayers();
       this.initListeners();
     };
     
     Player.prototype.initListeners = function(){
       var that = this;
+      
       $('.player-load-button').on('click',function(e){
         e.preventDefault();
         var id = $(this).attr('href').slice(1);
         $(this).closest('.player-placeholder').hide();
         that.initPlayer(id, true);
-      })
+      });
+      
+      $('.seek-to').on('click',function(e){
+        e.preventDefault();
+        that.seekToFromLink($(this));
+      });
     };
     
     Player.prototype.initPlayers = function(){
@@ -30,11 +37,12 @@
   
       // hash of players
       this.players = {};
-      this.active_player_id = null;
+      this.active_player_id = null;      
       
-      $('audio.auto-load').each(function(){
+      $('audio.auto-load').each(function(i){
         var id = $(this).attr('id');
         that.initPlayer(id, false);
+        if (i===0) that.active_player_id = id;
       });
     };
     
@@ -57,17 +65,34 @@
         success: function(media, originalNode) {
           console.log('Loaded player '+id);
           
-          // add listener onplay
+          // add listener on play
           media.addEventListener('play', function(e) {
             that.onPlay(id, media);         
           }, false);
           
-          // play if autoplay
-          if (autoplay) {
-            media.play();
-          }  
+          // add listener on loadeddata
+          media.addEventListener('loadeddata', function(e) {              
+            // set start time
+            if (that.start_time) {
+              console.log('Setting start time to '+that.start_time+'s');
+              media.setCurrentTime(that.start_time);
+            }
+            // play if autoplay
+            if (autoplay) {
+              media.play();
+            }                
+          }, false);         
+           
         }
       });
+    };
+    
+    Player.prototype.initStartTime = function(){
+      this.start_time = null;
+      if(window.location.hash) {
+        var hash = window.location.hash.substring(1);  
+        this.start_time = helper.getSeconds(hash);
+      }
     };
     
     Player.prototype.onPlay = function(id, media){      
@@ -78,6 +103,17 @@
       
       // set new active player
       this.active_player_id = id;
+    };
+    
+    Player.prototype.seekTo = function(s){
+      console.log('Seeking to '+s+'s');
+      if (this.active_player_id) this.players[this.active_player_id].setCurrentTime(s);
+    };
+    
+    Player.prototype.seekToFromLink = function($link){      
+      var seconds = parseInt($link.attr('data-seconds'));      
+      this.seekTo(seconds);
+      window.location.hash = '#' + helper.formatTime(seconds);
     };
 
     return Player;

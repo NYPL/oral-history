@@ -17,7 +17,8 @@ app.views.TranscribeInterview = app.views.Interviews.extend({
     "submit .annotation-form": "submit",
     "click .button-nudge-left": "nudgeLeft",
     "click .button-nudge-right": "nudgeRight",
-    "click .save-interview": "saveInterview"
+    "click .save-interview": "saveInterview",
+    "click .hide-finished": "hideFinished"
   },
   
   initialize: function(){    
@@ -103,6 +104,7 @@ app.views.TranscribeInterview = app.views.Interviews.extend({
     var first_empty_annotation = interview.get('annotations').findWhere({'text':""});
     this.current_annotation_index = 0;
     if ( first_empty_annotation ) this.current_annotation_index = this.model.get('annotations').indexOf(first_empty_annotation);
+    else this.showFinished();
     this.current_annotation = this.model.get('annotations').at(this.current_annotation_index);
     this.$current_annotation = this.annotations[ this.current_annotation.get('id') ];
     this.goToCurrentAnnotation();
@@ -165,7 +167,7 @@ app.views.TranscribeInterview = app.views.Interviews.extend({
     this.current_annotation_index ++;
     if ( this.current_annotation_index >= this.model.get('annotations').length ) {
       // this.current_annotation_index = 0;
-      // TODO: this.invokeFinishedModal();
+      this.showFinished();
     } else {
       this.current_annotation = this.model.get('annotations').at(this.current_annotation_index);
       this.$current_annotation = this.annotations[ this.current_annotation.get('id') ];
@@ -175,8 +177,9 @@ app.views.TranscribeInterview = app.views.Interviews.extend({
     
   },
   
-  invokeFinishedModal: function(){
-    this.$('#finished-modal').modal('show');
+  hideFinished: function(e){
+    if (e) e.preventDefault();
+    $('.finished').hide();    
   },
   
   nudgeLeft: function(e){
@@ -218,6 +221,10 @@ app.views.TranscribeInterview = app.views.Interviews.extend({
     
     // hide start button
     this.$('.start-button').addClass('hide');
+  },
+  
+  showFinished: function(){
+    $('.finished').show();  
   },
   
   submit: function(e, value){

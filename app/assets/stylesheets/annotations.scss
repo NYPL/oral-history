@@ -98,7 +98,8 @@
     top: 50px;
   }
 }
-.form-wrapper {
+.form-wrapper,
+.finished {
   background: $grayDark;
   color: $white;
   width: 500px;
@@ -128,6 +129,16 @@
   @media (max-height: 500px) {
     margin-top: 0px;
     top: 100px;
+  }
+}
+
+.finished {
+  margin-top: -180px;
+  .hide-finished {    
+    color: lighten($blue, 30%);
+    &:hover {
+      color: $white;
+    }
   }
 }
 

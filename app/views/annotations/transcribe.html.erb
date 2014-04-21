@@ -20,6 +20,14 @@
     <a href="#" class="start-button button expand hide">Start</a>
   </div>
   
+  <div class="finished hide padded">
+    <h2>Nothing Left To Transcribe!</h2>
+    <%= link_to "Listen To This Interview", @interview, :class => "button expand" %>
+    <%= link_to "Browse More Interviews", root_path, :class => "button expand" %>
+    <%= link_to "Add More Markers To This Interview", mark_url(:id => @interview.slug), :class => "button expand" %>
+    <%= link_to "Dismiss", "#", :class => "hide-finished" %>
+  </div>
+  
   <%= render "player" %>
   
   <div id="buttons" class="buttons">

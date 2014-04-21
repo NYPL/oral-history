@@ -4,6 +4,8 @@ class InterviewsController < ApplicationController
   # GET /interviews/1.json
   def show
     @interview = Interview.find_by_slug(params[:id])
+    @annotations = []
+    @annotations = JSON.parse @interview.annotations unless @interview.annotations.blank?
 
     respond_to do |format|
       format.html # show.html.erb

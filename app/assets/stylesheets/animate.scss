@@ -34,6 +34,18 @@
   } 
 }
 
+@include keyframes(fade-in-right-big) {  
+  from {
+    @include opacity(0);
+    @include transform(translateX(1000px));
+  }
+
+  to {
+    @include opacity(1);
+    @include transform(translateX(0));
+  }
+}
+
 @include keyframes(rotate) {  
   from {
     @include transform(rotate(0deg));
@@ -44,14 +56,20 @@
   }
 }
 
-@include keyframes(fade-in-right-big) {  
-  from {
-    @include opacity(0);
-    @include transform(translateX(1000px));
+@include keyframes(swing) {
+  20% {
+    @include transform(rotate(15deg));
   }
-
-  to {
-    @include opacity(1);
-    @include transform(translateX(0));
+  40% {
+    @include transform(rotate(-10deg));
+  }
+  60% {
+    @include transform(rotate(5deg));
+  }
+  80% {
+    @include transform(rotate(-5deg));
+  }
+  100% {
+    @include transform(rotate(0deg));
   }
 }

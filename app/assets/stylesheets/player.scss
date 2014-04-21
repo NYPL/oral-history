@@ -101,11 +101,20 @@ $big-unit: 48px;
   }
   &.big {
     height: $big-unit;
+    .mejs-container {
+      min-width: 95%;
+      max-width: 95%;
+    }
     .mejs-container .mejs-controls div {
       height: $big-unit;
     }
     .mejs-container .mejs-controls .mejs-playpause-button {
       width: $big-unit;
+    }
+    .mejs-container .mejs-controls .mejs-time {
+      position: absolute;
+      top: 0;
+      right: 10px;
     }
     .mejs-controls .mejs-button button {
       width: $big-unit;
@@ -116,6 +125,9 @@ $big-unit: 48px;
     .mejs-controls div.mejs-time-rail {
       float: left;
       margin-left: 0;
+      position: absolute;
+      top: 0;
+      left: 52px;
     }
     .mejs-controls .mejs-time-rail span {
       height: 28px;
