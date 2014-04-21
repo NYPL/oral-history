@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   def authenticate_admin!    
     unless is_admin?
       flash[:notice] = "You do not have permission to perform this action"
-      redirect_to root_path
+      redirect_to new_user_registration_path
     end
   end
   

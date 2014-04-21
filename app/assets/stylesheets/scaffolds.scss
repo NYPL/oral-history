@@ -112,6 +112,7 @@ table {
     text-align: center;
     display: block;
     width: 100%;
+    @include box-sizing();
   }
 }
 .alert,
