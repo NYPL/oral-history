@@ -34,18 +34,18 @@
     <ul class="interviews-list">
       <% @interviews.each do |interview| %>
       <li>
-        <%= image_tag(interview.image.thumb.url) if interview.image %>
-        <%= link_to "", interview, :class => "link-overlay" %>
-        <div class="overlay">
-          <div class="caption"><%= link_to interview.storyteller_name, interview %></div>
-          <div class="player" data-id="<%= interview.id %>">
-            <div class="player-placeholder">
-              <a href="#audio-<%= interview.id %>" class="player-load-button"></a>
-              <div class="placeholder-bar"></div>
-            </div>
-            <audio id="audio-<%= interview.id %>" src="<%= interview.url %>" data-show-duration="false"></audio>
-          </div>
+        <div class="image" style="background-image: url(<%= interview.image.thumb.url if interview.image %>)">
+          <%= link_to "", interview, :class => "link-overlay" %>
         </div>
+        <div class="caption"><%= link_to interview.storyteller_name, interview %></div>
+        <!-- <div class="player inverse" data-id="<%= interview.id %>">
+          <div class="player-placeholder">
+            <a href="#audio-<%= interview.id %>" class="player-load-button"></a>
+            <div class="placeholder-bar"></div>
+          </div>
+          <audio id="audio-<%= interview.id %>" src="<%= interview.url %>" data-show-duration="false"></audio>
+        </div> -->
+        
       </li>
       <% end %>
     </ul>

@@ -145,9 +145,12 @@
 .annotations {
   width: 100%;
   min-height: 30px;
+  max-height: 120px;
   position: absolute;
   left: 0;
   bottom: 90px;
+  overflow: hidden;
+  overflow-y: auto;
   @include clearfix();
   .annotation {
     font-size: 0.8em;
@@ -158,7 +161,7 @@
     float: left;
     color: $white;
     cursor: pointer;
-    text-align: center;
+    text-align: center;    
     @include transition(padding, 0.5s);
     @include animation(fade-in-right-big 0.5s);
     &:nth-child(6n+0) { 

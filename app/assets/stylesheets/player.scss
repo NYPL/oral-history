@@ -21,12 +21,10 @@
   margin-left: 26px;
 }
 .mejs-controls .mejs-time-rail .mejs-time-total {
-  background: $grayDark;
   @include border-radius(0);
 }
 .mejs-controls .mejs-time-rail .mejs-time-loaded,
 .mejs-controls .mejs-time-rail .mejs-time-current {
-  background: $grayLighter;
   @include border-radius(0);
 }
 .mejs-controls .mejs-time-rail .mejs-time-loaded {
@@ -38,14 +36,10 @@
 .mejs-controls .mejs-button button,
 .mejs-controls .mejs-play button {
   background: none;
-  color: $grayLightest;
   font-size: 1.4em;
   line-height: 1;
   border: 0;
   @include font-icon('$');
-  &:hover {
-    color: $white;
-  }
   &:active,
   &:focus {
     outline: 0;
@@ -60,7 +54,6 @@
 $regular-unit: 30px;
 $big-unit: 48px;
 .player {
-  background: $grayDarkest;
   width: 100%;
   height: $regular-unit;
   .player-placeholder {
@@ -72,18 +65,13 @@ $big-unit: 48px;
       height: $regular-unit;
       line-height: $regular-unit;
       text-align: center;
-      color: $grayLightest;
       float: left;
       @include font-icon('#');
-      &:hover {
-        color: $white;
-      }
     }
     .placeholder-bar {
       width: auto;
       height: 10px;
       margin: 10px 30px 0 $regular-unit;
-      background: $grayDark;
     }
   }
   &.active {
@@ -141,6 +129,34 @@ $big-unit: 48px;
     .mejs-container .mejs-controls .mejs-time {
       padding-top: 16px;
     }
+  }
+}
+
+// Skins
+.mejs-controls .mejs-time-rail .mejs-time-total {
+  background: $grayDark;
+}
+.mejs-controls .mejs-time-rail .mejs-time-loaded,
+.mejs-controls .mejs-time-rail .mejs-time-current {
+  background: $grayLighter;
+}
+.mejs-controls .mejs-button button,
+.mejs-controls .mejs-play button {
+  color: $grayLightest;
+  &:hover {
+    color: $white;
+  }
+}
+.player {
+  background: $grayDarkest;
+  .player-load-button {
+    color: $grayLightest;
+    &:hover {
+      color: $white;
+    }
+  }
+  .placeholder-bar {
+    background: $grayDark;
   }
 }
 
