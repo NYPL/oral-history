@@ -18,6 +18,7 @@
   background: $grayLightest; 
   width: auto;
   margin-left: 300px;
+  padding-bottom: 20px;
   @media (max-width: 550px) {
     margin-left: 0;
   }
@@ -32,6 +33,7 @@
 
 .interviews-list {
   @include clearfix();
+  margin-bottom: 20px;
   > li {
     position: relative;
     float: left;
@@ -100,5 +102,12 @@
         color: $grayLight;
       }
     }
+  }
+}
+
+@media (max-width: 876px) {
+  .interviews-list > li {
+    float: none;
+    margin: 20px auto 0;
   }
 }
