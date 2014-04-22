@@ -3,8 +3,7 @@
 @import "player";
 
 #home-container {
-  @include clearfix();
-  background: $grayLightest;  
+  @include clearfix();   
 }
 .home-sidebar {
   background: $white;
@@ -16,6 +15,7 @@
   }
 }
 .home-content {
+  background: $grayLightest; 
   width: auto;
   margin-left: 300px;
   @media (max-width: 550px) {

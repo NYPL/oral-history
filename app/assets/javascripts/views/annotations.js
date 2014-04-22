@@ -14,11 +14,11 @@ app.views.Annotation = Backbone.View.extend({
   },
   
   handleChange: function(){
+    this.updateLabel();
     // id not set, treat as deleted
     if( !this.model.id ) {
       this.$el.remove();
-    }
-    this.updateLabel();
+    }    
   },
   
   isSelected: function(){
