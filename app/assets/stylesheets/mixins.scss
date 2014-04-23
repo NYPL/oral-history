@@ -54,3 +54,11 @@
   transition:         $values;
 }
 
+@mixin transition-transform($value){
+  -moz-transition:    -moz-transform $value;
+  -o-transition:      -o-transform $value;
+  -webkit-transition: -webkit-transform $value;
+  -ms-transition:     -ms-transform $value;
+  transition:         transform $value;
+}
+
