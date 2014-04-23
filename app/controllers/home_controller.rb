@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   
   def index
-    @interviews = Interview.all
+    @interviews = Interview.order("RANDOM()")
   end
 
 end
