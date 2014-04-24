@@ -3,6 +3,7 @@ app.models.Interview = Backbone.Model.extend({
   defaults: function() {
     return {
       id: 0,
+      slug: '',
       storyteller_name: '',
       annotations: [],
       matched_annotations: []
@@ -41,7 +42,6 @@ app.models.Interview = Backbone.Model.extend({
     }
     return {
       annotations: annotations,
-      id: resp.id,
       image: resp.image,
       slug: resp.slug,
       storyteller_name: resp.storyteller_name,

@@ -224,6 +224,7 @@ app.views.TranscribeInterview = app.views.Interviews.extend({
   },
   
   showFinished: function(){
+    $( "#input-text" ).blur();
     $('.finished').show();  
   },
   
