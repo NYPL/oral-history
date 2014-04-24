@@ -66,6 +66,7 @@ app.views.BrowseInterviews = Backbone.View.extend({
     var that = this,
         results = new app.collections.Interviews(interview_results);
     
+    // add annotation results
     _.each(annotations_results, function(ar){
       // check existing results
       var found_interview = results.findWhere({slug: ar.interview_id});
@@ -88,6 +89,10 @@ app.views.BrowseInterviews = Backbone.View.extend({
     this.renderResults(results);
   },
   
+  resetMatchedAnnotations: function(){
+    this.interviews.invoke('set', {'matched_annotations': []});
+  },
+  
   resetResults: function(){
     this.$('#interviews-list').removeClass('search-results');
     this.renderResults(this.interviews);
@@ -96,6 +101,7 @@ app.views.BrowseInterviews = Backbone.View.extend({
   searchFormSubmit: function(e){
     e.preventDefault();
     var q = $('#search-input').val();
+    this.resetMatchedAnnotations();
     if (q.length){
       this.doSearch(q);
     } else {
