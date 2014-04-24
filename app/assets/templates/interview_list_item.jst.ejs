@@ -1,0 +1,11 @@
+<div class="image" style="background-image: url(<%= image.thumb.url %>)">
+  <a href="/interviews/<%= slug %>" class="link-overlay"></a>
+</div>
+<div class="caption">
+  <a href="/interviews/<%= slug %>"><%= storyteller_name %></a>
+</div>
+<div class="annotations">
+<% _.each(matched_annotations,function(a){ %>
+  <a href="/interviews/<%= slug %>#<%= helper.formatTime(a.start) %>" class="annotation"><%= a.text %> (<%= helper.formatTime(a.start) %>)</a>
+<% }); %>
+</div>

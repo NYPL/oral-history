@@ -1,6 +1,6 @@
 OralHistory::Application.routes.draw do
   
-  resources :interviews, :only => [:show, :update]
+  resources :interviews, :only => [:index, :show, :update]
   
   namespace :admin do
     resources :interviews

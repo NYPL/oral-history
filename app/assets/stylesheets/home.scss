@@ -31,6 +31,20 @@
   }
 }
 
+.search-form {
+  padding: 20px 0 0 20px;
+  input {
+    width: 200px;
+    display: inline-block;
+    font-size: 1.2em;
+    padding: 0.2em 0.4em;
+    @include transition(width, 0.5s);
+    &:focus {
+      width: 320px;
+    }
+  }
+}
+
 .interviews-list {
   @include clearfix();
   margin-bottom: 20px;
@@ -81,6 +95,9 @@
       color: $grayDarker;
     }
   }
+  &.search-results > li {
+    height: 320px;
+  }
   .link-overlay {
     display: block;
     position: absolute;
@@ -104,6 +121,17 @@
         color: $grayLight;
       }
     }
+  }
+  .annotations {
+    padding-top: 6px;
+  }
+  .annotation {
+    display: inline-block;
+    font-size: 0.8em;
+    padding: 3px 6px;
+    background: $blue;
+    color: $white;
+    margin: 6px 6px 0 0;
   }
 }
 

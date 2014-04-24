@@ -1,6 +1,5 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag    "home", :media => "all" %>
-  <%= javascript_include_tag "player" %>
   <%= javascript_include_tag "home" %>
 <% end %>
 
@@ -31,23 +30,9 @@
     </div>
   </div>
   <div class="home-content">
-    <ul class="interviews-list">
-      <% @interviews.each do |interview| %>
-      <li>
-        <div class="image" style="background-image: url(<%= interview.image.thumb.url if interview.image %>)">
-          <%= link_to "", interview, :class => "link-overlay" %>
-        </div>
-        <div class="caption"><%= link_to interview.storyteller_name, interview %></div>
-        <!-- <div class="player inverse" data-id="<%= interview.id %>">
-          <div class="player-placeholder">
-            <a href="#audio-<%= interview.id %>" class="player-load-button"></a>
-            <div class="placeholder-bar"></div>
-          </div>
-          <audio id="audio-<%= interview.id %>" src="<%= interview.url %>" data-show-duration="false"></audio>
-        </div> -->
-        
-      </li>
-      <% end %>
-    </ul>
+    <form id="search-form" class="search-form">
+      <input type="text" id="search-input" value="" placeholder="Search Keyword..." />
+    </form>
+    <ul id="interviews-list" class="interviews-list"></ul>
   </div>  
 </div>

@@ -1,4 +1,10 @@
 class InterviewsController < ApplicationController
+  
+  # GET /interviews
+  def index
+    @interviews = Interview.select("annotations, id, image, slug, storyteller_name, summary, url").order("storyteller_name")
+    render json: @interviews
+  end
 
   # GET /interviews/1
   # GET /interviews/1.json
@@ -18,7 +24,7 @@ class InterviewsController < ApplicationController
   def update
     @interview = Interview.find_by_slug(params[:id])
     
-    # only update annotations
+    # only allow public to update annotations
     annotations = params[:interview][:annotations]
 
     respond_to do |format|

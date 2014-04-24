@@ -33,17 +33,22 @@ window.app = {
 app.routers.MainRouter = Backbone.Router.extend({
 
   routes: {
+    '': 'index',
     'annotations/:id/start': 'start',
     'annotations/:id/mark': 'mark',
     'annotations/:id/transcribe': 'transcribe'
   },
   
-  start: function(id){},
+  index: function(){
+    app.views.main = new app.views.BrowseInterviews();
+  },  
   
   mark: function(id){
     var interview = new app.models.Interview({id: id});
     app.views.main = new app.views.MarkInterview({model: interview});
   },
+  
+  start: function(id){},
   
   transcribe: function(id){
     var interview = new app.models.Interview({id: id});

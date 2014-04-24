@@ -1,25 +1,7 @@
-(function() {
-  var Home;
-
-  Home = (function() {
-    function Home(options) {
-      var defaults = {
-        debug: false
-      };
-      this.options = $.extend(defaults, options);
-      this.init();      
-    }   
-    
-    Home.prototype.init = function(){
-      
-    };
-
-    return Home;
-
-  })();
-
-  $(function() {
-    return new Home({});
-  });
-
-}).call(this);
+//= require ./vendor/underscore-min
+//= require ./vendor/backbone-min
+//= require backbone-app
+//= require_tree ../templates
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./views
