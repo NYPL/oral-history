@@ -42,6 +42,7 @@ app.models.Interview = Backbone.Model.extend({
     }
     return {
       annotations: annotations,
+      id: resp.slug,
       image: resp.image,
       slug: resp.slug,
       storyteller_name: resp.storyteller_name,
