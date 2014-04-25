@@ -7,7 +7,7 @@ class Admin::InterviewsController < ApplicationController
   # GET /admin/interviews
   # GET /admin/interviews.json
   def index
-    @interviews = Interview.all
+    @interviews = Interview.order("storyteller_name")
 
     respond_to do |format|
       format.html # index.html.erb

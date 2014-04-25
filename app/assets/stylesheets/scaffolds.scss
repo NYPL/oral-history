@@ -64,6 +64,10 @@ table {
     border-bottom: 1px solid $grayLight;
     padding: 1em 0;
   }
+  img.thumb {
+    width: 60px;
+    height: auto;
+  }
 }
 .form {
   width: 80%;
@@ -88,6 +92,12 @@ table {
   }
   .image-wrapper {
     border: 1px solid $grayLighter;
+    background: $grayLightest;
+    max-height: 400px;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
   }
 }
 .button {

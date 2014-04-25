@@ -27,7 +27,11 @@
   background: rgba(255,255,255,0.9);
   h1, h2, h3, h4 {
     margin-top: 0.5em;
-    margin-bottom: 0;
+    margin-bottom: 0;    
+  }
+  h4 {
+    color: $gray;
+    font-weight: normal;
   }
 }
 

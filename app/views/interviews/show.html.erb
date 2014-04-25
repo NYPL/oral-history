@@ -37,8 +37,8 @@
       <%= content_tag(:dt, "Interviewer name") unless @interview.interviewer_name.blank? %>
       <%= content_tag(:dd, @interview.interviewer_name) unless @interview.interviewer_name.blank? %>
       
-      <%= content_tag(:dt, "Interviewed at") unless @interview.interviewed_at.blank? %>
-      <%= content_tag(:dd, @interview.interviewed_at.strftime("%B %e, %Y")) unless @interview.interviewed_at.blank? %>
+      <%= content_tag(:dt, "Interviewed at") unless @interview.interviewer_name.blank?%>
+      <%= content_tag(:dd, @interview.interviewed_at.strftime("%B %e, %Y")) unless @interview.interviewer_name.blank? %>
       
       <%= content_tag(:dt, "Location") unless @interview.location.blank? %>
       <%= content_tag(:dd, @interview.location) unless @interview.location.blank? %>

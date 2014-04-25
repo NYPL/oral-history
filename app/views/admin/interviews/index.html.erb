@@ -6,6 +6,7 @@
 <table>    
 <% @interviews.each do |interview| %>
   <tr>
+    <td><%= image_tag(interview.image.thumb.url, :class => "thumb") if interview.image %></td>
     <td><%= link_to interview.storyteller_name, interview %></td>
     <td>by <%= interview.interviewer_name %></td>
     <td><%= interview.interviewed_at %></td>
