@@ -53,40 +53,50 @@ app.views.BrowseInterviews = Backbone.View.extend({
     }
   },
   
+  loadIsotope: function(){
+    if (this.iso) {
+      this.iso.destroy();
+    }
+    this.iso = new Isotope( '#interviews-list', {
+      // options
+      itemSelector: 'li'
+    });  
+  },
+  
   renderResults: function(results){
     var that = this;
-    this.$('#interviews-list').empty();
+    this.resetListView();    
     results.each(function(interview){
       var interview_view = new app.views.InterviewListItem({model: interview});
       that.$('#interviews-list').append(interview_view.render().$el);
     });
+    this.loadIsotope();
   },
   
   renderSearchResults: function(interview_results, annotations_results){
     var that = this,
-        results = new app.collections.Interviews(interview_results);
-    
+        results = new app.collections.Interviews(interview_results);    
     // add annotation results
     _.each(annotations_results, function(ar){
       // check existing results
       var found_interview = results.findWhere({slug: ar.interview_id});
-      // found in existing results, update that result
-      if (found_interview !== undefined) {
-        results.get(found_interview.id).get('matched_annotations').push(ar);
-        
-      // otherwise, add the interview to results
-      } else {
-        found_interview = that.interviews.findWhere({slug: ar.interview_id});
-        if (found_interview !== undefined) {
-          found_interview.get('matched_annotations').push(ar);
-          results.add(found_interview);
-        }        
+      // interview not found in existing results
+      if (!found_interview) {
+        found_interview = that.interviews.findWhere({slug: ar.interview_id});        
+        results.push(found_interview);      
       }
+      results.get(found_interview.id).get('matched_annotations').push(ar);
     });
+    
+    console.log(results)
     
     // render results
     this.$('#interviews-list').addClass('search-results');
     this.renderResults(results);
+  },
+  
+  resetListView: function(){
+    this.$('#interviews-list').empty();    
   },
   
   resetMatchedAnnotations: function(){

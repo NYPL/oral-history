@@ -56,7 +56,7 @@
     position: relative;
     float: left;
     width: 240px;
-    height: 280px;
+    /* height: 280px; */
     margin: 20px 0 0 20px;
     padding: 10px;
     overflow: hidden;
@@ -100,7 +100,7 @@
     }
   }
   &.search-results > li {
-    height: 330px;
+    /* height: 330px; */
   }
   .link-overlay {
     display: block;
