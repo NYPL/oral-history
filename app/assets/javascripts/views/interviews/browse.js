@@ -18,17 +18,18 @@ app.views.BrowseInterviews = Backbone.View.extend({
         console.log(collection.length + ' interviews loaded.');
         that.afterInterviewsLoaded(collection);
       }
-    });
+    });    
   },
   
   initAnnotations: function(){
     // reduce interview annotations to a single array
-    this.annotations = this.interviews.reduce(function(memo, interview){
+    this.annotation_hashes = this.interviews.reduce(function(memo, interview){
       return memo.concat(interview.get('annotations'));
     },[]);
   },
   
   afterInterviewsLoaded: function(interviews){
+    this.interview_hashes = this.interviews.toReadOnlyJSON();
     this.renderResults(interviews);
     this.initAnnotations();    
   },
@@ -38,11 +39,11 @@ app.views.BrowseInterviews = Backbone.View.extend({
         annotations_results = [];
     q = q.toLowerCase();
     // search name and summary for keyword
-    interview_results = this.interviews.filter(function(i){
-      return (i.get('storyteller_name').toLowerCase().indexOf(q) != -1 || i.get('summary').toLowerCase().indexOf(q) != -1);
+    interview_results = _.filter(this.interview_hashes, function(i){
+      return (i.storyteller_name.toLowerCase().indexOf(q) != -1 || i.summary.toLowerCase().indexOf(q) != -1);
     })
     // search annotation text keyword
-    annotations_results = _.filter(this.annotations, function(a){ 
+    annotations_results = _.filter(this.annotation_hashes, function(a){ 
       return (a.text.toLowerCase().indexOf(q) != -1);
     });
     if (interview_results.length || annotations_results.length) {
@@ -75,24 +76,27 @@ app.views.BrowseInterviews = Backbone.View.extend({
   
   renderSearchResults: function(interview_results, annotations_results){
     var that = this,
-        results = new app.collections.Interviews(interview_results);    
+        results = interview_results,
+        results_collection;
+        
     // add annotation results
     _.each(annotations_results, function(ar){
       // check existing results
-      var found_interview = results.findWhere({slug: ar.interview_id});
+      var found_interview = _.findWhere(results,{slug: ar.interview_id});
       // interview not found in existing results
       if (!found_interview) {
-        found_interview = that.interviews.findWhere({slug: ar.interview_id});        
-        results.push(found_interview);      
+        found_interview = _.findWhere(that.interview_hashes,{slug: ar.interview_id});        
+        results.push(found_interview);   
       }
-      results.get(found_interview.id).get('matched_annotations').push(ar);
+      found_interview.matched_annotations.push(ar);
     });
     
-    console.log(results)
+    // convert array to collection
+    results_collection = new app.collections.Interviews(results);
     
     // render results
     this.$('#interviews-list').addClass('search-results');
-    this.renderResults(results);
+    this.renderResults(results_collection);
   },
   
   resetListView: function(){
@@ -100,7 +104,7 @@ app.views.BrowseInterviews = Backbone.View.extend({
   },
   
   resetMatchedAnnotations: function(){
-    this.interviews.invoke('set', {'matched_annotations': []});
+    _.each(this.interview_hashes, function(interview){ interview.matched_annotations = []; });
   },
   
   resetResults: function(){
