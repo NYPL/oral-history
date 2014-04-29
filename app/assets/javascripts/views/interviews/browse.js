@@ -59,7 +59,6 @@ app.views.BrowseInterviews = Backbone.View.extend({
       this.iso.destroy();
     }
     this.iso = new Isotope( '#interviews-list', {
-      // options
       itemSelector: 'li'
     });  
   },
