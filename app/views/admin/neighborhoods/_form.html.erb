@@ -1,0 +1,55 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag    "wysiwyg", :media => "all" %>
+  <%= javascript_include_tag "wysiwyg" %>
+<% end %>
+
+<%= form_for([:admin, @neighborhood], :html => { :class => "form",  :multipart => true }) do |f| %>
+  <% if @neighborhood.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@neighborhood.errors.count, "error") %> prohibited this neighborhood from being saved:</h2>
+
+      <ul>
+      <% @neighborhood.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :slug, "URL name" %>
+    <%= f.text_field :slug, :required => true %>
+  </div>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :subtitle %>
+    <%= f.text_field :subtitle %>
+  </div>
+  <div class="field">
+    <%= f.label :short_description %>
+    <%= f.text_area :short_description %>
+  </div>
+  <div class="field">
+    <%= f.label :long_description %>
+    <%= render 'shared/wysiwyg_toolbar', :container_id => 'wysiwyg-long-description-toolbar' %>
+    <%= f.text_area :long_description, :id => "wysiwyg-long-description", :class => "wysiwyg-textarea", "data-toolbar-id" => "wysiwyg-long-description-toolbar" %>    
+  </div>
+  <div class="field">
+    <%= f.label :contact_description %>
+    <%= render 'shared/wysiwyg_toolbar', :container_id => 'wysiwyg-contact-description-toolbar' %>
+    <%= f.text_area :contact_description, :id => "wysiwyg-contact-description", :class => "wysiwyg-textarea", "data-toolbar-id" => "wysiwyg-contact-description-toolbar" %>
+  </div>
+  <div class="field">
+    <%= f.label :image %>    
+    <div class="image-wrapper">
+      <%= image_tag(@neighborhood.image.thumb.url) if @neighborhood.image %>
+    </div>
+    <%= f.file_field :image %>    
+  </div>
+  <div class="actions">
+    <button type="submit" class="button expand">Submit</button>
+  </div>
+<% end %>

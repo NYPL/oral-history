@@ -34,6 +34,7 @@ app.routers.MainRouter = Backbone.Router.extend({
 
   routes: {
     '': 'index',
+    'neighborhoods/:id': 'neighborhood',
     'annotations/:id/start': 'start',
     'annotations/:id/mark': 'mark',
     'annotations/:id/transcribe': 'transcribe'
@@ -46,6 +47,10 @@ app.routers.MainRouter = Backbone.Router.extend({
   mark: function(id){
     var interview = new app.models.Interview({id: id});
     app.views.main = new app.views.MarkInterview({model: interview});
+  },
+  
+  neighborhood: function(id){
+    app.views.main = new app.views.BrowseInterviews({neighborhood_id: id});
   },
   
   start: function(id){},

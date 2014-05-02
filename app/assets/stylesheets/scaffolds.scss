@@ -148,6 +148,12 @@ table {
 // -------------------------
 .page-title {
   @include clearfix();
+  .button.pull-right {
+    margin-left: 12px;
+  }
+  .button.pull-left {
+    margin-right: 12px;
+  }
 }
 .header-container {
   h2 {

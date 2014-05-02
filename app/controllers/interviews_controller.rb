@@ -2,7 +2,14 @@ class InterviewsController < ApplicationController
   
   # GET /interviews
   def index
-    @interviews = Interview.select("annotations, id, image, slug, storyteller_name, summary, url").order("storyteller_name")
+    if params[:neighborhood_id]
+      @neighborhood = Neighborhood.find_by_slug(params[:neighborhood_id])
+    else
+      @neighborhood = Neighborhood.first
+    end
+    @interviews = Interview.select("annotations, id, image, slug, storyteller_name, summary, url")
+                           .where("neighborhood_id = ?", @neighborhood.id)
+                           .order("storyteller_name")
     render json: @interviews
   end
 

@@ -1,0 +1,17 @@
+<div class="page-title">
+  <h1 class="pull-left">Neighborhoods</h1>
+  <%= link_to 'Add A New Neighborhood', new_admin_neighborhood_path, :class => "button pull-right" %>
+  <%= link_to 'Manage Interviews', admin_interviews_path, :class => "button pull-right" %>  
+</div>
+
+<table>
+<% @neighborhoods.each do |neighborhood| %>
+  <tr>
+    <td><%= link_to neighborhood.title, neighborhood %></td>
+    <td><%= neighborhood.subtitle %></td>
+    <td><%= link_to 'Show', neighborhood %></td>
+    <td><%= link_to 'Edit', edit_admin_neighborhood_path(neighborhood) %></td>
+    <td><%= link_to 'Destroy', admin_neighborhood_path(neighborhood), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>

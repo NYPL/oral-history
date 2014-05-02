@@ -1,9 +1,10 @@
 OralHistory::Application.routes.draw do
-  
+
   resources :interviews, :only => [:index, :show, :update]
+  resources :neighborhoods, :only => [:index, :show]
   
   namespace :admin do
-    resources :interviews
+    resources :interviews, :neighborhoods
   end
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
@@ -13,6 +14,6 @@ OralHistory::Application.routes.draw do
   match 'annotations/:id/mark' => 'annotations#mark', :as => :mark
   match 'annotations/:id/transcribe' => 'annotations#transcribe', :as => :transcribe
     
-  root :to => 'home#index'
+  root :to => 'neighborhoods#index'
 
 end

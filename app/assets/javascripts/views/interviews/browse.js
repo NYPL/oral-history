@@ -1,18 +1,20 @@
 app.views.BrowseInterviews = Backbone.View.extend({
   
-  el: '#home-container',
+  el: '#neighborhood-container',
   
   events: {
     "submit #search-form": "searchFormSubmit"
   },
   
-  initialize: function(){    
-    this.initInterviews();
+  initialize: function(options){
+    var neighborhood_id = options && options.neighborhood_id? options.neighborhood_id : null;
+    this.initInterviews(neighborhood_id);
   },
   
-  initInterviews: function(){
+  initInterviews: function(neighborhood_id){
     var that = this;
     this.interviews = new app.collections.Interviews;
+    if (neighborhood_id) this.interviews.setNeighborhood(neighborhood_id);
     this.interviews.fetch({
       success: function(collection, response, options){
         console.log(collection.length + ' interviews loaded.');

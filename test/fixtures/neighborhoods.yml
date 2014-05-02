@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  slug: MyString
+  title: MyString
+  subtitle: MyString
+  short_description: MyText
+  long_description: MyText
+  contact_description: MyText
+
+two:
+  slug: MyString
+  title: MyString
+  subtitle: MyString
+  short_description: MyText
+  long_description: MyText
+  contact_description: MyText

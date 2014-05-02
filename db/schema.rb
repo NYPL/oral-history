@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140401182736) do
+ActiveRecord::Schema.define(:version => 20140502141635) do
 
   create_table "interviews", :force => true do |t|
     t.string   "slug",                              :null => false
@@ -35,10 +35,27 @@ ActiveRecord::Schema.define(:version => 20140401182736) do
     t.text     "annotations"
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
+    t.integer  "neighborhood_id",   :default => 1,  :null => false
   end
 
+  add_index "interviews", ["neighborhood_id"], :name => "index_interviews_on_neighborhood_id"
   add_index "interviews", ["slug"], :name => "index_interviews_on_slug", :unique => true
   add_index "interviews", ["user_id"], :name => "index_interviews_on_user_id"
+
+  create_table "neighborhoods", :force => true do |t|
+    t.string   "slug",                               :null => false
+    t.string   "title"
+    t.string   "subtitle"
+    t.text     "short_description"
+    t.text     "long_description"
+    t.text     "contact_description"
+    t.integer  "interview_count",     :default => 0, :null => false
+    t.string   "image"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
+
+  add_index "neighborhoods", ["slug"], :name => "index_neighborhoods_on_slug", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name",                   :default => "", :null => false

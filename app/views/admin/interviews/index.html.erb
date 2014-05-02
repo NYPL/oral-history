@@ -1,6 +1,7 @@
 <div class="page-title">
   <h1 class="pull-left">Interviews</h1>  
   <%= link_to 'Add A New Interview', new_admin_interview_path, :class => "button pull-right" %>
+  <%= link_to 'Manage Neighborhoods', admin_neighborhoods_path, :class => "button pull-right" %>
 </div>
 
 <table>    
@@ -9,6 +10,7 @@
     <td><%= image_tag(interview.image.thumb.url, :class => "thumb") if interview.image %></td>
     <td><%= link_to interview.storyteller_name, interview %></td>
     <td>by <%= interview.interviewer_name %></td>
+    <td>in <%= link_to interview.neighborhood.title, interview.neighborhood %></td>
     <td><%= interview.interviewed_at %></td>
     <td><%= interview.location %></td>    
     <td><%= link_to 'Show', interview %></td>

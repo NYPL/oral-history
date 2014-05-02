@@ -1,0 +1,28 @@
+@import "variables";
+@import "mixins";
+@import "animate";
+@import "vendor/font-awesome.min";
+
+.wysiwyg-toolbar {
+  position: relative;
+  margin: 1em 0 0.2em;
+}
+
+[data-wysihtml5-command],
+[data-wysihtml5-action] {
+  margin-right: 1em;
+  color: $grayLight;
+  &.wysihtml5-command-active {
+    color: $black;
+    font-weight: bold;
+  }
+}
+
+.wysiwyg-dialog {
+  margin-top: 0.2em;  
+}
+[data-wysihtml5-dialog-action] {
+  display: inline-block;
+  margin: 0.2em 0.2em 0.2em 0;
+  cursor: pointer;
+}

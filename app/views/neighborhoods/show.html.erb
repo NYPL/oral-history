@@ -1,0 +1,28 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag    "neighborhood", :media => "all" %>
+  <%= javascript_include_tag "neighborhood" %>
+<% end %>
+
+<%= render "shared/nypl-header" %>
+
+<div id="neighborhood-container">
+  <div class="neighborhood-sidebar">
+    <div class="neighborhood-description padded">
+      <h4><a href="http://nypl.org">The New York Public Library</a> presents</h4>
+      <h1><%= @neighborhood.title %></h1>
+      <h3><%= @neighborhood.subtitle %></h3>
+      <div class="long-description">
+        <%= @neighborhood.long_description.html_safe %>
+      </div>
+      <div class="contact-description">
+        <%= @neighborhood.contact_description.html_safe %>
+      </div>
+    </div>
+  </div>
+  <div class="neighborhood-content">
+    <form id="search-form" class="search-form">
+      <input type="text" id="search-input" value="" placeholder="Search Keyword..." />
+    </form>
+    <ul id="interviews-list" class="interviews-list"></ul>
+  </div>  
+</div>

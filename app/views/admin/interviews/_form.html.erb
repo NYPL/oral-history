@@ -12,8 +12,12 @@
   <% end %>
   
   <div class="field">
+    <%= f.label :neighborhood_id, "Neighborhood" %>
+    <%= f.select(:neighborhood_id, options_from_collection_for_select(Neighborhood.all, :id, :subtitle, @interview.neighborhood_id)) %>
+  </div>
+  <div class="field">
     <%= f.label :storyteller_name %>
-    <%= f.text_field :storyteller_name %>
+    <%= f.text_field :storyteller_name, :required => true %>
   </div>
   <div class="field">
     <%= f.label :interviewer_name %>
@@ -61,7 +65,7 @@
   </div>
   <div class="field">
     <%= f.label :url, "URL to .mp3 file" %>
-    <%= f.text_field :url %>
+    <%= f.text_field :url, :required => true %>
   </div>
   <div class="field">
     <%= f.label :image %>    
