@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>NYPL Oral History Project</title>
+  <title>NYPL Oral History Project<%= content_for?(:title) ? " | #{yield(:title)}" : "" %></title>
   <meta name="description" content="A community-based oral history project at The New York Public Library that works to both preserve and document neighborhood history through the stories of people who have experienced it.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 

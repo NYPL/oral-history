@@ -1,3 +1,5 @@
+<% content_for :title, "#{@interview.neighborhood.title} | #{@interview.storyteller_name}" %>
+
 <% content_for :head do %>
   <%= stylesheet_link_tag    "interviews", :media => "all" %>
   <%= javascript_include_tag "player" %>
@@ -7,7 +9,7 @@
 <div class="interview-banner" style="background-image: url(<%= @interview.image.url %>)">
   <div class="banner-gradient top">
     <div class="banner-title">
-      <div class="subtitle"><a href="<%= root_url %>"><span class="icon-nypl"></span> Your Village, Your Story: Greenwich Village Oral History Project</a></div>
+      <div class="subtitle"><a href="<%= root_url %>"><span class="icon-nypl"></span> <%= @interview.neighborhood.title %>: <%= @interview.neighborhood.subtitle %></a></div>
       <div class="title"><%= @interview.storyteller_name %></div>
     </div>
   </div>
