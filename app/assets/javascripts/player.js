@@ -81,7 +81,10 @@
             if (autoplay) {
               media.play();
             }                
-          }, false);         
+          }, false);
+          
+          // adding alt text for ADA compliance
+          $('.mejs-playpause-button button').attr('alt', 'Play/Pause');       
            
         }
       });
