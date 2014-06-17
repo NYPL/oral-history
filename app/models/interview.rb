@@ -5,6 +5,7 @@ class Interview < ActiveRecord::Base
   attr_accessor :remote_image_url
   
   belongs_to :neighborhood
+  has_many :features
       
   validates :storyteller_name, :url, presence: true
   

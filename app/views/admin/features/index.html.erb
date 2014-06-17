@@ -1,0 +1,17 @@
+<div class="page-title">
+  <h1 class="pull-left">Features</h1>
+  <%= link_to 'Add A New Feature', new_admin_feature_path, :class => "button pull-right" %>
+  <%= link_to 'Manage Interviews', admin_interviews_path, :class => "button pull-right" %>
+  <%= link_to 'Manage Neighborhoods', admin_neighborhoods_path, :class => "button pull-right" %>  
+</div>
+
+<table>
+<% @features.each do |feature| %>
+  <tr>
+    <td><%= link_to feature.interview.storyteller_name, feature.interview %></td>
+    <td><%= feature.title %></td>
+    <td><%= link_to 'Edit', edit_admin_feature_path(feature) %></td>
+    <td><%= link_to 'Destroy', admin_feature_path(feature), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>

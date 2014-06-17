@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  interview_id: 1
+  title: MyString
+  description: MyText
+  image: MyString
+  is_active: 1
+
+two:
+  interview_id: 1
+  title: MyString
+  description: MyText
+  image: MyString
+  is_active: 1

@@ -43,6 +43,29 @@
           <% end %>
         </ul>
       </div> <!-- /home-featured -->
+      
+      <div class="home-featured">
+        <h2>Featured Interviews</h2>
+        <ul class="interviews-list">
+          <% @features.each do |feature| %>
+          <li>
+            <div class="image" style="background-image: url(<%= feature.interview.image.thumb.url %>)"></div>     
+            <div class="copy">
+              <div class="title">
+                <%= feature.interview.storyteller_name %>
+              </div>
+              <div class="subtitle">
+                <%= feature.title %>
+              </div>
+              <div class="description">
+                <%= feature.description %>
+              </div>
+            </div>     
+            <%= link_to "", feature.interview, :class => "link-overlay" %>
+          </li>
+          <% end %>
+        </ul>
+      </div> <!-- /home-featured -->
     
     </div> <!-- /home-container -->
     

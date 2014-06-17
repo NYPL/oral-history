@@ -2,12 +2,11 @@ OralHistory::Application.routes.draw do
 
   match 'interviews/demo' => 'interviews#demo'
   
-  resources :features
   resources :interviews, :only => [:index, :show, :update]
   resources :neighborhoods, :only => [:index, :show]
   
   namespace :admin do
-    resources :interviews, :neighborhoods
+    resources :interviews, :neighborhoods, :features
   end
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

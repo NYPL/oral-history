@@ -49,7 +49,7 @@ class Admin::NeighborhoodsController < ApplicationController
 
     respond_to do |format|
       if @neighborhood.save
-        format.html { redirect_to @neighborhood, notice: 'Neighborhood was successfully created.' }
+        format.html { redirect_to admin_neighborhoods_path, notice: 'Neighborhood was successfully created.' }
         format.json { render json: @neighborhood, status: :created, location: @neighborhood }
       else
         format.html { render action: "new" }
@@ -65,7 +65,7 @@ class Admin::NeighborhoodsController < ApplicationController
 
     respond_to do |format|
       if @neighborhood.update_attributes(params[:neighborhood])
-        format.html { redirect_to @neighborhood, notice: 'Neighborhood was successfully updated.' }
+        format.html { redirect_to admin_neighborhoods_path, notice: 'Neighborhood was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
