@@ -74,6 +74,13 @@
     </div>
     <%= f.file_field :image %>    
   </div>
+  <div class="field">
+    <%= f.label :is_demo, "Is this a demo?" %>
+    <%= f.radio_button :is_demo, 1, :checked => @interview.is_demo===1 %> 
+    <%= label :is_demo_yes, 'Yes', :value => 1, :class => "radio-label" %>
+    <%= f.radio_button :is_demo, 0, :checked => @interview.is_demo===0 %>
+    <%= label :is_demo_no, 'No', :value => 0, :class => "radio-label" %>
+  </div>
   <div class="actions">
     <button type="submit" class="button expand">Submit</button>
   </div>

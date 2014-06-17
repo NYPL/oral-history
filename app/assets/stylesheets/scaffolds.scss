@@ -21,12 +21,16 @@ a {
     color: lighten($blue, 10%);
   }
 }
+h1, h2, h3, h4 {
+  font-family: 'Lato Black', sans-serif;
+  font-weight: normal;
+}
 
 // Scaffold
 // -------------------------
 .container {
   width: 100%;
-  max-width: 960px;
+  max-width: $standardWidth;
   margin: 0 auto;
   position: relative;
 }
@@ -75,15 +79,25 @@ table {
     display: block;
     text-transform: uppercase;
   }
+  label.radio-label {
+    display: inline-block;
+    margin: 0.5em 0.5em 0 0;
+  }
   .field {
     margin: 1.2em 0;
   }
-  input,
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="file"],
   select,
   textarea {
     margin: 0.5em 0 0;
   }
-  input,
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="file"],
   textarea {
     width: 100%;
   }
@@ -169,6 +183,7 @@ table {
   }
 }
 footer {
+  position: relative;
   border-top: 1px solid $grayLightest;
   margin: 1em;
   padding: 1em 0;
@@ -199,6 +214,16 @@ footer {
        url('lato-reg-webfont.woff') format('woff'),
        url('lato-reg-webfont.ttf')  format('truetype'),
        url('lato-reg-webfont.svg#lato') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Lato Black';
+  src: url('lato-bla-webfont.eot');
+  src: url('lato-bla-webfont.eot?#iefix') format('embedded-opentype'),
+       url('lato-bla-webfont.woff') format('woff'),
+       url('lato-bla-webfont.ttf')  format('truetype'),
+       url('lato-bla-webfont.svg#lato') format('svg');
   font-weight: normal;
   font-style: normal;
 }

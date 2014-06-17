@@ -8,7 +8,14 @@ class InterviewsController < ApplicationController
       @neighborhood = Neighborhood.first
     end
     @interviews = Interview.select("annotations, id, image, slug, storyteller_name, summary, url")
-                           .where("neighborhood_id = ?", @neighborhood.id)
+                           .where("neighborhood_id = ? AND is_demo = ?", @neighborhood.id, 0)
+                           .order("storyteller_name")
+    render json: @interviews
+  end
+  
+  def demo
+    @interviews = Interview.select("annotations, id, image, slug, storyteller_name, summary, url")
+                           .where("is_demo = ?", 1)
                            .order("storyteller_name")
     render json: @interviews
   end

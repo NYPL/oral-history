@@ -6,33 +6,45 @@
 <%= render "shared/nypl-header" %>
 
 <div id="home-container">
-  <div class="home-sidebar">
-    <div class="home-description padded">
-      <h4><a href="http://nypl.org">The New York Public Library</a> presents</h4>
-      <h1>Your Village, Your Story:</h1>
-      <h3>Greenwich Village Oral History Project</h3>
-      <p>
-        This is a community-based oral history project at Jefferson Market Library that works to both preserve and document Greenwich Village neighborhood history through 
-        the stories of people who have experienced it.  
-      </p>
-      <p>
-        From December 2013 - April 2014, trained volunteer interviewers worked to collect over 100 oral histories of people who have a longtime 
-        relationship with Greenwich Village.  This collection represents the voices of individuals who have lived, worked or spent over 20 years in the neighborhood.
-      </p>
-      <p>
-        We invite you to browse these oral histories - unedited interviews between Interviewers and Storytellers.  These recordings will also be accessible at The New York 
-        Public Library in The Milstein Division and in a circulating collection at Jefferson Market Library.
-      </p>
-      <p><small>
-        For more information about this project, please contact Alexandra Kelly at Outreach Services and Adult Programs, 
-        <a href="mailto:alexandrakelly@nypl.org">AlexandraKelly@nypl.org</a> or (212) 592-7555. 
-      </small></p>
-    </div>
+  <div class="home-wrapper">
+    
+    <div class="home-banner-wrapper"><div class="home-banner"></div></div>
+    <div class="home-gradient-wrapper"><div class="home-gradient"></div></div>
+    
+    <div class="home-container">
+    
+      <div class="home-title">
+        <h3>The New York Public Library</h3>
+        <h1>Oral History Project</h1>
+        <div class="home-title-description">
+          This is a community-based oral history project taking place in NYPL branches across the city that works to both preserve and document 
+          neighborhood history through the stories of people who have experienced it.
+        </div>      
+      </div> <!-- /home-title -->
+      
+      <hr />
+      
+      <div class="home-featured">
+        <h2>Featured Neighborhoods</h2>
+        <ul class="neighborhoods-list">
+          <% @neighborhoods.each do |neighborhood| %>
+          <li style="background-image: url(<%= neighborhood.image.thumb.url %>)">
+            <div class="gradient"></div>
+            <div class="copy">
+              <div class="title">
+                <%= neighborhood.title %>
+              </div>
+              <div class="subtitle">
+                <%= neighborhood.subtitle %>
+              </div>  
+            </div>          
+            <%= link_to "", neighborhood, :class => "link-overlay" %>
+          </li>
+          <% end %>
+        </ul>
+      </div> <!-- /home-featured -->
+    
+    </div> <!-- /home-container -->
+    
   </div>
-  <div class="home-content">
-    <form id="search-form" class="search-form">
-      <input type="text" id="search-input" value="" placeholder="Search Keyword..." />
-    </form>
-    <ul id="interviews-list" class="interviews-list"></ul>
-  </div>  
 </div>

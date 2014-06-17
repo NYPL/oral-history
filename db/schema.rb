@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140502154241) do
+ActiveRecord::Schema.define(:version => 20140617183516) do
+
+  create_table "features", :force => true do |t|
+    t.integer  "interview_id", :null => false
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.integer  "is_active"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "features", ["interview_id"], :name => "index_features_on_interview_id"
 
   create_table "interviews", :force => true do |t|
     t.string   "slug",                              :null => false
@@ -36,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20140502154241) do
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
     t.integer  "neighborhood_id",   :default => 1,  :null => false
+    t.integer  "is_demo",           :default => 0
   end
 
   add_index "interviews", ["neighborhood_id"], :name => "index_interviews_on_neighborhood_id"
@@ -53,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20140502154241) do
     t.string   "image"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+    t.integer  "is_featured",         :default => 0
   end
 
   add_index "neighborhoods", ["slug"], :name => "index_neighborhoods_on_slug", :unique => true

@@ -1,7 +1,7 @@
 class Interview < ActiveRecord::Base
   attr_accessible :annotations, :date_of_birth, :dates_in_location, :duration, :family_members, :image, :interviewed_at, 
                   :interviewer_name, :location, :neighborhood_id, :notes, :occupations, :other_locations, :place_of_birth, :remote_image_url,
-                  :storyteller_name, :summary, :thumb, :url
+                  :storyteller_name, :summary, :thumb, :url, :is_demo
   attr_accessor :remote_image_url
   
   belongs_to :neighborhood

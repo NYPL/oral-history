@@ -49,6 +49,13 @@
     </div>
     <%= f.file_field :image %>    
   </div>
+  <div class="field">
+    <%= f.label :is_featured, "Feature this on the homepage?" %>
+    <%= f.radio_button :is_featured, 1, :checked => @neighborhood.is_featured===1 %> 
+    <%= label :is_featured_yes, 'Yes', :value => 1, :class => "radio-label" %>
+    <%= f.radio_button :is_featured, 0, :checked => @neighborhood.is_featured===0 %>
+    <%= label :is_featured_no, 'No', :value => 0, :class => "radio-label" %>
+  </div>
   <div class="actions">
     <button type="submit" class="button expand">Submit</button>
   </div>

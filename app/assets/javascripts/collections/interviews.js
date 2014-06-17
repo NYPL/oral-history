@@ -6,6 +6,7 @@ app.collections.Interviews = Backbone.Collection.extend({
   url: function(){
     var endpoint = '/interviews.json';
     if (this.neighborhood_id) endpoint += '?neighborhood_id=' + this.neighborhood_id;
+    if (this.neighborhood_id==='demo') endpoint = '/interviews/demo.json';
     return endpoint;
   },
   

@@ -1,3 +1,159 @@
 @import "variables";
 @import "mixins";
 @import "player";
+
+$bigBreak: 1200px;
+$midBreak: 800px;
+$smlBreak: 600px;
+
+#home-container {
+  background: $grayLightest;
+}
+.home-wrapper {  
+  position: relative;
+  padding: 0 0 100px;
+  @include clearfix();
+  h1, h2, h3 {
+    color: $white;
+    @include text-shadow();
+    letter-spacing: 1px;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid $grayLighter;
+    margin: 2em 0;
+    max-width: 600px;
+    @include opacity(0.6);
+  }
+}
+.home-container {
+  width: 70%;
+  float: right;
+  margin: 0 40px 0 0;
+  padding-top: 20px;
+  position: relative;
+  @media (max-width: $smlBreak) {
+    margin: 0 40px;
+    float: none;
+    width: auto;
+  }
+}
+.home-banner-wrapper {
+  position: relative;
+  z-index: 0;
+  .home-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 600px;
+    background: url(homepage_banner.jpg) left bottom no-repeat;
+    background-size: 100% auto;
+    @include transition(background-position, 0.5s);
+    @media (max-width: $bigBreak) {
+      background-size: $bigBreak auto;
+    }
+    @media (max-width: $midBreak) {
+      background-position: -120px 0;
+    }
+  }
+}
+.home-gradient-wrapper {
+  position: relative;
+  z-index: 0;
+  .home-gradient {
+    width: 100%;
+    height: 600px;
+    position: absolute;
+    top: 0;
+    left: 0;    
+    @include  background-gradient-opacity($grayDarkest, $grayDarkest, 0.4, 0);
+  }
+}
+.home-title {
+  z-index: 1;    
+  h1 {
+    font-size: 60px;
+    margin: 10px 0 20px;
+    line-height: 60px;
+  }
+  h3 {
+    color: $grayLighter;
+    margin: 0; 
+    font-size: 32px;
+  }
+  .home-title-description {
+    max-width: 600px;
+    color: $white;
+    font-size: 18px;
+    line-height: 28px;
+  }
+  @media (max-width: $smlBreak) {
+    h1 {
+      font-size: 40px;
+      line-height: 40px;
+    }
+    h3 {
+      font-size: 22px;
+    }
+  }
+}
+.neighborhoods-list {
+  @include clearfix();
+  margin-bottom: 20px;
+  > li {
+    position: relative;
+    float: left;
+    width: 300px;
+    height: 300px;
+    margin: 0 20px 20px 0;
+    overflow: hidden;
+    background: center no-repeat;
+    background-size: cover;
+    border: 12px solid $grayLightest;
+    @include box-shadow(1px, 1px, 2px, $color: rgba(0,0,0,.2));
+    @include transition-transform(0.5s);
+    &:hover {
+      @include box-shadow(2px, 2px, 4px, $color: rgba(0,0,0,.3));
+      @include transform(translateY(-6px));
+    }   
+  }
+  .gradient {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    @include background-gradient-opacity($grayDarkest, $grayDarkest, 0, 0.5);    
+  }
+  > li:hover .gradient {
+    @include background-gradient-opacity($grayDarkest, $grayDarkest, 0, 0.6);
+  }
+  .link-overlay {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    top: 0;
+    left: 0;
+  }
+  .copy {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;    
+    font-family: 'Lato Black', sans-serif;
+    color: $white;
+    @include text-shadow();
+    @include box-sizing();
+    .title {
+      font-size: 36px;
+    }
+    .subtitle {
+      font-size: 22px;
+      margin-top: 10px;
+    }
+  }
+}

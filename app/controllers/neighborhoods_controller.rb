@@ -20,5 +20,14 @@ class NeighborhoodsController < ApplicationController
       format.json { render json: @neighborhood }
     end
   end
+  
+  def demo
+    @neighborhood = Neighborhood.first
+    
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @neighborhood }
+    end
+  end
 
 end

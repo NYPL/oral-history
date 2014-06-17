@@ -1,5 +1,5 @@
 class Neighborhood < ActiveRecord::Base
-  attr_accessible :contact_description, :image, :long_description, :remote_image_url, :short_description, :slug, :subtitle, :title
+  attr_accessible :contact_description, :image, :long_description, :remote_image_url, :short_description, :slug, :subtitle, :title, :is_featured
   attr_accessor :remote_image_url
   
   has_many :interviews
