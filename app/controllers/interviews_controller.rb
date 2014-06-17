@@ -5,7 +5,7 @@ class InterviewsController < ApplicationController
     if params[:neighborhood_id]
       @neighborhood = Neighborhood.find_by_slug(params[:neighborhood_id])
     else
-      @neighborhood = Neighborhood.first
+      @neighborhood = Neighborhood.order("created_at").first
     end
     @interviews = Interview.select("annotations, id, image, slug, storyteller_name, summary, url")
                            .where("neighborhood_id = ? AND is_demo = ?", @neighborhood.id, 0)

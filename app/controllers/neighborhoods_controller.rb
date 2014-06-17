@@ -2,7 +2,7 @@ class NeighborhoodsController < ApplicationController
   # GET /neighborhoods
   # GET /neighborhoods.json
   def index
-    @neighborhood = Neighborhood.first
+    @neighborhood = Neighborhood.order("created_at").first
     
     respond_to do |format|
       format.html { render :show }
