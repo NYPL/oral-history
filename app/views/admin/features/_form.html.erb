@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :interview_id, "Interview" %><br />
-    <%= f.select(:interview_id, options_from_collection_for_select(Interview.all, :id, :storyteller_name, @feature.interview_id)) %>
+    <%= f.select(:interview_id, options_from_collection_for_select(Interview.order("storyteller_name"), :id, :storyteller_name, @feature.interview_id)) %>
   </div>
   <div class="field">
     <%= f.label :title, "Summary" %><br />
