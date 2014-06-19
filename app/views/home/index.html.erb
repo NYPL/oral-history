@@ -15,17 +15,21 @@
     
       <div class="home-title">
         <h3>The New York Public Library</h3>
-        <h1>Oral History Project</h1>
+        <h1>Community Oral History Project</h1>
         <div class="home-title-description">
-          This is a community-based oral history project taking place in NYPL branches across the city that works to both preserve and document 
-          neighborhood history through the stories of people who have experienced it.
+          <p>The New York Public Library's Community Oral History Project is an initiative taking place at NYPL branches that aims to document, 
+          preserve, and celebrate the rich history of the city's unique neighborhoods by collecting the stories of people who have experienced it firsthand.
+          </p><p>
+          To find out when NYPL's Community Oral History Project will be coming to your neighborhood, learn how to get involved, or share your story, 
+          please contact <a href="mailto:oralhistory@nypl.org">oralhistory@nypl.org</a> or (212) 592-7555.
+          </p>
         </div>      
       </div> <!-- /home-title -->
       
       <hr />
       
       <div class="home-featured">
-        <h2>Featured Neighborhoods</h2>
+        <h2>Browse By Neighborhood Project</h2>
         <ul class="neighborhoods-list">
           <% @neighborhoods.each do |neighborhood| %>
           <li style="background-image: url(<%= neighborhood.image.thumb.url %>)">
@@ -45,7 +49,7 @@
       </div> <!-- /home-featured -->
       
       <div class="home-featured">
-        <h2>Featured Interviews</h2>
+        <h2>Interview Highlights</h2>
         <ul class="interviews-list">
           <% @features.each do |feature| %>
           <li>

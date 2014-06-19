@@ -18,6 +18,12 @@ $smlBreak: 600px;
     @include text-shadow();
     letter-spacing: 1px;
   }
+  a {
+    color: $blueLight;
+    &:hover {
+      color: lighten($blueLight, 10%);
+    }
+  }
   hr {
     border: none;
     border-top: 1px solid $grayLighter;
@@ -42,7 +48,7 @@ $smlBreak: 600px;
   position: relative;
   z-index: 0;
   .home-banner {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -67,15 +73,15 @@ $smlBreak: 600px;
     position: absolute;
     top: 0;
     left: 0;    
-    @include  background-gradient-opacity($grayDarkest, $grayDarkest, 0.4, 0);
+    @include  background-gradient-opacity($grayDarkest, $grayDarkest, 0.8, 0);
   }
 }
 .home-title {
   z-index: 1;    
   h1 {
-    font-size: 60px;
+    font-size: 48px;
     margin: 10px 0 20px;
-    line-height: 60px;
+    line-height: 48px;
   }
   h3 {
     color: $grayLighter;
@@ -90,8 +96,8 @@ $smlBreak: 600px;
   }
   @media (max-width: $smlBreak) {
     h1 {
-      font-size: 40px;
-      line-height: 40px;
+      font-size: 30px;
+      line-height: 30px;
     }
     h3 {
       font-size: 22px;
@@ -178,14 +184,14 @@ $smlBreak: 600px;
     }   
   }
   .image {
-    width: 240px;
-    height: 240px;
+    width: 120px;
+    height: 120px;
     float: left;
     background: center no-repeat;
     background-size: cover;
   }
   .copy {
-    margin-left: 260px;
+    margin-left: 140px;
     color: $grayDarker;
     .title {
       font-size: 24px;
