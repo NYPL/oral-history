@@ -18,6 +18,6 @@ OralHistory::Application.routes.draw do
   match 'home' => 'home#index'
   match 'demo' => 'neighborhoods#demo'  
     
-  root :to => 'neighborhoods#index'
+  root :to => 'home#index'
 
 end
