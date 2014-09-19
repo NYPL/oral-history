@@ -29,6 +29,10 @@ class NeighborhoodsController < ApplicationController
   
   def demo
     @neighborhood = Neighborhood.first
+    @branches = Branch.select("DISTINCT branches.id, branches.name, branches.slug")
+                  .joins("INNER JOIN interviews ON interviews.branch_id = branches.id")
+                  .where("is_demo = ?", 1)
+                  .order("name")
     
     respond_to do |format|
       format.html { render :show }
