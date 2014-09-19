@@ -6,8 +6,9 @@ $bigBreak: 1200px;
 $midBreak: 800px;
 $smlBreak: 600px;
 
+html,
 #home-container {
-  background: $grayLighter;
+  background: $grayDark;
 }
 .home-wrapper {  
   position: relative;
@@ -227,6 +228,16 @@ $smlBreak: 600px;
     .copy {
       margin: 0;
       text-align: center;
+    }
+  }
+}
+
+footer {
+  background: $grayDarker;
+  a {
+    color: $blueLight;
+    &:hover {
+      color: lighten($blueLight, 10%);
     }
   }
 }

@@ -16,6 +16,10 @@
     <%= f.select(:neighborhood_id, options_from_collection_for_select(Neighborhood.all, :id, :subtitle, @interview.neighborhood_id)) %>
   </div>
   <div class="field">
+    <%= f.label :branch_id, "Branch" %>
+    <%= f.select(:branch_id, options_from_collection_for_select(Branch.all, :id, :name, @interview.branch_id)) %>
+  </div>
+  <div class="field">
     <%= f.label :storyteller_name %>
     <%= f.text_field :storyteller_name, :required => true %>
   </div>
@@ -75,7 +79,7 @@
     <%= f.file_field :image %>    
   </div>
   <div class="field">
-    <%= f.label :is_demo, "Is this a demo?" %>
+    <%= f.label :is_demo, "Is this an excerpt?" %>
     <%= f.radio_button :is_demo, 1, :checked => @interview.is_demo===1 %> 
     <%= label :is_demo_yes, 'Yes', :value => 1, :class => "radio-label" %>
     <%= f.radio_button :is_demo, 0, :checked => @interview.is_demo===0 %>

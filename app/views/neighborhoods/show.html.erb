@@ -10,7 +10,8 @@
 <div id="neighborhood-container">
   <div class="neighborhood-sidebar">
     <div class="neighborhood-description padded">
-      <h4><a href="http://nypl.org">The New York Public Library</a> presents</h4>
+      <h4><small><a href="http://nypl.org">The New York Public Library</a></small>
+        <%= link_to "Community Oral History Project", root_url %> presents</h4>
       <h1><%= @neighborhood.title %></h1>
       <h3><%= @neighborhood.subtitle %></h3>
       <div class="long-description">
@@ -19,12 +20,31 @@
       <div class="contact-description">
         <%= @neighborhood.contact_description.html_safe %>
       </div>
-    </div>
+    </div>    
   </div>
+  
   <div class="neighborhood-content">
-    <form id="search-form" class="search-form">
-      <input type="text" id="search-input" value="" placeholder="Search Keyword..." />
-    </form>
+   <div class="interviews-toolbar">
+      <form id="search-form" class="search-form">
+        <input type="text" id="search-input" value="" placeholder="Search Keyword..." />
+      </form>      
+      <% if (@branches.length > 1)%>
+      <div class="filters-wrapper">
+        <div class="filters">
+          <h5>Select A Neighborhood Library Branch:</h5>
+          <ul class="branches-list">
+            <li><%= link_to "All", "#all", :class => "selected branch-link", :data => {:branch_id => 0} %></li>
+            <% @branches.each do |branch| %>
+              <li><%= link_to branch.name, "##{branch.slug}", :class => "branch-link", :data => {:branch_id => branch.id} %></li>
+            <% end %>
+          </ul>          
+        </div>
+        <br class="clearfix" />
+      </div>
+      <br class="clearfix" />
+      <% end %>      
+    </div>
+    
     <ul id="interviews-list" class="interviews-list"></ul>
   </div>  
 </div>

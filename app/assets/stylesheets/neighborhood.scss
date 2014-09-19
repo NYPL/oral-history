@@ -32,19 +32,80 @@
   h4 {
     color: $gray;
     font-weight: normal;
+    small {
+      display: block;
+      margin-bottom: 3px;
+    }
   }
 }
 
+.interviews-toolbar {
+  padding: 20px;
+}
+
 .search-form {
-  padding: 20px 0 0 20px;
+  position: relative;
+  z-index: 1;
+  float: left;
+  width: 200px;
+  overflow: visible;
   input {
-    width: 200px;
+    width: 100%;
     display: inline-block;
     font-size: 1.2em;
-    padding: 0.2em 0.4em;
+    padding: 8px 6px;
+    @include box-sizing();
     @include transition(width, 0.5s);
     &:focus {
       width: 320px;
+    }
+  }
+}
+.filters-wrapper {
+  position: relative;
+  margin-left: 220px;  
+  .filters {
+    min-width: 200px;
+    float: right;
+  }
+  h5, ul, li {
+    margin: 0;
+    padding: 0;
+  }
+  h5 {
+    margin-top: 2px;
+  }
+  li {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    display: block;
+    padding: 3px 6px;
+    font-size: 12px;
+    margin: 3px 3px 0 0;
+    color: $white;
+    background: $grayLighter;
+    &:hover {
+      background: $grayLight;
+    }
+    &.selected {
+      background: $blue;
+    }
+  }  
+}
+@media (max-width: 900px) {
+  .search-form {
+    float: none; 
+  }
+  .filters-wrapper {
+    margin-left: 0;
+    margin-top: 20px;
+    .filters {
+      float: none;
+      min-width: 0;
     }
   }
 }
@@ -113,7 +174,7 @@
   }
   .caption {
     padding: 15px 0 0;
-    height: 20px;
+    height: 40px;
     line-height: 20px;
     white-space: nowrap;
     overflow: hidden;
@@ -121,9 +182,19 @@
       display: block;      
       color: $gray;
       font-size: 1.1em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       &:hover {
         color: $grayLight;
       }
+    }
+    small {
+      line-height: 12px;
+      color: $grayLighter;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
   .annotations {

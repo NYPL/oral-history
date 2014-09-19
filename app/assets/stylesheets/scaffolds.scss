@@ -59,6 +59,9 @@ h1, h2, h3, h4 {
 .hide {
   display: none;
 }
+.clearfix {
+  @include clearfix();
+}
 
 // Components
 // -------------------------
@@ -162,6 +165,9 @@ table {
 // -------------------------
 .page-title {
   @include clearfix();
+  .button {
+    padding: 0.5em 1em;
+  }
   .button.pull-right {
     margin-left: 12px;
   }
@@ -184,10 +190,10 @@ table {
 }
 footer {
   position: relative;
-  border-top: 1px solid $grayLightest;
-  margin: 1em;
+  margin: 0;
   padding: 1em 0;
   text-align: center;
+  background: rgba($grayLightest, 0.9);
   a {
     display: inline-block;
     margin: 0 1em;

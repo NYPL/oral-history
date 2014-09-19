@@ -1,0 +1,18 @@
+<div class="page-title">
+  <h1 class="pull-left">Branches</h1>
+  <%= link_to 'Add A New Branch', new_admin_branch_path, :class => "button pull-right" %>
+  <%= link_to 'Manage Neighborhoods', admin_neighborhoods_path, :class => "button pull-right" %>
+  <%= link_to 'Manage Interviews', admin_interviews_path, :class => "button pull-right" %>
+  <%= link_to 'Manage Features', admin_features_path, :class => "button pull-right" %>
+</div>
+
+<table>
+<% @branches.each do |branch| %>
+  <tr>
+    <td><%= branch.name %></td>
+    <td><%= link_to branch.neighborhood.title, branch.neighborhood %></td>
+    <td><%= link_to 'Edit', edit_admin_branch_path(branch) %></td>
+    <td><%= link_to 'Destroy', admin_branch_path(branch), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>

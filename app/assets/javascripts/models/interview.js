@@ -47,7 +47,9 @@ app.models.Interview = Backbone.Model.extend({
       slug: resp.slug,
       storyteller_name: resp.storyteller_name,
       summary: resp.summary,
-      url: resp.url      
+      url: resp.url,
+      branch_id: resp.branch_id,
+      branch_name: resp.branch_name
     };
   },
   

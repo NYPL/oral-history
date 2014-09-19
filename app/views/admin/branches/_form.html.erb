@@ -1,0 +1,29 @@
+<%= form_for([:admin, @branch], :html => { :class => "form" }) do |f| %>
+  <% if @branch.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@branch.errors.count, "error") %> prohibited this branch from being saved:</h2>
+
+      <ul>
+      <% @branch.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :neighborhood_id, "Neighborhood" %>
+    <%= f.select(:neighborhood_id, options_from_collection_for_select(Neighborhood.all, :id, :subtitle, @branch.neighborhood_id)) %>
+  </div>
+  <!-- <div class="field">
+    <%= f.label :slug, "URL name" %>
+    <%= f.text_field :slug, :required => true %>
+  </div> -->
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <button type="submit" class="button expand">Submit</button>
+  </div>
+<% end %>

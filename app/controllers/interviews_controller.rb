@@ -7,8 +7,9 @@ class InterviewsController < ApplicationController
     else
       @neighborhood = Neighborhood.order("created_at").first
     end
-    @interviews = Interview.select("annotations, id, image, slug, storyteller_name, summary, url")
-                           .where("neighborhood_id = ? AND is_demo = ?", @neighborhood.id, 0)
+    @interviews = Interview.select("annotations, interviews.id, interviews.image, interviews.slug, storyteller_name, summary, url, branch_id, branches.name AS branch_name")
+                           .joins("INNER JOIN branches ON interviews.branch_id = branches.id")
+                           .where("interviews.neighborhood_id = ? AND is_demo = ?", @neighborhood.id, 0)
                            .order("storyteller_name")
     render json: @interviews
   end

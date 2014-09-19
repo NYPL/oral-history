@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  neighborhood_id: 1
+  slug: MyString
+  name: MyString
+  description: MyText
+  image: MyString
+
+two:
+  neighborhood_id: 1
+  slug: MyString
+  name: MyString
+  description: MyText
+  image: MyString

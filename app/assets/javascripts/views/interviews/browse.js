@@ -3,11 +3,15 @@ app.views.BrowseInterviews = Backbone.View.extend({
   el: '#neighborhood-container',
   
   events: {
+    "click .branch-link": "filterBranchFromLink",
+    "blur #search-input": "searchFormBlur",
     "submit #search-form": "searchFormSubmit"
   },
   
   initialize: function(options){
     var neighborhood_id = options && options.neighborhood_id? options.neighborhood_id : null;
+    
+    this.branchId = 0;
     this.initInterviews(neighborhood_id);
   },
   
@@ -56,6 +60,22 @@ app.views.BrowseInterviews = Backbone.View.extend({
     }
   },
   
+  filterBranch: function(branchId){
+    var $link = $('.branch-link[data-branch-id="'+branchId+'"]');
+    
+    $('.branch-link').removeClass('selected');
+    $link.addClass('selected');
+    
+    this.branchId = branchId;
+    this.searchFormSubmit();
+  },
+  
+  filterBranchFromLink: function(e){
+    e.preventDefault();
+    var branchId = parseInt($(e.currentTarget).attr('data-branch-id'));
+    this.filterBranch(branchId);
+  },
+  
   loadIsotope: function(){
     if (this.iso) {
       this.iso.destroy();
@@ -69,6 +89,7 @@ app.views.BrowseInterviews = Backbone.View.extend({
     var that = this;
     this.resetListView();    
     results.each(function(interview){
+      if (that.branchId > 0 && that.branchId != interview.get('branch_id')) return;
       var interview_view = new app.views.InterviewListItem({model: interview});
       that.$('#interviews-list').append(interview_view.render().$el);
     });
@@ -113,8 +134,12 @@ app.views.BrowseInterviews = Backbone.View.extend({
     this.renderResults(this.interviews);
   },
   
+  searchFormBlur: function(e){
+    this.searchFormSubmit();
+  },
+  
   searchFormSubmit: function(e){
-    e.preventDefault();
+    if (e) e.preventDefault();
     var q = $('#search-input').val();
     this.resetMatchedAnnotations();
     if (q.length){
