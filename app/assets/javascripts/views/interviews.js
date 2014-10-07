@@ -86,6 +86,10 @@ app.views.Interviews = Backbone.View.extend({
     }
   },
   
+  isPaused: function(){
+    return ( this.player && this.player.paused() );
+  },
+  
   logChange: function(action, id){
     this.change_made = true;
     this.$('.save-interview').removeClass('disabled');

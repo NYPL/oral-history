@@ -156,11 +156,13 @@ app.views.TranscribeInterview = app.views.Interviews.extend({
     this.goToCurrentAnnotation();
   },
   
-  goToAnnotation: function(annotation){
+  goToAnnotation: function(annotation, autoplay){
     this.current_annotation_index = this.model.get('annotations').indexOf(annotation);    
     this.current_annotation = this.model.get('annotations').at(this.current_annotation_index);
     this.$current_annotation = this.annotations[ this.current_annotation.get('id') ];
     this.goToCurrentAnnotation();
+    this.hideFinished();
+    if (autoplay) this.replayCurrentAnnotation();
   },
   
   goToNextAnnotation: function(autoplay){

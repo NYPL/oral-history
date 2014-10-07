@@ -41,7 +41,7 @@ app.views.Annotation = Backbone.View.extend({
   
   selectAndGoToAnnotation: function(){
     this.select();
-    if (this.parent) this.parent.goToAnnotation(this.model);
+    if (this.parent) this.parent.goToAnnotation(this.model, true);
   },
   
   updateLabel: function(){

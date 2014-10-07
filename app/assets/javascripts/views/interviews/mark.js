@@ -116,9 +116,13 @@ app.views.MarkInterview = app.views.Interviews.extend({
     this.logChange('delete',annotation_id);
   },
   
-  goToAnnotation: function(annotation){
+  goToAnnotation: function(annotation, autoplay){
     var time = annotation.get('start');
     this.player.currentTime(time);
+    
+    if (autoplay && this.isPaused()) {
+      this.togglePlay();
+    }
   },
   
   placeAnnotation: function(e){
