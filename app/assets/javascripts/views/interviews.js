@@ -80,6 +80,15 @@ app.views.Interviews = Backbone.View.extend({
     annotation_view.remove();
   },
   
+  deleteSelectedAnnotation: function(){
+    var $selected = this.$('.annotation.selected'),
+        annotation_id = $selected.attr('data-id'),
+        annotation = this.model.get('annotations').get(annotation_id);
+    this.model.get('annotations').remove(annotation);
+    annotation.clear();
+    this.logChange('delete',annotation_id);
+  },
+  
   deselectAnnotations: function(e){
     if ( !e || e && !$(e.target).hasClass('annotation') ) {
       this.$('.annotation').removeClass('selected');

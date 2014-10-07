@@ -107,15 +107,6 @@ app.views.MarkInterview = app.views.Interviews.extend({
     }    
   },
   
-  deleteSelectedAnnotation: function(){
-    var $selected = this.$('.annotation.selected')
-        annotation_id = $selected.attr('data-id'),
-        annotation = this.model.get('annotations').get(annotation_id);
-    this.model.get('annotations').remove(annotation);
-    annotation.clear();
-    this.logChange('delete',annotation_id);
-  },
-  
   goToAnnotation: function(annotation, autoplay){
     var time = annotation.get('start');
     this.player.currentTime(time);

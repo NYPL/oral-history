@@ -96,6 +96,10 @@ app.views.TranscribeInterview = app.views.Interviews.extend({
             that.nudgeRight();
           }
           break;
+        case 46: // delete
+          e.preventDefault();
+          that.deleteSelectedAnnotation();
+          break;
       }           
     });
   },
