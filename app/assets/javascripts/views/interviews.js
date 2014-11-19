@@ -31,6 +31,11 @@ app.views.Interviews = Backbone.View.extend({
     var that = this,
         url = $('#media').attr('data-url');
     this.player = Popcorn.smart( "#media", url );
+    
+    if (!Modernizr.audio.mp3 || Modernizr.audio.mp3=='maybe') {
+      alert('Your browser may not support mp3 playback. Please use the latest Chrome, Safari, or Internet Explorer to use this feature');
+    }
+    
     this.player.on('canplay', function() {
       if ( !that.media_initialized ) {
         console.log('Media loaded...');
