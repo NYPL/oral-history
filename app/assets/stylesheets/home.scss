@@ -105,6 +105,9 @@ html,
     }
   }
 }
+.home-featured {
+  max-width: 700px;
+}
 .neighborhoods-list {
   @include clearfix();
   margin-bottom: 20px;
