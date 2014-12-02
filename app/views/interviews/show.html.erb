@@ -9,7 +9,7 @@
 <div class="interview-banner" style="background-image: url(<%= @interview.image.url %>)">
   <div class="banner-gradient top">
     <div class="banner-title">
-      <div class="subtitle"><a href="<%= neighborhood_path(@interview.neighborhood) %>"><span class="icon-nypl"></span> <%= @interview.neighborhood.title %>: <%= @interview.neighborhood.subtitle %></a></div>
+      <div class="subtitle"><a href="<%= neighborhood_path(@interview.neighborhood) %>"><span class="icon-nypl-alt"></span> <%= @interview.neighborhood.title %>: <%= @interview.neighborhood.subtitle %></a></div>
       <div class="title"><%= @interview.storyteller_name %></div>
     </div>
   </div>
@@ -39,10 +39,10 @@
       <%= content_tag(:dt, "Interviewer name") unless @interview.interviewer_name.blank? %>
       <%= content_tag(:dd, @interview.interviewer_name) unless @interview.interviewer_name.blank? %>
       
-      <%= content_tag(:dt, "Interviewed at") unless @interview.interviewer_name.blank?%>
+      <%= content_tag(:dt, "Date of Interview") unless @interview.interviewer_name.blank?%>
       <%= content_tag(:dd, @interview.interviewed_at.strftime("%B %e, %Y")) unless @interview.interviewer_name.blank? %>
       
-      <%= content_tag(:dt, "Location") unless @interview.location.blank? %>
+      <%= content_tag(:dt, "Location of Interview") unless @interview.location.blank? %>
       <%= content_tag(:dd, @interview.location) unless @interview.location.blank? %>
       
       <%= content_tag(:dt, "Date of birth") unless @interview.date_of_birth.blank? or @interview.date_of_birth.year < 1901 %>
@@ -54,10 +54,10 @@
       <%= content_tag(:dt, "Occupations") unless @interview.occupations.blank? %>
       <%= content_tag(:dd, @interview.occupations) unless @interview.occupations.blank? %>
       
-      <%= content_tag(:dt, "Dates in location") unless @interview.dates_in_location.blank? %>
+      <%= content_tag(:dt, "Dates in Neighborhood") unless @interview.dates_in_location.blank? %>
       <%= content_tag(:dd, @interview.dates_in_location) unless @interview.dates_in_location.blank? %>
       
-      <%= content_tag(:dt, "Other locations") unless @interview.other_locations.blank? %>
+      <%= content_tag(:dt, "Locations in Neighborhood") unless @interview.other_locations.blank? %>
       <%= content_tag(:dd, @interview.other_locations) unless @interview.other_locations.blank? %>
       
       <%= content_tag(:dt, "Family members") unless @interview.family_members.blank? %>

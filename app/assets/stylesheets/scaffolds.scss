@@ -157,6 +157,9 @@ table {
 .icon-nypl {
   @include font-icon('N');
 }
+.icon-nypl-alt {
+  @include font-icon('W');
+}
 .icon-alert {
   @include font-icon('c');
 }
