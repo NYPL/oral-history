@@ -44,9 +44,9 @@ app.views.BrowseInterviews = Backbone.View.extend({
     var interview_results = [],
         annotations_results = [];
     q = q.toLowerCase();
-    // search name and summary for keyword
+    // search searchable string for keyword
     interview_results = _.filter(this.interview_hashes, function(i){
-      return (i.storyteller_name.toLowerCase().indexOf(q) != -1 || i.summary.toLowerCase().indexOf(q) != -1);
+      return (i.searchable.toLowerCase().indexOf(q) != -1);
     })
     // search annotation text keyword
     annotations_results = _.filter(this.annotation_hashes, function(a){ 

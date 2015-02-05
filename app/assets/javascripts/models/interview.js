@@ -5,6 +5,7 @@ app.models.Interview = Backbone.Model.extend({
       id: 0,
       slug: '',
       storyteller_name: '',
+      searchable: '',
       annotations: [],
       matched_annotations: []
     };
@@ -40,13 +41,14 @@ app.models.Interview = Backbone.Model.extend({
       }
       console.log('Retrieved interview with '+resp.storyteller_name);
     }
+    var searchable = [resp.summary, resp.storyteller_name, resp.location, resp.notes, resp.occupations, resp.other_locations, resp.place_of_birth];    
     return {
       annotations: annotations,
       id: resp.slug,
       image: resp.image,
       slug: resp.slug,
       storyteller_name: resp.storyteller_name,
-      summary: resp.summary,
+      searchable: searchable.join(' '),
       url: resp.url,
       branch_id: resp.branch_id,
       branch_name: resp.branch_name
