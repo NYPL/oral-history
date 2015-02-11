@@ -91,6 +91,7 @@ app.views.Interviews = Backbone.View.extend({
         annotation = this.model.get('annotations').get(annotation_id);
     this.model.get('annotations').remove(annotation);
     annotation.clear();
+    $('.delete-selected').removeClass('active');
     this.logChange('delete',annotation_id);
   },
   
@@ -98,6 +99,7 @@ app.views.Interviews = Backbone.View.extend({
     if ( !e || e && !$(e.target).hasClass('annotation') ) {
       this.$('.annotation').removeClass('selected');
     }
+    $('.delete-selected').removeClass('active');
   },
   
   isPaused: function(){

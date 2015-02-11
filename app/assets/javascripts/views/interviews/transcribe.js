@@ -18,7 +18,8 @@ app.views.TranscribeInterview = app.views.Interviews.extend({
     "click .button-nudge-left": "nudgeLeft",
     "click .button-nudge-right": "nudgeRight",
     "click .save-interview": "saveInterview",
-    "click .hide-finished": "hideFinished"
+    "click .hide-finished": "hideFinished",
+    "click .delete-selected": "deleteSelectedAnnotation"
   },
   
   initialize: function(){    

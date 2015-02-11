@@ -13,7 +13,8 @@ app.views.MarkInterview = app.views.Interviews.extend({
     "click .button-undo": "deleteLastAnnotation",
     "click .button-restart": "restart",
     "click .save-interview": "saveInterview",
-    "click #timeline": "seekFromTimeline"
+    "click #timeline": "seekFromTimeline",
+    "click .delete-selected": "deleteSelectedAnnotation"
   },
   
   initialize: function(){    

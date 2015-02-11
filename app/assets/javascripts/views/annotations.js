@@ -41,6 +41,7 @@ app.views.Annotation = Backbone.View.extend({
   
   selectAndGoToAnnotation: function(){
     this.select();
+    $('.delete-selected').addClass('active');
     if (this.parent) this.parent.goToAnnotation(this.model, true);
   },
   
