@@ -1,5 +1,6 @@
 //= require ../vendor/underscore-min
 //= require ../vendor/d3.min
+//= require ../vendor/jquery.panzoom.min
 
 (function() {
   var Annotations;
@@ -32,7 +33,8 @@
       // retrieve annotations
       _.each(interviews, function(interview){        
         _.each( $.parseJSON(interview.annotations), function(annotation) {
-          annotations.push(annotation.text);
+          if (annotation.text.length && annotation.text != " ")
+            annotations.push(annotation.text);
         });
       });
       
@@ -42,8 +44,14 @@
         .map(function(v, k) { return {packageName: ''+v.length, className: k, value: v.length} })
         .sortBy(function(x) { return -x.value })
         .value();
+      
+      this.makeChart(frequencies);
+      this.panZoom();
+    };
+    
+    Annotations.prototype.makeChart = function(frequencies){      
         
-      var diameter = 1280,
+      var diameter = 4000,
           format = d3.format(",d"),
           color = d3.scale.category20c();
       
@@ -76,6 +84,22 @@
           .text(function(d) { return d.className; });
       
       d3.select(self.frameElement).style("height", diameter + "px");
+    };
+    
+    Annotations.prototype.panZoom = function(){   
+      var $svg = $("#annotations").find('svg').first();
+      
+      var $panzoom = $svg.panzoom();    
+      $panzoom.parent().on('mousewheel.focal', function( e ) {
+        e.preventDefault();
+        var delta = e.delta || e.originalEvent.wheelDelta;
+        var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
+        $panzoom.panzoom('zoom', zoomOut, {
+          increment: 0.1,
+          animate: false,
+          focal: e
+        });
+      });
     };
 
     return Annotations;
