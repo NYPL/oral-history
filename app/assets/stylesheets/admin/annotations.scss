@@ -1,0 +1,19 @@
+@import "variables";
+@import "mixins";
+
+.header-container {
+  display: none;
+}
+
+.container {
+  width: 100%;
+  max-width: none;
+}
+
+#annotations {
+  .interview {
+    span {
+      padding: 0 6px 6px;
+    }
+  }
+}

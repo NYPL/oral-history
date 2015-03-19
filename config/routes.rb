@@ -6,7 +6,7 @@ OralHistory::Application.routes.draw do
   resources :neighborhoods, :only => [:index, :show]
   
   namespace :admin do
-    resources :interviews, :neighborhoods, :features, :branches
+    resources :interviews, :neighborhoods, :features, :branches, :annotations
   end
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
