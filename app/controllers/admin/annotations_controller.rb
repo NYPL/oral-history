@@ -11,7 +11,7 @@ class Admin::AnnotationsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json {
-         @interviews = Interview.select("annotations, interviews.id, interviews.slug, storyteller_name").where("is_demo = ?", 0)
+         @interviews = Interview.select("annotations, interviews.id, interviews.slug, storyteller_name").where("is_demo = ? AND annotations != ?", 0, "")
         render json: @interviews
       }
     end

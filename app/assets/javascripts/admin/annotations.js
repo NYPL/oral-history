@@ -24,6 +24,23 @@
           _this.displayAnnotations(interviews);
         }
       });
+      
+      // keyboard listeners
+      $(document).on('keydown', function(e){        
+        switch(e.keyCode) {          
+          // j - output to json
+          case 74:
+            if (e.ctrlKey) {
+              e.preventDefault();
+              _this.exportJSON();
+            }
+            break;            
+          default:
+            break;
+        }
+      });
+      
+      
     };
     
     Annotations.prototype.displayAnnotations = function(interviews){
@@ -33,10 +50,13 @@
       // retrieve annotations
       _.each(interviews, function(interview){        
         _.each( $.parseJSON(interview.annotations), function(annotation) {
-          if (annotation.text.length && annotation.text != " ")
-            annotations.push(annotation.text);
+          var text = annotation.text.trim().toLowerCase();
+          if (text.length) annotations.push(text);
         });
       });
+      
+      // save
+      this.annotations = _.uniq(annotations);
       
       // calculate frequencies
       var frequencies = _.chain(annotations)
@@ -47,6 +67,12 @@
       
       this.makeChart(frequencies);
       this.panZoom();
+    };
+    
+    Annotations.prototype.exportJSON = function(){
+      var annotations = this.annotations,
+          dataUrl = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(annotations));
+      window.open(dataUrl, '_blank');
     };
     
     Annotations.prototype.makeChart = function(frequencies){      
