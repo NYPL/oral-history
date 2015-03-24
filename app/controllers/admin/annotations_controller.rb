@@ -16,5 +16,10 @@ class Admin::AnnotationsController < ApplicationController
       }
     end
   end
+  
+  # GET /admin/annotations/vis
+  def vis
+    
+  end
 
 end
