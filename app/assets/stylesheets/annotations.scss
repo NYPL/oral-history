@@ -149,7 +149,8 @@
   position: absolute;
   left: 0;
   bottom: 90px;
-  overflow: visible;
+  overflow: hidden;
+  overflow-y: auto;
   @include clearfix();
   .annotation {
     font-size: 0.8em;
