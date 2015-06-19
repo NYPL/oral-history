@@ -187,27 +187,28 @@
     &.selected {
       padding: 0 20px;
     }
-  }
-  .delete-selected {
-    @include font-icon("x");
-    display: none;
-    position: absolute;
-    left: 6px;
-    top: -40px;
-    background: $red;
+  }  
+}
+.delete-selected {
+  @include font-icon("x");
+  display: none;
+  position: absolute;
+  left: 6px;
+  bottom: 220px;
+  background: $red;
+  color: $white;
+  padding: 3px 6px;
+  cursor: pointer;
+  font-size: 0.8em;
+  &:hover {
+    background: lighten($red, 5%);
     color: $white;
-    padding: 3px 6px;
-    cursor: pointer;
-    font-size: 0.8em;
-    &:hover {
-      background: lighten($red, 5%);
-    }
-    &:before {
-      margin-right: 6px;
-    }
-    &.active {
-      display: block;
-    }
+  }
+  &:before {
+    margin-right: 6px;
+  }
+  &.active {
+    display: block;
   }
 }
 
