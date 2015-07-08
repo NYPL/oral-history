@@ -3,7 +3,7 @@ development:
   adapter: postgresql
   encoding: unicode  
   username: postgres  
-  password: 04298686
+  password: password
   database: oralhistory
   port: 5432
   pool: 5
