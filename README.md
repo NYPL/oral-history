@@ -14,7 +14,7 @@ This is the codebase that runs [The New York Public Library Community Oral Histo
 ## Configuration
 
 1. Create `config/database.yml` based on [config/database.yml.sample](config/database.yml.sample)
-2. Create `config/application.yml` based on [config/application.yml.sample](config/application.yml.sample) - contains config variables for Amazon, Google, and Devise
+2. Create `config/application.yml` based on [config/application.yml.sample](config/application.yml.sample) - contains config variables for Amazon, Google, and Devise. Run `rake secret` to generate new secret tokens
 3. Go to [app/uploaders/image_uploader.rb](app/uploaders/image_uploader.rb) to configure your website's image thumbnails
 4. Go to [app/controllers/application_controller.rb](app/controllers/application_controller.rb) and find the method `is_admin?` and edit the logic appropriately to determine if user is an admin (can add/edit/delete content)
 
