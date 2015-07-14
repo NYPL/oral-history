@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  
+
   <div class="field">
     <%= f.label :neighborhood_id, "Neighborhood" %>
     <%= f.select(:neighborhood_id, options_from_collection_for_select(Neighborhood.all, :id, :subtitle, @interview.neighborhood_id)) %>
@@ -38,7 +38,7 @@
   <div class="field">
     <%= f.label :location %>
     <%= f.text_field :location %>
-  </div>  
+  </div>
   <div class="field">
     <%= f.label :date_of_birth %>
     <%= f.date_select :date_of_birth, :start_year => 1900, :end_year => 2000 %>
@@ -72,15 +72,19 @@
     <%= f.text_field :url, :required => true %>
   </div>
   <div class="field">
-    <%= f.label :image %>    
+    <%= f.label :url, "URL to transcript file" %>
+    <%= f.text_field :transcript_url %>
+  </div>
+  <div class="field">
+    <%= f.label :image %>
     <div class="image-wrapper">
       <%= image_tag(@interview.image.thumb.url) if @interview.image %>
     </div>
-    <%= f.file_field :image %>    
+    <%= f.file_field :image %>
   </div>
   <div class="field">
     <%= f.label :is_demo, "Is this an excerpt?" %>
-    <%= f.radio_button :is_demo, 1, :checked => @interview.is_demo===1 %> 
+    <%= f.radio_button :is_demo, 1, :checked => @interview.is_demo===1 %>
     <%= label :is_demo_yes, 'Yes', :value => 1, :class => "radio-label" %>
     <%= f.radio_button :is_demo, 0, :checked => @interview.is_demo===0 %>
     <%= label :is_demo_no, 'No', :value => 0, :class => "radio-label" %>

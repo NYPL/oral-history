@@ -26,47 +26,48 @@
     <div class="player big with-status" data-id="<%= @interview.id %>">
       <audio id="audio-<%= @interview.id %>" class="auto-load" src="<%= @interview.url %>" data-show-duration="true"></audio>
     </div>
-  </div>  
+  </div>
 </div>
 
 <div class="container padded interview-data">
 
     <dl>
-          
+
       <%= content_tag(:dt, "Summary") unless @interview.summary.blank? %>
       <%= content_tag(:dd, @interview.summary) unless @interview.summary.blank? %>
-      
+
       <%= content_tag(:dt, "Interviewer name") unless @interview.interviewer_name.blank? %>
       <%= content_tag(:dd, @interview.interviewer_name) unless @interview.interviewer_name.blank? %>
-      
+
       <%= content_tag(:dt, "Date of Interview") unless @interview.interviewer_name.blank?%>
       <%= content_tag(:dd, @interview.interviewed_at.strftime("%B %e, %Y")) unless @interview.interviewer_name.blank? %>
-      
+
       <%= content_tag(:dt, "Location of Interview") unless @interview.location.blank? %>
       <%= content_tag(:dd, @interview.location) unless @interview.location.blank? %>
-      
+
       <%= content_tag(:dt, "Date of birth") unless @interview.date_of_birth.blank? or @interview.date_of_birth.year < 1901 %>
       <%= content_tag(:dd, @interview.date_of_birth.strftime("%B %e, %Y")) unless @interview.date_of_birth.blank? or @interview.date_of_birth.year < 1901 %>
-      
+
       <%= content_tag(:dt, "Place of birth") unless @interview.place_of_birth.blank? %>
       <%= content_tag(:dd, @interview.place_of_birth) unless @interview.place_of_birth.blank? %>
-      
+
       <%= content_tag(:dt, "Occupations") unless @interview.occupations.blank? %>
       <%= content_tag(:dd, @interview.occupations) unless @interview.occupations.blank? %>
-      
+
       <%= content_tag(:dt, "Dates in Neighborhood") unless @interview.dates_in_location.blank? %>
       <%= content_tag(:dd, @interview.dates_in_location) unless @interview.dates_in_location.blank? %>
-      
+
       <%= content_tag(:dt, "Locations in Neighborhood") unless @interview.other_locations.blank? %>
       <%= content_tag(:dd, @interview.other_locations) unless @interview.other_locations.blank? %>
-      
+
       <%= content_tag(:dt, "Family members") unless @interview.family_members.blank? %>
       <%= content_tag(:dd, @interview.family_members) unless @interview.family_members.blank? %>
-      
+
       <%= content_tag(:dt, "Notes") unless @interview.notes.blank? %>
       <%= content_tag(:dd, @interview.notes) unless @interview.notes.blank? %>
-    
+
     </dl>
 
-</div>
+    <input id="interview-transcript-url" type="hidden" value="<%= @interview.transcript_url %>" />
 
+</div>
