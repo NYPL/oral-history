@@ -20,6 +20,7 @@
   </div>
   <div class="banner-gradient bottom">
     <%= link_to("Show Annotations", "#", :class => "button-toggle-annotations") unless @annotations.blank? %>
+    <%= link_to "Listen With Transcript", transcripts_url(@interview.slug), :class => "button alt small button-toggle-transcript" unless @interview.transcript_url.blank? %>
     <%= link_to "Add Annotations <small>BETA</small>".html_safe, mark_url(@interview.slug), :class => "button small button-add-annotations" %>
   </div>
   <div class="banner-player">
@@ -67,7 +68,5 @@
       <%= content_tag(:dd, @interview.notes) unless @interview.notes.blank? %>
 
     </dl>
-
-    <input id="interview-transcript-url" type="hidden" value="<%= @interview.transcript_url %>" />
 
 </div>

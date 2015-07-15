@@ -1,0 +1,98 @@
+app.views.Transcripts = Backbone.View.extend({
+
+  centerSelected: function(){
+    var $part = $('.part.active').first(),
+        offset = $part.offset().top,
+        height = $part.height(),
+        windowHeight = $(window).height(),
+        scrollOffset;
+
+    if (height < windowHeight) {
+      scrollOffset = offset - ((windowHeight / 2) - (height / 2));
+
+    } else {
+      scrollOffset = offset;
+    }
+
+    $('html, body').animate({scrollTop: scrollOffset}, 500);
+  },
+
+  initAll: function(){
+    var that = this;
+
+    this.transcript = {};
+    this.player = false;
+
+    this.media_loaded = new $.Deferred();
+    this.transcript_loaded = new $.Deferred();
+
+    $.when(this.media_loaded, this.transcript_loaded).done(function() {
+      that.initUI();
+    });
+
+    this.initSoundManager();
+    this.initTranscript();
+  },
+
+  initPlayer: function(){
+    var url = $('#transcript').attr('data-url'),
+        fixed_url = helper.matchUrl(url);
+
+    this.player = soundManager.createSound({
+      url: fixed_url,
+      autoLoad: true,
+      autoPlay: false
+    });
+
+    this.media_loaded.resolve();
+  },
+
+  initSoundManager: function(){
+    var that = this;
+
+    soundManager.setup({
+      url: 'assets/vendor/',
+      flashVersion: 9,
+      preferFlash: false,
+      onready: function() {
+        console.log('SoundManager ready.');
+        that.initPlayer();
+      }
+    });
+  },
+
+  initTranscript: function(){
+    var that = this,
+        url = $('#transcript').attr('data-transcript-url'),
+        this_url = window.location.href;
+
+    if (url.length) {
+      // make sure protocols match
+      var fixed_url = helper.matchUrl(url);
+
+      // retrieve data
+      $.getJSON(fixed_url, function(data) {
+        console.log('Transcript '+data['item_title']+' ready.');
+        that.transcript = data;
+        that.transcript_loaded.resolve();
+      });
+    }
+  },
+
+  initUI: function(){
+    var that = this,
+        $container = $('<div id="parts" class="parts"></div>');
+
+    $.each(this.transcript.transcript.parts, function(i, p){
+      if (p.text.length > 1) {
+        $container.append($('<div id="part-'+p.id+'" class="part" data-start="'+p.start_time+'" data-end="'+p.end_time+'"><div class="time-label">'+helper.formatTime(p.start_time)+'</div><input type="text" value="'+p.text+'" /></div>'));
+      }
+    });
+    $('#transcript').append($container);
+
+    this.onReady();
+  },
+
+  onReady: function(){ /* override me */ }
+
+});

@@ -1,5 +1,5 @@
 // Helper functions
-(function() {  
+(function() {
   window.helper = {};
   helper.makeId = function( length ){
     var text = "",
@@ -8,11 +8,11 @@
     length = length || 8;
     for( var i=0; i < length; i++ ) {
       if ( i <= 0 ) { // must start with letter
-        text += alpha.charAt(Math.floor(Math.random() * alpha.length)); 
+        text += alpha.charAt(Math.floor(Math.random() * alpha.length));
       } else {
-        text += alphanum.charAt(Math.floor(Math.random() * alphanum.length)); 
+        text += alphanum.charAt(Math.floor(Math.random() * alphanum.length));
       }
-    }           
+    }
     return text;
   };
   helper.round = function(num, dec) {
@@ -21,7 +21,7 @@
     return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
   };
   helper.formatTime = function( seconds, dec ) {
-    var s = seconds || 0, 
+    var s = seconds || 0,
         h = parseInt( s / 3600 ) % 24,
         m = parseInt( s / 60 ) % 60,
         s = helper.round( s % 60, dec ),
@@ -47,10 +47,18 @@
         case 0: // seconds
           seconds += parseFloat( parts[i] );
           break
-        default: 
+        default:
           break;
       }
     }
     return helper.round( seconds, dec );
+  };
+  helper.matchUrl = function(url){
+    var this_url = window.location.href,
+        url_parts = url.split('//'),
+        this_url_parts = this_url.split('//'),
+        fixed_url = this_url_parts[0] + '//' + url_parts[1];
+
+    return fixed_url;
   };
 })();

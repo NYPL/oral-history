@@ -144,6 +144,12 @@ table {
     width: 100%;
     @include box-sizing();
   }
+  &.alt {
+    background: $green;
+    &:hover {
+      background: lighten($green, 10%);
+    }
+  }
 }
 .alert,
 #error_explanation {
@@ -188,7 +194,7 @@ table {
         color: $grayDark;
       }
     }
-    
+
   }
 }
 footer {

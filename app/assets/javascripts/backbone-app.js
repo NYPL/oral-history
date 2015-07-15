@@ -1,4 +1,4 @@
-window.app = {  
+window.app = {
   models: {},
   collections: {},
   views: {},
@@ -13,8 +13,8 @@ window.app = {
         };
         original(method, model, options);
       };
-    })(Backbone.sync);    
-    
+    })(Backbone.sync);
+
     app.routers.main = new app.routers.MainRouter();
     // Enable pushState for compatible browsers
     var enablePushState = true;
@@ -38,28 +38,38 @@ app.routers.MainRouter = Backbone.Router.extend({
     'neighborhoods/:id': 'neighborhood',
     'annotations/:id/start': 'start',
     'annotations/:id/mark': 'mark',
-    'annotations/:id/transcribe': 'transcribe'
+    'annotations/:id/transcribe': 'transcribe',
+    'transcripts/:id/edit': 'editTranscript',
+    'transcripts/:id': 'showTranscript'
   },
-  
+
   index: function(){
     app.views.main = new app.views.BrowseInterviews();
-  },  
-  
+  },
+
   demo: function(){
     app.views.main = new app.views.BrowseInterviews({neighborhood_id: 'demo'});
   },
-  
+
+  editTranscript: function(id){
+
+  },
+
   mark: function(id){
     var interview = new app.models.Interview({id: id});
     app.views.main = new app.views.MarkInterview({model: interview});
   },
-  
+
   neighborhood: function(id){
     app.views.main = new app.views.BrowseInterviews({neighborhood_id: id});
   },
-  
+
+  showTranscript: function(id){
+    app.views.main = new app.views.ShowTranscript();
+  },
+
   start: function(id){},
-  
+
   transcribe: function(id){
     var interview = new app.models.Interview({id: id});
     app.views.main = new app.views.TranscribeInterview({model: interview});
@@ -69,5 +79,5 @@ app.routers.MainRouter = Backbone.Router.extend({
 
 // Init backbone app
 $(document).ready(function(){
-  app.init(); 
+  app.init();
 });

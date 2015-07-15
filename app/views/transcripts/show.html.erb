@@ -1,0 +1,14 @@
+<% content_for :title, "#{@interview.neighborhood.title} | #{@interview.storyteller_name}" %>
+
+<% content_for :head do %>
+  <%= stylesheet_link_tag    "transcripts", :media => "all" %>
+  <%= javascript_include_tag "transcript" %>
+<% end %>
+
+<div id="transcript" class="transcript" data-transcript-url="<%= @interview.transcript_url %>" data-url="<%= @interview.url %>">
+
+</div>
+
+<div id="toolbar" class="transcript-toolbar ">
+  <a href="<%= interview_url(@interview) %>" class="interview-link"><img src="<%= @interview.image.thumb.url %>" /> Return to <%= @interview.storyteller_name %>'s Interview Page</a>
+</div>
