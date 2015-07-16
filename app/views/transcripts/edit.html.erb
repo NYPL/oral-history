@@ -1,0 +1,51 @@
+<% content_for :title, "#{@interview.neighborhood.title} | #{@interview.storyteller_name}" %>
+
+<% content_for :head do %>
+  <%= stylesheet_link_tag    "transcripts", :media => "all" %>
+  <%= javascript_include_tag "transcript" %>
+<% end %>
+
+<div id="transcript" class="transcript" data-transcript-url="<%= @interview.transcript_url %>" data-url="<%= @interview.url %>">
+
+</div>
+
+<div id="toolbar" class="transcript-toolbar ">
+  <a href="<%= interview_url(@interview) %>" class="toolbar-section interview-link"><img src="<%= @interview.image.thumb.url %>" /> &lt; Return to <%= @interview.storyteller_name %>'s Interview Page</a>
+  <a href="#toggle-play" class="toolbar-section toggle-play-link"></a>
+  <div class="toolbar-section">
+    <%= link_to "Switch To Normal Transcript Mode".html_safe, transcripts_url(@interview.slug), :class => "button small button-switch-mode" %>
+  </div>
+</div>
+
+<div id="sub-toolbar" class="transcript-sub-toolbar">
+
+  <div class="toolbar-item">
+    <div class="label"><small>Keyboard shortcuts:</small></div>
+  </div>
+
+  <div class="toolbar-item">
+    <div class="key">tab</div>
+    <div class="label">next word</div>
+  </div>
+
+  <div class="toolbar-item">
+    <div class="key">enter</div>
+    <div class="label">submit &amp; continue</div>
+  </div>
+
+  <div class="toolbar-item">
+    <div class="key">up arrow</div>
+    <div class="label">previous line</div>
+  </div>
+
+  <div class="toolbar-item">
+    <div class="key">down arrow</div>
+    <div class="label">next line</div>
+  </div>
+
+  <div class="toolbar-item">
+    <div class="key">ctrl + r</div>
+    <div class="label">replay current line</div>
+  </div>
+
+</div>

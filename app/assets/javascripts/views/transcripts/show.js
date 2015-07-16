@@ -1,9 +1,9 @@
 app.views.ShowTranscript = app.views.Transcripts.extend({
 
-  el: '#transcript',
+  el: 'body',
 
   events: {
-    "click .toggle-play": "togglePlay"
+    "click .toggle-play-link": "togglePlay"
   },
 
   initialize: function(){
@@ -56,13 +56,9 @@ app.views.ShowTranscript = app.views.Transcripts.extend({
       that.setPosition(start_time);
     });
 
-    $('.toggle-play-link').on('click', function(e){
-      e.preventDefault();
-      that.togglePlay();
-    });
-
     $('#parts .part').first().addClass('active');
     this.centerSelected();
+    this.play();
   },
 
   play: function(){

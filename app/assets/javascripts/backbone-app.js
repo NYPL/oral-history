@@ -52,7 +52,7 @@ app.routers.MainRouter = Backbone.Router.extend({
   },
 
   editTranscript: function(id){
-
+    app.views.main = new app.views.EditTranscript();
   },
 
   mark: function(id){
