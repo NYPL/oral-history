@@ -8,6 +8,7 @@ class Interview < ActiveRecord::Base
   belongs_to :branch
 
   has_many :features
+  has_many :transcripts
 
   validates :storyteller_name, :url, presence: true
 

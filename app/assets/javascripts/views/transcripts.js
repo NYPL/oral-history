@@ -72,7 +72,7 @@ app.views.Transcripts = Backbone.View.extend({
 
       // retrieve data
       $.getJSON(fixed_url, function(data) {
-        console.log('Transcript '+data['item_title']+' ready.');
+        console.log('Transcript ready.');
         that.transcript = data.transcript;
         that.transcript_loaded.resolve();
       });

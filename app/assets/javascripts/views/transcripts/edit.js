@@ -22,8 +22,8 @@ app.views.EditTranscript = app.views.Transcripts.extend({
         case 13: // enter
         case 40: // down arrow
           e.preventDefault();
+          that.saveChange();
           that.next();
-          break;
           break;
         case 38: // up arrow
           e.preventDefault();
@@ -87,6 +87,32 @@ app.views.EditTranscript = app.views.Transcripts.extend({
 
   prev: function(){
     this.select(this.part_index-1);
+  },
+
+  save: function(){
+    var action_url = $('#transcript').attr('data-action'),
+        body = {transcript: this.transcript};
+
+    body = JSON.stringify(body);
+
+    $.ajax({
+      type: "POST",
+      url: action_url,
+      data: {body: body},
+      complete: function(){
+        console.log('Saved current transcript');
+      }
+    });
+  },
+
+  saveChange: function(){
+    var active_text = $('.part.active input').first().val(),
+        previous_text = this.transcript.parts[this.part_index]['text'];
+
+    if (active_text != previous_text){
+      this.transcript.parts[this.part_index]['text'] = active_text;
+      this.save();
+    }
   },
 
   select: function(i){

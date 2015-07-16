@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150714190459) do
+ActiveRecord::Schema.define(:version => 20150716175935) do
 
   create_table "branches", :force => true do |t|
     t.integer  "neighborhood_id", :default => 0
@@ -85,6 +85,17 @@ ActiveRecord::Schema.define(:version => 20150714190459) do
   end
 
   add_index "neighborhoods", ["slug"], :name => "index_neighborhoods_on_slug", :unique => true
+
+  create_table "transcripts", :force => true do |t|
+    t.integer  "interview_id", :default => 0
+    t.string   "slug",                        :null => false
+    t.text     "body"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "transcripts", ["interview_id"], :name => "index_transcripts_on_interview_id"
+  add_index "transcripts", ["slug"], :name => "index_transcripts_on_slug", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name",                   :default => "", :null => false

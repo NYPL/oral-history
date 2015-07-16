@@ -54,6 +54,9 @@
     return helper.round( seconds, dec );
   };
   helper.matchUrl = function(url){
+    if (url.indexOf("http") < 0) {
+      return url;
+    }
     var this_url = window.location.href,
         url_parts = url.split('//'),
         this_url_parts = this_url.split('//'),

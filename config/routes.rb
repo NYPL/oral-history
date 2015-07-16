@@ -21,7 +21,7 @@ OralHistory::Application.routes.draw do
 
   match 'transcripts/:id' => 'transcripts#show', :as => :transcripts
   match 'transcripts/:id/edit' => 'transcripts#edit', :as => :transcripts_edit
-  match 'transcripts/:id/save' => 'transcripts#save', :as => :transcripts_save
+  match 'transcripts/:id/save' => 'transcripts#save', :as => :transcripts_save, :via => :post
 
   match 'home' => 'home#index'
   match 'demo' => 'neighborhoods#demo'
