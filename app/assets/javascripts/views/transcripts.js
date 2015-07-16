@@ -73,7 +73,7 @@ app.views.Transcripts = Backbone.View.extend({
       // retrieve data
       $.getJSON(fixed_url, function(data) {
         console.log('Transcript '+data['item_title']+' ready.');
-        that.transcript = data;
+        that.transcript = data.transcript;
         that.transcript_loaded.resolve();
       });
     }
@@ -83,7 +83,7 @@ app.views.Transcripts = Backbone.View.extend({
     var that = this,
         $container = $('<div id="parts" class="parts"></div>');
 
-    $.each(this.transcript.transcript.parts, function(i, p){
+    $.each(this.transcript.parts, function(i, p){
       if (p.text.length > 1) {
         $container.append($('<div id="part-'+p.id+'" class="part" data-start="'+p.start_time+'" data-end="'+p.end_time+'"><div class="time-label">'+helper.formatTime(p.start_time)+'</div><input type="text" value="'+p.text+'" /></div>'));
       }
@@ -93,6 +93,16 @@ app.views.Transcripts = Backbone.View.extend({
     this.onReady();
   },
 
-  onReady: function(){ /* override me */ }
+  onReady: function(){ /* override me */ },
+
+  pause: function(){
+    this.player.pause();
+
+    $('.toggle-play-link').removeClass('active');
+  },
+
+  paused: function(){
+    return this.player.paused || this.player.playState <= 0;
+  }
 
 });

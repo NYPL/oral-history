@@ -10,5 +10,9 @@
 </div>
 
 <div id="toolbar" class="transcript-toolbar ">
-  <a href="<%= interview_url(@interview) %>" class="interview-link"><img src="<%= @interview.image.thumb.url %>" /> Return to <%= @interview.storyteller_name %>'s Interview Page</a>
+  <a href="<%= interview_url(@interview) %>" class="toolbar-section interview-link"><img src="<%= @interview.image.thumb.url %>" /> &lt; Return to <%= @interview.storyteller_name %>'s Interview Page</a>
+  <a href="#toggle-play" class="toolbar-section toggle-play-link"></a>
+  <div class="toolbar-section">
+    <%= link_to "Switch To Edit Transcript Mode <small>BETA</small>".html_safe, transcripts_edit_url(@interview.slug), :class => "button small button-switch-mode" %>
+  </div>
 </div>

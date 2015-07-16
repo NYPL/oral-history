@@ -1,5 +1,6 @@
 @import "variables";
 @import "mixins";
+@import "animate";
 
 .transcript {
 
@@ -68,21 +69,63 @@
   border-bottom: 1px solid $grayLighter;
   font-size: 0.9em;
   z-index: 100;
+  @include clearfix();
 
-  .interview-link {
-    display: inline-block;
-    margin-left: 12px;
+  .toolbar-section {
+    display: block;
+    float: left;
+    width: percentage(1/3);
     padding-right: 12px;
     border-right: 1px solid $grayLightest;
-    margin-right: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    @include box-sizing();
     img {
       border: 1px solid $grayLightest;
       width: 40px;
       height: 40px;
       display: inline-block;
-      margin-right: 12px;
+      margin: 0 12px;
       vertical-align: middle;
     }
+
+    .button {
+      margin: 0 12px;
+      padding: 0 12px;
+      line-height: 40px;
+
+      @include animation(fade-in-right-big 0.5s);
+      small {
+        display: inline-block;
+        font-weight: bold;
+        padding: 0.2em 0.6em;
+        margin-left: 3px;
+        background: darken($blue, 10%);
+        line-height: 12px;
+        @include animation(swing 1s 5);
+      }
+    }
+
+    &:last-child {
+      border-right: none;
+      text-align: right;
+    }
+
+    &.toggle-play-link {
+      @include font-icon('#');
+      font-size: 2.6em;
+
+      &.active:before {
+        content: '$';
+      }
+
+      text-align: center;
+    }
+  }
+
+  a.toolbar-item:hover {
+    background: lighten($grayLightest, 5%);
   }
 
   .toolbar-item {
