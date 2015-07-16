@@ -3,7 +3,7 @@ class TranscriptsController < ApplicationController
   def show
     @interview = Interview.find_by_slug(params[:id])
     transcript = Transcript.where(interview_id: @interview.id).order("created_at DESC").limit(1).first
-    body = {'transcript': {}}
+    body = ""
     @transcript_url = @interview.transcript_url
 
     if transcript
