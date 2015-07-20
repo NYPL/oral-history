@@ -160,3 +160,23 @@
     }
   }
 }
+
+.transcript-message {
+  position: fixed;
+  top: 112px;
+  right: 10px;
+  padding: 6px 12px;
+  background: $green;
+  color: $white;
+  font-size: 0.8em;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  @include transition-list(opacity 0.5s, max-height 0.5s);
+
+  &.active {
+    max-height: 999px;
+    overflow: visible;
+    opacity: 1;
+  }
+}

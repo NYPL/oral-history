@@ -5,7 +5,16 @@ app.views.Transcripts = Backbone.View.extend({
         offset = $part.offset().top,
         height = $part.height(),
         windowHeight = $(window).height(),
+        animationDuration = 500,
+        timeSinceLastAction = 9999,
+        currentTime = +new Date(),
         scrollOffset;
+
+    // determine time since last action to prevent too many queued animations
+    if (this.lastCenterActionTime) {
+      timeSinceLastAction = currentTime - this.lastCenterActionTime;
+    }
+    this.lastCenterActionTime = currentTime;
 
     if (height < windowHeight) {
       scrollOffset = offset - ((windowHeight / 2) - (height / 2));
@@ -14,7 +23,25 @@ app.views.Transcripts = Backbone.View.extend({
       scrollOffset = offset;
     }
 
-    $('html, body').animate({scrollTop: scrollOffset}, 500);
+    // user is clicking rapidly; don't animate
+    if (timeSinceLastAction < animationDuration) {
+      $('html, body').scrollTop(scrollOffset);
+    } else {
+      $('html, body').animate({scrollTop: scrollOffset}, animationDuration);
+    }
+
+  },
+
+  flashMessage: function(message){
+    if (this.message_timeout) {
+      clearTimeout(this.message_timeout);
+    }
+
+    $('.transcript-message').text(message).addClass('active');
+
+    this.message_timeout = setTimeout(function(){
+      $('.transcript-message').removeClass('active');
+    }, 1500);
   },
 
   initAll: function(){

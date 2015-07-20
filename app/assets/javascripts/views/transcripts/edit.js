@@ -90,7 +90,8 @@ app.views.EditTranscript = app.views.Transcripts.extend({
   },
 
   save: function(){
-    var action_url = $('#transcript').attr('data-action'),
+    var that = this,
+        action_url = $('#transcript').attr('data-action'),
         body = {transcript: this.transcript};
 
     body = JSON.stringify(body);
@@ -101,6 +102,7 @@ app.views.EditTranscript = app.views.Transcripts.extend({
       data: {body: body},
       complete: function(){
         console.log('Saved current transcript');
+        that.flashMessage('Saved changes.');
       }
     });
   },
@@ -116,6 +118,10 @@ app.views.EditTranscript = app.views.Transcripts.extend({
   },
 
   select: function(i){
+    if (i==this.part_index) {
+      return false;
+    }
+
     if ($('.part.active').length > 0) {
       this.clearSelected();
     }
