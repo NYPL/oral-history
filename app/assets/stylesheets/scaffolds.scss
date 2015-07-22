@@ -169,6 +169,15 @@ table {
 .icon-alert {
   @include font-icon('c');
 }
+.pagination {
+  text-align: center;
+  margin-top: 40px;
+
+  > * {
+    display: inline-block;
+    margin: 0 4px;
+  }
+}
 
 // Common Page Components
 // -------------------------

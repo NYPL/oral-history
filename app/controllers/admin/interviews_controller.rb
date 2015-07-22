@@ -1,13 +1,13 @@
 class Admin::InterviewsController < ApplicationController
-  
+
   before_filter :authenticate_admin!
-  
+
   layout "simple"
-  
+
   # GET /admin/interviews
   # GET /admin/interviews.json
   def index
-    @interviews = Interview.order("storyteller_name")
+    @interviews = Interview.paginate(:page => params[:page]).order("storyteller_name")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -46,7 +46,7 @@ class Admin::InterviewsController < ApplicationController
   # POST /admin/interviews.json
   def create
     @interview = Interview.new(params[:interview])
-    
+
     @interview.user_id = current_user.id
 
     respond_to do |format|

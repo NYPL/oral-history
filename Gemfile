@@ -25,6 +25,7 @@ gem 'ejs'
 gem 'devise'
 gem 'omniauth-google-oauth2', '0.2.2'
 gem 'figaro'
+gem 'will_paginate', '~> 3.0.6'
 
 # image manipulation/upload
 gem 'mini_magick', '3.5.0'

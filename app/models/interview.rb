@@ -16,6 +16,7 @@ class Interview < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  self.per_page = 100
 
   def to_param
     slug
