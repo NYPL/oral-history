@@ -1,12 +1,12 @@
 <div class="page-title">
-  <h1 class="pull-left">Interviews</h1>  
+  <h1 class="pull-left">Interviews</h1>
   <%= link_to 'Add A New Interview', new_admin_interview_path, :class => "button pull-right" %>
   <%= link_to 'Manage Neighborhoods', admin_neighborhoods_path, :class => "button pull-right" %>
   <%= link_to 'Manage Branches', admin_branches_path, :class => "button pull-right" %>
   <%= link_to 'Manage Features', admin_features_path, :class => "button pull-right" %>
 </div>
 
-<table>    
+<table>
 <% @interviews.each do |interview| %>
   <tr>
     <td><%= image_tag(interview.image.thumb.url, :class => "thumb") if interview.image %></td>
@@ -14,10 +14,12 @@
     <td>by <%= interview.interviewer_name %></td>
     <td>in <%= link_to interview.neighborhood.title, interview.neighborhood %></td>
     <td><%= interview.interviewed_at %></td>
-    <td><%= interview.location %></td>    
+    <td><%= interview.location %></td>
     <td><%= link_to 'Show', interview %></td>
     <td><%= link_to 'Edit', edit_admin_interview_path(interview) %></td>
     <td><%= link_to 'Delete', admin_interview_path(interview), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
+
+<%= will_paginate @interviews %>

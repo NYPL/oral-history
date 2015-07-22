@@ -50,6 +50,8 @@ app.views.EditTranscript = app.views.Transcripts.extend({
 
   next: function(){
     this.select(this.part_index+1);
+
+    this.logChange('progress', 'line', helper.round((this.part_index+1)/$('.part').length,3));
   },
 
   onReady: function(){
@@ -114,6 +116,7 @@ app.views.EditTranscript = app.views.Transcripts.extend({
     if (active_text != previous_text){
       this.transcript.parts[this.part_index]['text'] = active_text;
       this.save();
+      this.logChange('edit', 'line', (active_text.length - previous_text.length));
     }
   },
 

@@ -120,6 +120,11 @@ app.views.Transcripts = Backbone.View.extend({
     this.onReady();
   },
 
+  logChange: function(action, label, value){
+    try { ga && ga('send', 'event', 'transcript', action, label, value); }
+    catch(err){}
+  },
+
   onReady: function(){ /* override me */ },
 
   pause: function(){
