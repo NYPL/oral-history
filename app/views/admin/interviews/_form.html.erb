@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :neighborhood_id, "Neighborhood" %>
-    <%= f.select(:neighborhood_id, options_from_collection_for_select(Neighborhood.all, :id, :subtitle, @interview.neighborhood_id)) %>
+    <%= f.select(:neighborhood_id, options_from_collection_for_select(Neighborhood.all, :id, :title, @interview.neighborhood_id)) %>
   </div>
   <div class="field">
     <%= f.label :branch_id, "Branch" %>
