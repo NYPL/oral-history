@@ -23,7 +23,7 @@ end
 gem 'jquery-rails'
 gem 'ejs'
 gem 'devise'
-gem 'omniauth-google-oauth2', '0.2.2'
+gem 'omniauth-google-oauth2'
 gem 'figaro'
 gem 'will_paginate', '~> 3.0.6'
 
