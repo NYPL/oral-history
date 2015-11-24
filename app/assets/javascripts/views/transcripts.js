@@ -100,7 +100,13 @@ app.views.Transcripts = Backbone.View.extend({
       // retrieve data
       $.getJSON(fixed_url, function(data) {
         console.log('Transcript ready.');
-        that.transcript = data.transcript;
+
+        if (_.has(data, 'transcript')) {
+          that.transcript = data.transcript;
+        } else if (_.has(data, 'parts')) {
+          that.transcript = data;
+        }
+
         that.transcript_loaded.resolve();
       });
     }
@@ -133,8 +139,27 @@ app.views.Transcripts = Backbone.View.extend({
     $('.toggle-play-link').removeClass('active');
   },
 
+  play: function(){
+    this.player.play();
+
+    $('.toggle-play-link').addClass('active');
+  },
+
   paused: function(){
     return this.player.paused || this.player.playState <= 0;
+  },
+
+  togglePlay: function(e){
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    if (this.paused()) {
+      this.play();
+    } else {
+      this.pause();
+    }
   }
 
 });

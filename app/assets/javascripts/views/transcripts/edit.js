@@ -3,7 +3,7 @@ app.views.EditTranscript = app.views.Transcripts.extend({
   el: 'body',
 
   events: {
-    "click .toggle-play-link": "playSelected"
+    "click .toggle-play-link": "togglePlay"
   },
 
   initialize: function(){
@@ -80,6 +80,7 @@ app.views.EditTranscript = app.views.Transcripts.extend({
     this.player.clearOnPosition(end);
     this.player.onPosition(end, function(e){
       that.pause();
+      that.player.setPosition(start);
     });
     if (this.paused()) {
       this.player.play();

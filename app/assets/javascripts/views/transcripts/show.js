@@ -86,19 +86,6 @@ app.views.ShowTranscript = app.views.Transcripts.extend({
     if (!paused) {
       this.play();
     }
-  },
-
-  togglePlay: function(e){
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-
-    if (this.paused()) {
-      this.play();
-    } else {
-      this.pause();
-    }
   }
 
 });
