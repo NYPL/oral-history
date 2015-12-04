@@ -27,6 +27,7 @@ app.views.EditTranscript = app.views.Transcripts.extend({
           break;
         case 38: // up arrow
           e.preventDefault();
+          that.saveChange();
           that.prev();
           break;
         case 82: // ctrl + r
@@ -62,6 +63,7 @@ app.views.EditTranscript = app.views.Transcripts.extend({
     $('#transcript').on('click', '.part', function(e){
       e.preventDefault();
       var i = $('#parts .part').index($(this));
+      that.saveChange();
       that.select(i);
     });
 
@@ -83,8 +85,7 @@ app.views.EditTranscript = app.views.Transcripts.extend({
       that.player.setPosition(start);
     });
     if (this.paused()) {
-      this.player.play();
-      $('.toggle-play-link').addClass('active');
+      this.play();
     }
   },
 
