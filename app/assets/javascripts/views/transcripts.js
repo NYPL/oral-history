@@ -118,7 +118,7 @@ app.views.Transcripts = Backbone.View.extend({
 
     $.each(this.transcript.parts, function(i, p){
       if (p.text.length > 1) {
-        $container.append($('<div id="part-'+p.id+'" class="part" data-start="'+p.start_time+'" data-end="'+p.end_time+'"><div class="time-label">'+helper.formatTime(p.start_time)+'</div><input type="text" value="'+p.text+'" /></div>'));
+        $container.append($('<div id="part-'+p.id+'" class="part" data-id="'+p.id+'" data-start="'+p.start_time+'" data-end="'+p.end_time+'"><div class="time-label">'+helper.formatTime(p.start_time)+'</div><input type="text" value="'+p.text+'" /></div>'));
       }
     });
     $('#transcript').append($container);
