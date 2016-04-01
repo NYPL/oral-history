@@ -17,4 +17,3 @@
 //= require ./vendor/jquery.hammer.min
 //= require ./vendor/mediaelement-and-player.min
 //= require helpers
-//= require nypl-header

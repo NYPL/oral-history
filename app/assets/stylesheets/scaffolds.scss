@@ -1,9 +1,8 @@
 @import "variables";
 @import "mixins";
-@import "nypl-header";
 
 html {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Kievit', sans-serif;
 }
 
 ul, li {
@@ -17,12 +16,12 @@ p {
 a {
   color: $blue;
   text-decoration: none;
+  cursor: pointer;
   &:hover {
     color: lighten($blue, 10%);
   }
 }
 h1, h2, h3, h4 {
-  font-family: 'Lato Black', sans-serif;
   font-weight: normal;
 }
 
@@ -231,23 +230,17 @@ footer {
   font-style: normal;
 }
 
+/* Fonts */
 @font-face {
-  font-family: 'Lato';
-  src: url('lato-reg-webfont.eot');
-  src: url('lato-reg-webfont.eot?#iefix') format('embedded-opentype'),
-       url('lato-reg-webfont.woff') format('woff'),
-       url('lato-reg-webfont.ttf')  format('truetype'),
-       url('lato-reg-webfont.svg#lato') format('svg');
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'Kievit';
+  src: url('KievitWeb-Book.eot'); /* IE9 Compat Modes */
+  src: url('KievitWeb-Book.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('KievitWeb-Book.woff') format('woff'); /* Pretty Modern Browsers */
 }
 @font-face {
-  font-family: 'Lato Black';
-  src: url('lato-bla-webfont.eot');
-  src: url('lato-bla-webfont.eot?#iefix') format('embedded-opentype'),
-       url('lato-bla-webfont.woff') format('woff'),
-       url('lato-bla-webfont.ttf')  format('truetype'),
-       url('lato-bla-webfont.svg#lato') format('svg');
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'Kievit';
+  src: url('KievitWeb-Medi.eot'); /* IE9 Compat Modes */
+  src: url('KievitWeb-Medi.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('KievitWeb-Medi.woff') format('woff'); /* Pretty Modern Browsers */
+  font-weight: bold;
 }
