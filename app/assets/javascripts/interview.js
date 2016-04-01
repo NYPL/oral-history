@@ -32,8 +32,9 @@
     };
 
     Interview.prototype.growBanner = function(){
-      var window_height = $(window).height();
-       $('.interview-banner').css('min-height', window_height+'px');
+      var window_height = $(window).height(),
+          header_height = $('#header').height() || 0;
+       $('.interview-banner').css('min-height', (window_height-header_height)+'px');
     };
 
     return Interview;

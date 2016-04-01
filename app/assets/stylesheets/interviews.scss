@@ -1,8 +1,10 @@
 @import "variables";
 @import "mixins";
 @import "player";
+@import "header";
 @import "animate";
 @import "annotations";
+
 
 .interview-banner {
   position: relative;
@@ -33,7 +35,7 @@
     }
   }
   .banner-title {
-    padding: 12px;
+    padding: 24px 12px 0;
     color: $white;
 
     @include text-shadow();

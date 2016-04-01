@@ -1,9 +1,11 @@
 @import "variables";
 @import "mixins";
 @import "player";
+@import "header";
+@import "animate";
 
 #neighborhood-container {
-  @include clearfix();   
+  @include clearfix();
 }
 .neighborhood-sidebar {
   background: $white;
@@ -15,7 +17,7 @@
   }
 }
 .neighborhood-content {
-  background: $grayLightest; 
+  background: $grayLightest;
   width: auto;
   margin-left: 300px;
   padding-bottom: 20px;
@@ -27,7 +29,7 @@
   background: rgba(255,255,255,0.9);
   h1, h2, h3, h4 {
     margin-top: 0.5em;
-    margin-bottom: 0;    
+    margin-bottom: 0;
   }
   h4 {
     color: $gray;
@@ -63,7 +65,7 @@
 }
 .filters-wrapper {
   position: relative;
-  margin-left: 220px;  
+  margin-left: 220px;
   .filters {
     min-width: 200px;
     float: right;
@@ -94,11 +96,11 @@
     &.selected {
       background: $blue;
     }
-  }  
+  }
 }
 @media (max-width: 900px) {
   .search-form {
-    float: none; 
+    float: none;
   }
   .filters-wrapper {
     margin-left: 0;
@@ -111,7 +113,7 @@
 }
 
 .interviews-list {
-  @include clearfix();
+  // @include clearfix();
   margin-bottom: 20px;
   > li {
     position: relative;
@@ -135,15 +137,15 @@
       background-position: center;
       background-size: cover;
     }
-    &:nth-child(6n+0) .image { 
+    &:nth-child(6n+0) .image {
       background-color: $grayDarker;
       color: $grayLightest;
     }
-    &:nth-child(6n+1) .image  { 
+    &:nth-child(6n+1) .image  {
       background-color: $grayLighter;
       color: $grayDarkest;
     }
-    &:nth-child(6n+2) .image  { 
+    &:nth-child(6n+2) .image  {
       background-color: $gray;
       color: $white;
     }
@@ -158,6 +160,22 @@
     &:nth-child(6n+5) .image  {
       background-color: $grayLightest;
       color: $grayDarker;
+    }
+  }
+  &.loading {
+    &:after {
+      content: 'loading';
+      text-align: center;
+      display: block;
+      position: relative;
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+      font-size: 1.4em;
+      margin: 40px 80px;
+      background-color: $grayLight;
+      border-radius: 100%;
+      @include animation(pulseScaleOut 1.0s infinite ease-in-out);
     }
   }
   &.search-results > li {
@@ -179,7 +197,7 @@
     white-space: nowrap;
     overflow: hidden;
     a {
-      display: block;      
+      display: block;
       color: $gray;
       font-size: 1.1em;
       white-space: nowrap;
