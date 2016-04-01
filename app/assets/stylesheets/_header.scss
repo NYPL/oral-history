@@ -84,6 +84,7 @@ body {
       padding: 0 12px;
       text-transform: uppercase;
 
+      &.active,
       &:hover {
         background: rgba($white, 0.2);
       }

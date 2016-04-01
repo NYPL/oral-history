@@ -10,3 +10,14 @@ p {
   font-size: 1.1em;
   line-height: 1.8;
 }
+
+video {
+  width: 90%;
+  height: auto;
+  border: 1px solid $grayLighter;
+}
+
+.button {
+  padding: 0.5em 1em;
+  margin: 0;
+}
