@@ -53,8 +53,25 @@ body {
     }
   }
 
-  &.active {
+  .crumbs {
+    display: inline-block;
 
+    .crumb {
+      display: inline-block;
+      height: $headerHeight;
+      line-height: $headerHeight;
+      padding: 0;
+      &:before {
+        content: "";
+        height: 30px;
+        width: 2px;
+        background: $grayDark;
+        display: inline-block;
+        margin: 0 20px;
+        vertical-align: middle;
+        @include transform(rotate(20deg));
+      }
+    }
   }
 
   .main-nav {

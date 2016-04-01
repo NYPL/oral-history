@@ -2,6 +2,13 @@
   <div class="header-container">
     <a href="http://nypl.org" target="_blank" title="Visit NYPL.org" class="nypl-logo-link"></a>
     <a href="<%= root_path %>" class="title-link"><%= image_tag("oral_history_logo.svg") %></a>
+    <% unless local_assigns[:crumbs].nil? %>
+    <div class="crumbs">
+      <% crumbs.each do |crumb| %>
+        <a <%= raw("href=\"#{crumb[:url]}\"") unless crumb[:url].nil? %> class="crumb"><%= crumb[:label] %></a>
+      <% end %>
+    </div>
+    <% end %>
 
     <nav class="main-nav nav">
       <a href="<%= root_path %>#listen" class="nav-link">Listen</a>

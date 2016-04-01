@@ -6,10 +6,11 @@
   <%= javascript_include_tag "interview" %>
 <% end %>
 
+<%= render :partial => "shared/header", :locals => {:crumbs => [{:label => @interview.neighborhood.title, :url => neighborhood_path(@interview.neighborhood)}, {:label => @interview.storyteller_name}]} %>
+
 <div class="interview-banner" style="background-image: url(<%= @interview.image.url %>)">
   <div class="banner-gradient top">
     <div class="banner-title">
-      <div class="subtitle"><a href="<%= neighborhood_path(@interview.neighborhood) %>"><span class="icon-nypl-alt"></span> <%= @interview.neighborhood.title %>: <%= @interview.neighborhood.subtitle %></a></div>
       <div class="title"><%= @interview.storyteller_name %></div>
     </div>
   </div>

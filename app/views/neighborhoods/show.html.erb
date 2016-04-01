@@ -5,13 +5,11 @@
   <%= javascript_include_tag "neighborhood" %>
 <% end %>
 
-<%= render "shared/nypl-header" %>
+<%= render :partial => "shared/header", :locals => {:crumbs => [{:label => @neighborhood.title}]} %>
 
 <div id="neighborhood-container">
   <div class="neighborhood-sidebar">
     <div class="neighborhood-description padded">
-      <h4><small><a href="http://nypl.org">The New York Public Library</a></small>
-        <%= link_to "Community Oral History Project", root_url %> presents</h4>
       <h1><%= @neighborhood.title %></h1>
       <h3><%= @neighborhood.subtitle %></h3>
       <div class="long-description">
@@ -20,14 +18,14 @@
       <div class="contact-description">
         <%= @neighborhood.contact_description.html_safe %>
       </div>
-    </div>    
+    </div>
   </div>
-  
+
   <div class="neighborhood-content">
    <div class="interviews-toolbar">
       <form id="search-form" class="search-form">
         <input type="text" id="search-input" value="" placeholder="Search Keyword..." />
-      </form>      
+      </form>
       <% if (@branches.length > 1)%>
       <div class="filters-wrapper">
         <div class="filters">
@@ -37,16 +35,16 @@
             <% @branches.each do |branch| %>
               <li><%= link_to branch.name, "##{branch.slug}", :class => "branch-link", :data => {:branch_id => branch.id} %></li>
             <% end %>
-          </ul>          
+          </ul>
         </div>
         <br class="clearfix" />
-      </div>      
+      </div>
       <% end %>
-      <br class="clearfix" />    
+      <br class="clearfix" />
     </div>
-    
-    <ul id="interviews-list" class="interviews-list"></ul>
+
+    <ul id="interviews-list" class="interviews-list loading"></ul>
     <br class="clearfix" />
   </div>
-  <br class="clearfix" /> 
+  <br class="clearfix" />
 </div>
