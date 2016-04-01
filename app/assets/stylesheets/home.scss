@@ -1,112 +1,146 @@
 @import "variables";
 @import "mixins";
 @import "player";
+@import "header";
+@import "animate";
 
 $bigBreak: 1200px;
 $midBreak: 800px;
 $smlBreak: 600px;
 
 html,
-#home-container {
+.home-container {
   background: $grayDark;
 }
-.home-wrapper {  
-  position: relative;
-  padding: 0 0 100px;
-  @include clearfix();
-  h1, h2, h3 {
-    color: $white;
-    @include text-shadow();
-    letter-spacing: 1px;
+
+.header {
+
+  .nypl-logo-link,
+  .title-link {
+    @include animation(fadeOutUp 0.5s);
   }
+
+  &.sticky {
+    .nypl-logo-link,
+    .title-link {
+      @include animation(fadeInDown 0.5s);
+    }
+  }
+}
+
+.home-container {
+  color: $white;
+
   a {
     color: $blueLight;
+  }
+
+  .home-top {
+    background: $grayDarkest;
+    overflow: hidden;
+    @include clearfix();
+  }
+
+  .main,
+  .action {
+    float: left;
+    padding: 20px;
+    @include box-sizing();
+  }
+
+  .main {
+    width: 40%;
+    position: relative;
+    p {
+      font-size: 1.1em;
+      line-height: 1.8;
+    }
+    @include font-icon("W");
+
+    &:before {
+      display: block;
+      font-size: 400px;
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      opacity: 0.08;
+    }
+  }
+  .action {
+    width: 30%;
+    text-align: center;
+    h2 {
+      font-size: 2em;
+      font-style: normal;
+      margin: 24px 0 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .circle {
+      width: 70%;
+      color: $white;
+
+      &:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height:0;
+        padding-bottom: 100%;
+        @include border-radius(50%);
+        @include transition(background, 0.5s);
+      }
+
+      > div {
+        float:left;
+        width:100%;
+        text-align:center;
+      }
+    }
+    img {
+      width: 66%;
+      height: auto;
+      @include transition-transform(0.5s);
+    }
     &:hover {
-      color: lighten($blueLight, 10%);
+      img {
+        @include transform(scale(1.05));
+      }
     }
   }
-  hr {
-    border: none;
-    border-top: 1px solid $grayLighter;
-    margin: 2em 0;
-    max-width: 600px;
-    @include opacity(0.6);
-  }
-}
-.home-container {
-  width: 70%;
-  float: right;
-  margin: 0 40px 0 0;
-  padding-top: 20px;
-  position: relative;
-  @media (max-width: $smlBreak) {
-    margin: 0 40px;
-    float: none;
-    width: auto;
-  }
-}
-.home-banner-wrapper {
-  position: relative;
-  z-index: 0;
-  .home-banner {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 600px;
-    background: url(homepage_banner.jpg) left bottom no-repeat;
-    background-size: 100% auto;
-    @include transition(background-position, 0.5s);
-    @media (max-width: $bigBreak) {
-      background-size: $bigBreak auto;
+  .home-listen {
+    .circle:after {
+      background: $nyplBlue;
     }
-    @media (max-width: $midBreak) {
-      background-position: -120px 0;
+    &:hover .circle:after {
+      background: lighten($nyplBlue, 5%);
+    }
+    img {
+      margin-top: 10%;
     }
   }
-}
-.home-gradient-wrapper {
-  position: relative;
-  z-index: 0;
-  .home-gradient {
-    width: 100%;
-    height: 600px;
-    position: absolute;
-    top: 0;
-    left: 0;    
-    @include  background-gradient-opacity($grayDarkest, $grayDarkest, 0.8, 0);
-  }
-}
-.home-title {
-  z-index: 1;    
-  h1 {
-    font-size: 48px;
-    margin: 10px 0 20px;
-    line-height: 48px;
-  }
-  h3 {
-    color: $grayLighter;
-    margin: 0; 
-    font-size: 32px;
-  }
-  .home-title-description {
-    max-width: 600px;
-    color: $white;
-    font-size: 18px;
-    line-height: 28px;
-  }
-  @media (max-width: $smlBreak) {
-    h1 {
-      font-size: 30px;
-      line-height: 30px;
+  .home-improve {
+    .circle:after {
+      background: $nyplTeal;
     }
-    h3 {
-      font-size: 22px;
+    &:hover .circle:after {
+      background: lighten($nyplTeal, 5%);
+    }
+    img {
+      margin: 40% 0 10%;
+      width: 80%;
     }
   }
 }
 .home-featured {
-  max-width: 700px;
+
+}
+.home-neighborhoods {
+  padding: 30px;
+
+  h2 {
+    letter-spacing: 1px;
+    margin-top: 0;
+  }
 }
 .neighborhoods-list {
   @include clearfix();
@@ -114,20 +148,27 @@ html,
   > li {
     position: relative;
     float: left;
-    width: 320px;
-    height: 320px;
-    margin: 0 20px 20px 0;
-    overflow: hidden;
-    background: center no-repeat;
-    background-size: cover;
-    border: 12px solid $grayLightest;
+    width: 25%;
+    height: auto;
+    margin: 0;
+
     @include box-sizing();
+
+
+  }
+  .neighborhood {
+    position: relative;
+    margin: 10px 20px 10px 0;
     @include box-shadow(1px, 1px, 2px, $color: rgba(0,0,0,.2));
     @include transition-transform(0.5s);
     &:hover {
       @include box-shadow(2px, 2px, 4px, $color: rgba(0,0,0,.3));
       @include transform(translateY(-6px));
-    }   
+    }
+  }
+  img {
+    width: 100%;
+    height: auto;
   }
   .gradient {
     position: absolute;
@@ -135,7 +176,7 @@ html,
     top: 0;
     width: 100%;
     height: 100%;
-    @include background-gradient-opacity($grayDarkest, $grayDarkest, 0, 0.5);    
+    @include background-gradient-opacity($grayDarkest, $grayDarkest, 0, 0.5);
   }
   > li:hover .gradient {
     @include background-gradient-opacity($grayDarkest, $grayDarkest, 0, 0.6);
@@ -154,7 +195,7 @@ html,
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 20px;    
+    padding: 20px;
     font-family: 'Lato Black', sans-serif;
     color: $white;
     @include text-shadow();
@@ -165,72 +206,6 @@ html,
     .subtitle {
       font-size: 22px;
       margin-top: 10px;
-    }
-  }
-}
-
-.interviews-list {
-  margin-bottom: 20px;
-  > li {
-    position: relative;
-    max-width: 660px;
-    min-width: 320px; 
-    margin: 0 0 20px 0;
-    background: $white;
-    padding: 20px;
-    @include box-sizing();
-    @include box-shadow(1px, 1px, 2px, $color: rgba(0,0,0,.2));
-    @include transition-transform(0.5s);
-    @include clearfix();
-    &:hover {
-      @include box-shadow(2px, 2px, 4px, $color: rgba(0,0,0,.3));
-      @include transform(translateY(-6px));
-    }   
-  }
-  .image {
-    width: 120px;
-    height: 120px;
-    float: left;
-    background: center no-repeat;
-    background-size: cover;
-  }
-  .copy {
-    margin-left: 140px;
-    color: $grayDarker;
-    .title {
-      font-size: 24px;
-      font-family: 'Lato Black', sans-serif;
-    }
-    .subtitle {
-      font-size: 18px;
-      margin-top: 10px;
-      font-style: italic;
-      color: $gray;
-    }
-    .description {
-      margin-top: 10px;
-      line-height: 1.4;
-    }
-  }
-  .link-overlay {
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 3;
-    top: 0;
-    left: 0;
-  }
-  @media (max-width: $midBreak) {
-    .image {
-      width: 240px;
-      height: 240px;
-      float: none;
-      margin: 0 auto 10px;
-    }
-    .copy {
-      margin: 0;
-      text-align: center;
     }
   }
 }

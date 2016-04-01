@@ -7,7 +7,7 @@ app.views.ShowTranscript = app.views.Transcripts.extend({
   },
 
   initialize: function(){
-    this.active_i = 0;
+    this.active_i = '';
 
     this.initAll();
   },
@@ -26,20 +26,20 @@ app.views.ShowTranscript = app.views.Transcripts.extend({
 
   onProgress: function(position){
     var current_time = position,
-        active_i = -1;
+        active_i = '';
 
     _.each(this.transcript.parts, function(p, i){
       if (current_time >= parseFloat(p.start_time) && current_time < parseFloat(p.end_time)) {
-        active_i = i;
+        active_i = p.id;
       } else {
         return false;
       }
     });
 
-    if (active_i != this.active_i && active_i >= 0) {
+    if (active_i != this.active_i && active_i) {
       this.active_i = active_i;
       $('.part').removeClass('active');
-      $('#parts .part').eq(this.active_i).addClass('active');
+      $('#part-'+this.active_i).addClass('active');
       this.centerSelected();
     }
   },

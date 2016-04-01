@@ -1,5 +1,12 @@
-<header>
-  <div class="header-container container padded">
-    <h2><%= link_to "New York Public Library Community Oral History Project", root_path %></h2>
+<header id="header" class="header">
+  <div class="header-container">
+    <a href="http://nypl.org" target="_blank" title="Visit NYPL.org" class="nypl-logo-link"></a>
+    <a href="<%= root_path %>" class="title-link"><%= image_tag("oral_history_logo.svg") %></a>
+
+    <nav class="main-nav nav">
+      <a href="<%= root_path %>#listen" class="nav-link">Listen</a>
+      <a href="#" class="nav-link">Improve</a>
+      <a href="#" class="nav-link">About</a>
+    </nav>
   </div>
 </header>

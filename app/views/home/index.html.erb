@@ -3,76 +3,71 @@
   <%= javascript_include_tag "home" %>
 <% end %>
 
-<%= render "shared/nypl-header" %>
+<%= render "shared/header" %>
 
-<div id="home-container">
-  <div class="home-wrapper">
-    
-    <div class="home-banner-wrapper"><div class="home-banner"></div></div>
-    <div class="home-gradient-wrapper"><div class="home-gradient"></div></div>
-    
-    <div class="home-container">
-    
-      <div class="home-title">
-        <h3>The New York Public Library</h3>
-        <h1>Community Oral History Project</h1>
-        <div class="home-title-description">
-          <p>The New York Public Library's Community Oral History Project is an initiative taking place at NYPL branches that aims to document, 
-          preserve, and celebrate the rich history of the city's unique neighborhoods by collecting the stories of people who have experienced it firsthand.
-          </p><p>
-          To find out when NYPL's Community Oral History Project will be coming to your neighborhood, learn how to get involved, or share your story, 
-          please contact <a href="mailto:oralhistory@nypl.org">oralhistory@nypl.org</a> or 212-621-0552.
-          </p>
-        </div>      
-      </div> <!-- /home-title -->
-      
-      <hr />
-      
-      <div class="home-featured">
-        <h2>Browse By Neighborhood Project</h2>
-        <ul class="neighborhoods-list">
-          <% @neighborhoods.each do |neighborhood| %>
-          <li style="background-image: url(<%= neighborhood.image.thumb.url %>)">
-            <div class="gradient"></div>
-            <div class="copy">
-              <div class="title">
-                <%= neighborhood.title %>
-              </div>
-              <div class="subtitle">
-                <%= neighborhood.subtitle %>
-              </div>  
-            </div>          
-            <%= link_to "", neighborhood, :class => "link-overlay" %>
-          </li>
-          <% end %>
-        </ul>
-      </div> <!-- /home-featured -->
-      
-      <!--
-      <div class="home-featured">
-        <h2>Interview Highlights</h2>
-        <ul class="interviews-list">
-          <% @features.each do |feature| %>
-          <li>
-            <div class="image" style="background-image: url(<%= feature.interview.image.thumb.url %>)"></div>     
-            <div class="copy">
-              <div class="title">
-                <%= feature.interview.storyteller_name %>
-              </div>
-              <div class="subtitle">
-                <%= feature.title %>
-              </div>
-              <div class="description">
-                <%= feature.description %>
-              </div>
-            </div>     
-            <%= link_to "", feature.interview, :class => "link-overlay" %>
-          </li>
-          <% end %>
-        </ul>
-      </div> <!-- /home-featured -->
-    
-    </div> <!-- /home-container -->
-    
+<div id="home-container" class="home-container">
+
+  <div class="home-top">
+
+    <div class="home-about main">
+
+      <h2><%= image_tag("oral_history_logo.svg") %></h2>
+      <p><a href="http://nypl.org">The New York Public Library</a>'s Community Oral History Project is an initiative taking place at NYPL branches that aims to document,
+      preserve, and celebrate the rich history of the city's unique neighborhoods by collecting the stories of people who have experienced it firsthand.
+      </p>
+      <p>
+      To find out when NYPL's Community Oral History Project will be coming to your neighborhood, learn how to get involved, or share your story,
+      please contact <a href="mailto:oralhistory@nypl.org">oralhistory@nypl.org</a> or 212-621-0552.
+      </p>
+
+    </div>
+    <div class="home-listen action">
+      <a href="#listen" class="circle scroll-to">
+        <div>
+          <%= image_tag("home_headphones.png") %>
+          <h2>Listen</h2>
+        </div>
+      </a>
+      <p>Explore hundreds of stories from neighborhoods and communities in NYC</p>
+    </div>
+    <div class="home-improve action">
+      <a href="#" class="circle">
+        <div>
+          <%= image_tag("home_improve.png") %>
+          <h2>Improve</h2>
+        </div>
+      </a>
+      <p>Enrich collection by making it more searchable and discoverable</p>
+    </div>
+
   </div>
+
+  <!-- <div class="home-featured row">
+    <div class="featured col"></div>
+    <div class="featured col"></div>
+  </div> -->
+
+  <div id="listen" class="home-neighborhoods">
+    <h2>Start By Selecting A Community Project</h2>
+    <ul class="neighborhoods-list">
+      <% @neighborhoods.each do |neighborhood| %>
+      <li>
+        <div class="neighborhood">
+          <img src="<%= neighborhood.image.thumb.url %>" />
+          <div class="gradient"></div>
+          <div class="copy">
+            <div class="title">
+              <%= neighborhood.title %>
+            </div>
+            <div class="subtitle">
+              <%= neighborhood.subtitle %>
+            </div>
+          </div>
+          <%= link_to "", neighborhood, :class => "link-overlay" %>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+
 </div>

@@ -5,10 +5,10 @@
   -moz-animation:    $animation;
   -o-animation:      $animation;
   animation:         $animation;
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
-  -o-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 @mixin animation-duration($animation_duration) {
   -webkit-animation-duration: $animation_duration;
@@ -25,7 +25,7 @@
 
 @mixin keyframes($name) {
   @-webkit-keyframes #{$name} {
-    @content; 
+    @content;
   }
   @-moz-keyframes #{$name} {
     @content;
@@ -35,10 +35,34 @@
   }
   @keyframes #{$name} {
     @content;
-  } 
+  }
 }
 
-@include keyframes(fade-in-down) {  
+@include keyframes(fadeInDown) {
+  0% {
+    opacity: 0;
+    @include transform(translate3d(0, -100%, 0));
+  }
+
+  100% {
+    opacity: 1;
+    @include transform(none);
+  }
+}
+
+@include keyframes(fadeOutUp) {
+  0% {
+    opacity: 1;
+    @include transform(none);
+  }
+
+  100% {
+    opacity: 0;
+    @include transform(translate3d(0, -100%, 0));
+  }
+}
+
+@include keyframes(fade-in-down) {
   from {
     @include opacity(0);
     @include transform(translateY(-100px));
@@ -50,7 +74,7 @@
   }
 }
 
-@include keyframes(fade-in-right-big) {  
+@include keyframes(fade-in-right-big) {
   from {
     @include opacity(0);
     @include transform(translateX(1000px));
@@ -62,11 +86,11 @@
   }
 }
 
-@include keyframes(rotate) {  
+@include keyframes(rotate) {
   from {
     @include transform(rotate(0deg));
   }
-  
+
   to{
     @include transform(rotate(360deg));
   }

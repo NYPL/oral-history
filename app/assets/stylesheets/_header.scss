@@ -1,0 +1,75 @@
+@import "variables";
+@import "mixins";
+
+body {
+  padding-top: $headerHeight;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $headerHeight;
+  line-height: $headerHeight;
+  z-index: 1000;
+  background: lighten($grayDarkest, 5%);
+
+  .header-container {
+    padding: 0 10px;
+    @include clearfix();
+  }
+
+  a {
+    color: $grayLightest;
+    &:hover {
+      color: $white;
+    }
+  }
+
+  .nypl-logo-link {
+    @include font-icon("W");
+    font-size: 2.3em;
+    margin: 4px 6px 0 0;
+    vertical-align: middle;
+    display: inline-block;
+  }
+  .title-link {
+    font-size: 1.4em;
+    display: inline-block;
+    vertical-align: middle;
+    width: 240px;
+    height: 40px;
+    margin-top: -2px;
+    overflow: hidden;
+    opacity: 0.9;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    img {
+      margin-left: -50px;
+    }
+  }
+
+  &.active {
+
+  }
+
+  .main-nav {
+    float: right;
+
+    .nav-link {
+      display: inline-block;
+      height: $headerHeight;
+      line-height: $headerHeight;
+      padding: 0 12px;
+      text-transform: uppercase;
+
+      &:hover {
+        background: rgba($white, 0.2);
+      }
+    }
+  }
+}
