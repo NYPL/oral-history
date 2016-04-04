@@ -1,13 +1,17 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag    "simple", :media => "all" %>
+<% end %>
+
 <%= render "layouts/head" %>
 
   <%= render "shared/header" %>
-  
+
   <%= render "shared/messaging" %>
-  
+
   <div class="container padded">
     <%= yield %>
   </div>
-  
+
   <%= render "shared/footer" %>
 
 <%= render "layouts/foot" %>
