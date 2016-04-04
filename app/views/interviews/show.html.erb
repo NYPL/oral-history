@@ -68,6 +68,9 @@
       <%= content_tag(:dt, "Notes") unless @interview.notes.blank? %>
       <%= content_tag(:dd, @interview.notes) unless @interview.notes.blank? %>
 
+      <%= content_tag(:dt, "Rights Statement") unless @interview.rights_statement.blank? %>
+      <%= content_tag(:dd, raw(@interview.rights_statement)) unless @interview.rights_statement.blank? %>
+
     </dl>
 
 </div>

@@ -31,6 +31,9 @@ class Admin::InterviewsController < ApplicationController
   def new
     @interview = Interview.new
 
+    # Default Rights Statement
+    @interview.rights_statement = 'The New York Public Library has dedicated this work to the public domain under the terms of a <a href="http://creativecommons.org/publicdomain/zero/1.0/" target="_blank">Creative Commons CC0 Dedication</a> by waiving all of its rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. Though not required, if you want to credit us as the source, please use the following statement, "From The New York Public Library." Doing so helps us track how the work is used and helps justify freely releasing even more content in the future.'
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @interview }

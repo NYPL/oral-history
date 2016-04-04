@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150716175935) do
+ActiveRecord::Schema.define(:version => 20160404205552) do
 
   create_table "branches", :force => true do |t|
     t.integer  "neighborhood_id", :default => 0
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20150716175935) do
     t.integer  "is_demo",           :default => 0
     t.integer  "branch_id",         :default => 0
     t.string   "transcript_url",    :default => ""
+    t.text     "rights_statement",  :default => ""
   end
 
   add_index "interviews", ["neighborhood_id"], :name => "index_interviews_on_neighborhood_id"

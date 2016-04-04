@@ -211,6 +211,10 @@ footer {
   padding: 1em 0;
   text-align: center;
   background: rgba($grayLightest, 0.9);
+  color: $white;
+  nav {
+    margin-bottom: 40px;
+  }
   a {
     display: inline-block;
     margin: 0 1em;
