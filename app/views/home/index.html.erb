@@ -21,25 +21,26 @@
       </p>
 
     </div>
-    <div class="home-listen action">
-      <a href="#listen" class="circle scroll-to">
-        <div>
-          <%= image_tag("home_headphones.png") %>
-          <h2>Listen</h2>
-        </div>
-      </a>
-      <p>Explore hundreds of stories from neighborhoods and communities in NYC</p>
+    <div class="actions">
+      <div class="home-listen action">
+        <a href="#listen" class="circle scroll-to">
+          <div>
+            <%= image_tag("home_headphones.png") %>
+            <h2>Listen</h2>
+          </div>
+        </a>
+        <p>Explore hundreds of stories from neighborhoods and communities in NYC</p>
+      </div>
+      <div class="home-improve action">
+        <a href="<%= improve_path %>" class="circle">
+          <div>
+            <%= image_tag("home_improve.png") %>
+            <h2>Improve</h2>
+          </div>
+        </a>
+        <p>Enrich oral histories by making them more searchable and discoverable</p>
+      </div>
     </div>
-    <div class="home-improve action">
-      <a href="<%= improve_path %>" class="circle">
-        <div>
-          <%= image_tag("home_improve.png") %>
-          <h2>Improve</h2>
-        </div>
-      </a>
-      <p>Enrich oral histories by making them more searchable and discoverable</p>
-    </div>
-
   </div>
 
   <!-- <div class="home-featured row">
