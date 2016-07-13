@@ -1,6 +1,7 @@
 class InterviewsController < ApplicationController
 
-  # GET /interviews
+  # GET /interviews?neighborhood_id=1
+  # GET /interviews?updated_after=yyyy-mm-dd
   def index
     if params[:neighborhood_id]
       @neighborhood = Neighborhood.find_by_slug(params[:neighborhood_id])
@@ -9,8 +10,13 @@ class InterviewsController < ApplicationController
                              .where("interviews.neighborhood_id = ? AND is_demo = ?", @neighborhood.id, 0)
                              .order("storyteller_name")
     else
+
+      # Check for updated after
+      updated_after = 20.years.ago
+      updated_after = params[:updated_after].to_datetime unless params[:updated_after].blank?
+
       @interviews = Interview.select("slug, updated_at, created_at")
-                             .where("is_demo = ?", 0)
+                             .where("is_demo = ? AND updated_at > ?", 0, updated_after)
                              .order("updated_at DESC")
 
       @interviews.map! { |interview|
@@ -37,6 +43,7 @@ class InterviewsController < ApplicationController
     @interview = Interview.find_by_slug(params[:id])
     @annotations = []
     @annotations = JSON.parse @interview.annotations unless @interview.annotations.blank?
+    @interview[:neighborhood] = Neighborhood.find_by_id(@interview.neighborhood_id)
 
     respond_to do |format|
       format.html # show.html.erb
