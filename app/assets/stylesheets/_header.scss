@@ -128,3 +128,11 @@ body {
     }
   }
 }
+
+@media (max-width: 1060px) {
+  .header {
+    .crumbs {
+      display: none;
+    }
+  }
+}

@@ -101,20 +101,18 @@
   }
 }
 
-@media (min-width: 920px) {
-  .player.big .mejs-container .mejs-controls .mejs-time span  {
-    position: fixed;
-    top: 20px;
-    right: 104px;
-    font-size: 2em;
-  }
-  .player.big .mejs-container .mejs-controls .mejs-time .mejs-currenttime {
-    right: 120px;
-  }
-  .player.big .mejs-container .mejs-controls .mejs-time .mejs-duration {
-    right: 12px;
-  }
-  .interview-banner .banner-title .subtitle {
-    margin-right: 200px;
-  }
+.player.big .mejs-container .mejs-controls .mejs-time span  {
+  position: fixed;
+  top: $headerHeight + 40px;
+  right: 104px;
+  font-size: 2em;
+}
+.player.big .mejs-container .mejs-controls .mejs-time .mejs-currenttime {
+  right: 120px;
+}
+.player.big .mejs-container .mejs-controls .mejs-time .mejs-duration {
+  right: 12px;
+}
+.interview-banner .banner-title .subtitle {
+  margin-right: 200px;
 }
