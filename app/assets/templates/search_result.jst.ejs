@@ -12,7 +12,7 @@
       <div class="result-interviewer"><strong>Interviewed by</strong>: <%= r.interviewer_name %></div>
       <% } %>
       <% if (r.collection_id) { %>
-      <div class="result-collection"><strong>Collection</strong>: <a href="/neighborhoods/<%= r.collection_id %>"><%= r.collection_title %>: <%= r.collection_subtitle %></a></div>
+      <div class="result-collection"><strong>Collection</strong>: <a href="/neighborhoods/<%= r.collection_id %>"><%= r.collection_title %><%= r.collection_subtitle && r.collection_subtitle.length ? ': ' + r.collection_subtitle : '' %></a></div>
       <% } %>
       <% if (r.duration) { %>
       <div class="result-collection"><strong>Duration</strong>: <em><%= helper.formatTime(r.duration) %></em></div>
