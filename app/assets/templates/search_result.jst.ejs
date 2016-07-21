@@ -1,0 +1,38 @@
+<div class="search-result">
+  <% if (r.image_url) { %>
+  <div class="result-image"><a href="/interviews/<%= r.id %>"><img src="<%= r.image_url %>" /></a></div>
+  <% } %>
+  <div class="result-content">
+    <div class="result-title text"><a href="/interviews/<%= r.id %>"><%= r.title %></a></div>
+    <% if (r.description && r.description.indexOf('Interviewed by')!==0) { %>
+    <div class="result-description text"><%= r.description %></div>
+    <% } %>
+    <div class="data text">
+      <% if (r.interviewer_name) { %>
+      <div class="result-interviewer"><strong>Interviewed by</strong>: <%= r.interviewer_name %></div>
+      <% } %>
+      <% if (r.collection_id) { %>
+      <div class="result-collection"><strong>Collection</strong>: <a href="/neighborhoods/<%= r.collection_id %>"><%= r.collection_title %>: <%= r.collection_subtitle %></a></div>
+      <% } %>
+      <% if (r.duration) { %>
+      <div class="result-collection"><strong>Duration</strong>: <em><%= helper.formatTime(r.duration) %></em></div>
+      <% } %>
+    </div>
+    <% if (r.annotations.length) { %>
+      <div class="result-annotations">
+        <div class="label">Annotations:</div>
+        <% _.each(r.annotations, function(a){ %>
+          <a href="/interviews/<%= r.id %>#<%= helper.formatTime(a.time/1000) %>" class="annotation"><%= a.text %></a>
+        <% }) %>
+      </div>
+    <% } %>
+    <% if (r.lines.length) { %>
+      <div class="result-lines">
+        <div class="label">Transcript matches:</div>
+        <% _.each(r.lines, function(l){ %>
+          <div class="line"><span class="timestamp"><%= helper.formatTime(l.time/1000) %></span> <a href="/interviews/<%= r.id %>#<%= helper.formatTime(l.time/1000) %>"><%= l.text %></a></div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+</div>

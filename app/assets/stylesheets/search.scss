@@ -1,0 +1,128 @@
+@import "variables";
+@import "mixins";
+@import "player";
+@import "header";
+@import "animate";
+
+.search {
+  padding: 1em;
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+.search-container {
+  display: none;
+  min-height: 500px;
+
+  &.active {
+    display: block;
+  }
+
+  p {
+    font-size: 1.6em;
+    padding: 2em 0;
+    font-style: italic;
+    color: $grayLight;
+  }
+
+  &.loading {
+    &:after {
+      content: 'loading';
+      text-align: center;
+      display: block;
+      position: relative;
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+      font-size: 1.4em;
+      margin: 40px 80px;
+      background-color: $grayLight;
+      border-radius: 100%;
+      @include animation(pulseScaleOut 1.0s infinite ease-in-out);
+    }
+  }
+}
+
+.search-result {
+
+  margin-top: 1em;
+  padding-top: 1em;
+  @include clearfix();
+
+  .result-image {
+    background: $grayDark;
+    width: 120px;
+    float: left;
+    img {
+      width: 100%;
+      height: auto;
+      margin: 0;
+      display: block;
+    }
+  }
+
+  .result-content {
+    margin-left: 140px;
+    width: auto;
+
+    .text {
+      line-height: 1.4;
+      margin-bottom: 0.5em;
+    }
+  }
+
+  .result-title {
+    font-size: 1.4em;
+    text-transform: uppercase;
+  }
+
+  .result-title,
+  .result-description {
+    em {
+      background: $highlight;
+    }
+  }
+
+  .label {
+    font-weight: bold;
+    display: inline-block;
+  }
+
+  .result-annotations {
+    margin-bottom: 1em;
+  }
+
+  .annotation {
+    display: inline-block;
+    color: $white;
+    background: $blue;
+    margin: 0;
+    margin-right: 0.2em;
+    padding: 0.2em 0.4em;
+    &:hover {
+      background: lighten($blue, 10%);
+    }
+  }
+
+  .result-lines {
+    .label {
+      margin-bottom: 0.5em;
+    }
+  }
+
+  .line {
+    padding: 0.5em 0;
+    border-top: 1px solid $grayLightest;
+    .timestamp {
+      min-width: 50px;
+      display: inline-block;
+      color: $grayDark;
+    }
+    a {
+      display: inline-block;
+    }
+    em {
+      background: $highlight;
+    }
+  }
+}

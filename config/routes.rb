@@ -25,6 +25,7 @@ OralHistory::Application.routes.draw do
 
   match 'about' => 'pages#about', :as => :about
   match 'improve' => 'pages#improve', :as => :improve
+  match 'search' => 'search#index', :as => :search
 
   match 'home' => 'home#index'
   match 'demo' => 'neighborhoods#demo'

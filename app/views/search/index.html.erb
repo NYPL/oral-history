@@ -1,0 +1,21 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag    "search", :media => "all" %>
+  <%= javascript_include_tag "search" %>
+<% end %>
+
+<%= render "shared/header" %>
+
+<div id="search" class="search">
+  <h2>Search Results for "<span class="query"></span>"</h2>
+  <div class="empty-search search-container">
+    <p>Please enter a keyword to search</p>
+  </div>
+  <div class="error-search search-container">
+    <p>Whoops, there was an error while searching. Please try a different query or try again later.</p>
+  </div>
+  <div class="empty-result search-container">
+    <p>Sorry, no results for query "<span class="query"></span>"</p>
+  </div>
+  <div class="loading search-container"></div>
+  <div id="search-results" class="results search-container"></div>
+</div>
