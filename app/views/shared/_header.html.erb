@@ -11,10 +11,12 @@
     <% end %>
 
     <nav class="main-nav nav">
+      <% unless current_page?(search_path) && params[:q].blank? %>
       <form class="form-search" action="/search" method="get">
         <input type="text" name="q" placeholder="Enter keyword" value="<%= params[:q] %>" />
         <button type="submit">Search</button>
       </form>
+      <% end %>
       <a href="<%= root_path %>#listen" class="nav-link">Listen</a>
       <a href="<%= improve_path %>" class="nav-link<%= " active" if current_page?(improve_path) %>">Improve</a>
       <a href="<%= about_path %>" class="nav-link<%= " active" if current_page?(about_path) %>">About</a>

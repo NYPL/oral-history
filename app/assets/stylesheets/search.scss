@@ -8,6 +8,47 @@
   padding: 1em;
   margin: 0 auto;
   max-width: 960px;
+
+  .search-filter-form {
+    select {
+      margin-left: 10px;
+      display: inline-block;
+      max-width: 400px;
+    }
+
+    &.big {
+      text-align: center;
+      padding: 60px 0 100px;
+      input[type="text"],
+      button {
+        display: inline-block;
+        font-size: 3em;
+        outline: 0;
+        vertical-align: middle;
+        height: 60px;
+        line-height: 60px;
+        padding: 0 0.2em;
+        margin: 0;
+        border: 1px solid $grayLighter;
+        @include box-sizing();
+      }
+      button {
+        margin-left: -0.18em;
+        font-size: 1.6em;
+        text-transform: uppercase;
+        background: $grayLightest;
+        padding: 0 0.4em;
+        &:hover {
+          background: lighten($grayLightest, 5%);
+        }
+      }
+      p {
+        margin-bottom: 2em;
+      }
+    }
+
+
+  }
 }
 
 .search-container {

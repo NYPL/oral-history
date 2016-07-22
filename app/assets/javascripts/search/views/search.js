@@ -7,23 +7,16 @@ app.views.Search = Backbone.View.extend({
   resultTemplate: JST['search_result'],
 
   initialize: function(params){
-    var defaults = {
-      q: ''
-    }
-    this.params = _.extend({}, defaults, params);
+    this.params = this.parseParams(params);
     console.log('Initializing search', this.params);
 
     this.$('.query').text(this.params.q);
     this.search();
+    this.loadListeners();
   },
 
   empty: function(){
     this.showContainer('.empty-result');
-    return false;
-  },
-
-  emptySearch: function(){
-    this.showContainer('.empty-search');
     return false;
   },
 
@@ -49,6 +42,20 @@ app.views.Search = Backbone.View.extend({
     this.showContainer('.loading');
   },
 
+  loadListeners: function(){
+    var _this = this;
+
+    // simply submit form when select is changed
+    this.$('.search-filter-form select').on('change', function(){
+      $(this).closest('form').submit();
+    });
+
+    this.$('.query-link').on('click', function(e){
+      e.preventDefault();
+      _this.populateQuery($(this).text());
+    });
+  },
+
   onSearch: function(resp){
     // error
     if (!resp || !resp.hits) return this.error();
@@ -58,6 +65,27 @@ app.views.Search = Backbone.View.extend({
 
     var results = this.parseResults(resp.hits.hits);
     this.render(results);
+  },
+
+  parseParams: function(params){
+    var defaults = {q: ''};
+    params = _.extend({}, defaults, params);
+    var validParams = {q: params.q};
+
+    // remove any blank filters
+    var validFilters = [];
+    if (params.filters) {
+      _.each(params.filters, function(value, key){
+        if (_.isNumber(value) || value.length) validFilters.push([key, value]);
+      });
+    }
+
+    // add valid filters to params
+    if (validFilters.length) {
+      validParams.filters = _.object(validFilters);
+    }
+
+    return validParams;
   },
 
   parseResults: function(hits){
@@ -114,6 +142,10 @@ app.views.Search = Backbone.View.extend({
     return results;
   },
 
+  populateQuery: function(q){
+    this.$('input[name="q"]').val(q);
+  },
+
   render: function(results){
     var $results = this.$('#search-results');
 
@@ -132,7 +164,7 @@ app.views.Search = Backbone.View.extend({
 
   search: function(){
     // empty query
-    if (!this.params.q.length) return this.emptySearch();
+    if (!this.params.q.length) return false;
 
     // loading
     this.loading();

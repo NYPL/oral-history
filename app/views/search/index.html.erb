@@ -6,10 +6,26 @@
 <%= render "shared/header" %>
 
 <div id="search" class="search">
-  <h2>Search Results for "<span class="query"></span>"</h2>
-  <div class="empty-search search-container">
-    <p>Please enter a keyword to search</p>
-  </div>
+  <% if params[:q].present? %>
+    <h2>Search Results for "<span class="query"></span>"</h2>
+  <% end %>
+
+  <form action="/search" method="get" class="search-filter-form <%= "big" unless params[:q].present? %>">
+    <% if params[:q].present? %>
+      <input type="hidden" name="q" value="<%= params[:q] %>" />
+      <label>Filter by Collection:</label>
+      <select name="filters[collection_id]">
+        <option value="" <%= @collection_id.blank? ? "selected" : "" %>>All</option>
+        <% @neighborhoods.each do |neighborhood| %>
+        <option value="<%= neighborhood.slug %>"  <%= @collection_id==neighborhood.slug ? "selected" : "" %>><%= neighborhood.title %><%= neighborhood.subtitle.present? ? ": #{neighborhood.subtitle}" : ""  %></option>
+        <% end %>
+      </select>
+    <% else %>
+      <p>Search all oral history metadata, annotations, and transcripts. Try <a href="#" class="query-link">Central Park</a>, <a href="#" class="query-link">mobility</a>, <a href="#" class="query-link">ice cream</a></p>
+      <input type="text" name="q" placeholder="Enter a keyword" />
+      <button type="submit">Search</button>
+    <% end %>
+  </form>
   <div class="error-search search-container">
     <p>Whoops, there was an error while searching. Please try a different query or try again later.</p>
   </div>
