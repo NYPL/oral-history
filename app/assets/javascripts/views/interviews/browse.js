@@ -37,7 +37,7 @@ app.views.BrowseInterviews = Backbone.View.extend({
   afterInterviewsLoaded: function(interviews){
     this.interview_hashes = this.interviews.toReadOnlyJSON();
     this.renderResults(interviews);
-    this.initAnnotations();
+    // this.initAnnotations();
   },
 
   doSearch: function(q){
