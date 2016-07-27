@@ -11,6 +11,8 @@
     }
 
     Interview.prototype.init = function(){
+      this.$player = $('.interview-player').first();
+
       this.loadListeners();
       this.checkForTagsOverflow();
     };
@@ -25,7 +27,7 @@
     };
 
     Interview.prototype.loadListeners = function(){
-      var that = this;
+      var _this = this;
 
       // listen for toggle annotations
       $('.see-more-link').on('click',function(e){
@@ -34,6 +36,21 @@
         $('.see-more').hide();
       });
 
+      $(window).on('scroll', function(e){
+        _this.stickyPlayer();
+      });
+    };
+
+    Interview.prototype.stickyPlayer = function(){
+      var scroll = $(window).scrollTop();
+      var playerTop = this.$player.offset().top;
+      var headerHeight = $('#header').height();
+
+      if ((scroll+headerHeight) > playerTop) {
+        this.$player.addClass('sticky');
+      } else {
+        this.$player.removeClass('sticky');
+      }
     };
 
     return Interview;

@@ -54,6 +54,39 @@ $container-width: 940px;
     text-transform: uppercase;
     margin: 0 0 1.5em;
   }
+
+  .interview-player {
+    .player {
+      // @include transition(width, 0.5s);
+    }
+  }
+}
+
+.interview-player {
+
+  &.sticky {
+    .player {
+      position: fixed;
+      top: $headerHeight;
+      left: 50%;
+      width: 908px;
+      margin-left: -454px;
+      z-index: 1000;
+    }
+
+    .player.big .mejs-container {
+      min-width: 98%;
+      max-width: 98%;
+    }
+
+    @media (max-width: 908px) {
+      .player {
+        left: 0;
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+  }
 }
 
 .mejs-container .mejs-controls .mejs-time span {
