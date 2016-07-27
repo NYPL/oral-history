@@ -11,30 +11,29 @@
     }
 
     Interview.prototype.init = function(){
-      this.growBanner();
-      this.initListeners();
+      this.loadListeners();
+      this.checkForTagsOverflow();
     };
 
-    Interview.prototype.initListeners = function(){
+    Interview.prototype.checkForTagsOverflow = function(){
+      var $container = $('.annotations-container').first(),
+          $inner = $('.annotations').first();
+
+      if ($inner.height() > $container.height()) {
+        $container.addClass('overflowed');
+      }
+    };
+
+    Interview.prototype.loadListeners = function(){
       var that = this;
 
-      // listen for window resize
-      $(window).resize(function() {
-        that.growBanner();
-      });
-
       // listen for toggle annotations
-      $('.button-toggle-annotations').on('click',function(e){
+      $('.see-more-link').on('click',function(e){
         e.preventDefault();
-        $('.annotations').toggle();
+        $('.annotations-container').addClass('active');
+        $('.see-more').hide();
       });
 
-    };
-
-    Interview.prototype.growBanner = function(){
-      var window_height = $(window).height(),
-          header_height = $('#header').height() || 0;
-       $('.interview-banner').css('min-height', (window_height-header_height)+'px');
     };
 
     return Interview;

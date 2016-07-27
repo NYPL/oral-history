@@ -3,116 +3,188 @@
 @import "player";
 @import "header";
 @import "animate";
-@import "annotations";
 
+$container-width: 940px;
 
-.interview-banner {
+.interview-wrapper {
   position: relative;
-  min-height: 0;
   width: 100%;
-  height: 400px;
-  background: $grayDark 50% 40% no-repeat;
-  background-size: cover;
-  @include transition(min-height, 1s);
-  .banner-gradient {
-    width: 100%;
-    height: 120px;
-    position: absolute;
-    left: 0;
-    a {
-      color: $grayLightest;
-      &:hover {
-        color: $white;
-      }
-    }
-    &.top {
-      top: 0;
-      @include background-gradient-opacity($grayDarkest, $grayDarkest, 0.6, 0);
-    }
-    &.bottom {
-      bottom: 0;
-      @include background-gradient-opacity($grayDarkest, $grayDarkest, 0, 0.6);
-    }
-  }
-  .banner-title {
-    padding: 24px 12px 0;
-    color: $white;
+  height: auto;
+  background: $grayLightest;
 
-    @include text-shadow();
-    .title {
-      font-weight: bold;
-      font-size: 3em;
-    }
-    .subtitle {
-      font-size: 1.5em;
-      font-weight: normal;
-    }
-  }
-  .banner-player {
+  &:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    z-index: 0;
+    @include box-shadow(0px, -20px, 20px, rgba($black,0.2), inset);
+  }
+
+  .interview-image {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
+    height: 100%;
+    width: 300px;
+    z-index: 0;
+    background: center 10% no-repeat;
+    background-size: cover;
+    opacity: 0.3;
+    @include box-shadow(-80px, 0px, 80px, $grayLightest, inset);
   }
-  .annotations {
-    bottom: 110px;
-    z-index: 10;
-    display: none;
+
+  .interview-container {
+    position: relative;
+    margin: 0 auto;
+    max-width: $container-width;
+    padding: 2em 1em 0;
+    @include box-sizing();
   }
-  .button-toggle-annotations,
-  .button-add-annotations,
-  .button-toggle-transcript {
-    position: absolute;
-    left: 0;
-    bottom: 48px;
+
+  .storyteller-name h1 {
+    text-transform: uppercase;
+    margin: 0 0 0.2em;
   }
-  .button-toggle-annotations {
-    padding: 1em;
-  }
-  .button-add-annotations {
-    left: auto;
-    right: 0;
-    @include animation(fade-in-right-big 0.5s);
-    small {
-      display: inline-block;
-      font-weight: bold;
-      padding: 0.2em 0.6em;
-      margin-left: 3px;
-      background: darken($blue, 10%);
-      @include animation(swing 1s 5);
-    }
-  }
-  .button-toggle-transcript {
-    left: auto;
-    right: 0;
-    bottom: 96px;
-    @include animation(fade-in-right-big 0.8s);
+
+  .interviewer-name h3 {
+    text-transform: uppercase;
+    margin: 0 0 1.5em;
   }
 }
 
+.mejs-container .mejs-controls .mejs-time span {
+  font-size: 16px;
+  line-height: 16px;
+  margin: 0 9px 0 0;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:nth-child(2) {
+    color: $grayLight;
+    font-style: italic;
+  }
+}
+
+.secondary-wrapper {
+  position: relative;
+  margin: 1em auto;
+  max-width: $container-width;
+  padding: 1em;
+  @include box-sizing();
+
+  h2 {
+    margin-top: 0;
+    text-transform: uppercase;
+    color: $grayDark;
+    border-bottom: 1px solid $grayLightest;
+    padding-bottom: 0.2em;
+  }
+}
+
+.annotations-wrapper {
+
+  .annotations-container {
+    max-height: 124px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .annotation {
+    display: inline-block;
+    background: $grayLight;
+    color: $white;
+    font-size: 0.8em;
+    padding: 0.2em 0.4em;
+    margin: 0 0.2em 0.4em 0;
+    cursor: pointer;
+    &:hover {
+      background: lighten($grayLight, 10%);
+    }
+  }
+
+  .see-more {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    @include box-shadow(0px, -60px, 60px, $white, inset);
+  }
+
+  .see-more-link {
+    color: $white;
+    padding: 4px 12px;
+    margin-top: 30px;
+    font-size: 0.9em;
+  }
+
+  .annotations-container.overflowed {
+    @include transition(max-height, 0.5s);
+
+    .see-more {
+      display: block;
+    }
+
+    &.active {
+      max-height: 1000px;
+    }
+  }
+
+  .button-add {
+    font-size: 0.6em;
+    padding: 4px 8px;
+    vertical-align: middle;
+    margin: 0 0 0 10px;
+  }
+
+}
+
 .interview-data {
+
+  dl {
+    @include clearfix();
+    > div {
+      display: inline-block;
+      min-width: 25%;
+      margin-bottom: 1.8em;
+      margin-right: -4px;
+      padding-right: 1em;
+      line-height: 1.5;
+      @include box-sizing();
+
+      &.rights {
+        min-width: 100%;
+        display: block;
+      }
+    }
+  }
+
   dt {
-    margin-top: 1.2em;
+    margin-top: 0;
     font-weight: bold;
     text-transform: uppercase;
   }
   dd {
-    margin-top: 1.2em;
+    margin-top: 0.5em;
+    margin-left: 0;
   }
 }
 
-.player.big .mejs-container .mejs-controls .mejs-time span  {
-  position: fixed;
-  top: $headerHeight + 40px;
-  right: 104px;
-  font-size: 2em;
-}
-.player.big .mejs-container .mejs-controls .mejs-time .mejs-currenttime {
-  right: 120px;
-}
-.player.big .mejs-container .mejs-controls .mejs-time .mejs-duration {
-  right: 12px;
-}
-.interview-banner .banner-title .subtitle {
-  margin-right: 200px;
+@media (max-width: 600px) {
+  .interview-data {
+    dl {
+      > div {
+        margin-right: 0;
+        min-width: 100%;
+        display: block;
+      }
+    }
+  }
 }

@@ -8,69 +8,96 @@
 
 <%= render :partial => "shared/header", :locals => {:crumbs => [{:label => @interview.neighborhood.title, :url => neighborhood_path(@interview.neighborhood)}, {:label => @interview.storyteller_name}]} %>
 
-<div class="interview-banner" style="background-image: url(<%= @interview.image.url %>)">
-  <div class="banner-gradient top">
-    <div class="banner-title">
-      <div class="title"><%= @interview.storyteller_name %></div>
+<div class="interview-wrapper">
+  <div class="interview-image" style="background-image: url(<%= @interview.image.url %>)"></div>
+  <div class="interview-container">
+    <div class="storyteller-name">
+      <h1><%= @interview.storyteller_name %></h1>
     </div>
-  </div>
-  <div class="annotations">
-    <% @annotations.each do |annotation| %>
-    <div class="annotation seek-to" data-seconds="<%= annotation['start'] %>"><%= annotation['text'] %> (<%= seconds_to_string(annotation['start'].to_i) %>)</div>
+    <div class="interviewer-name">
+      <h3>Interviewed By <%= @interview.interviewer_name %></h3>
+    </div>
+    <% unless @interview.summary.blank? %>
+      <div class="summary"><p><%= @interview.summary %></p></div>
     <% end %>
-  </div>
-  <div class="banner-gradient bottom">
-    <%= link_to("Show Annotations", "#", :class => "button-toggle-annotations") unless @annotations.blank? %>
-    <!-- <%= link_to "Listen With Transcript", transcripts_url(@interview.slug), :class => "button alt small button-toggle-transcript" unless @interview.transcript_url.blank? %> -->
-    <%= link_to "Add Annotations <small>BETA</small>".html_safe, mark_url(@interview.slug), :class => "button small button-add-annotations" %>
-  </div>
-  <div class="banner-player">
-    <div class="player big with-status" data-id="<%= @interview.id %>">
-      <audio id="audio-<%= @interview.id %>" class="auto-load" src="<%= @interview.url %>" data-show-duration="true"></audio>
+    <div class="interview-player">
+      <div class="player big with-status" data-id="<%= @interview.id %>">
+        <audio id="audio-<%= @interview.id %>" class="auto-load" src="<%= @interview.url %>" data-show-duration="true"></audio>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="container padded interview-data">
+<div class="annotations-wrapper secondary-wrapper">
+  <h2>Tags By Users <%= link_to "<span>+</span> Add Tags".html_safe, mark_url(@interview.slug), :class => "button small button-add" %></h2>
+  <% if @annotations.empty? %>
+    <p>Not tags by users yet. <%= link_to "Click here to add some", mark_url(@interview.slug) %>.</p>
+  <% else %>
+    <div class="annotations-container">
+      <div class="annotations">
+        <% @annotations.each do |annotation| %>
+        <div class="annotation seek-to" data-seconds="<%= annotation['start'] %>"><%= annotation['text'] %> (<%= seconds_to_string(annotation['start'].to_i) %>)</div>
+        <% end %>
+      </div>
+      <div class="see-more">
+        <%= link_to "See All Tags", "#", :class => "see-more-link button small" %>
+      </div>
+    </div>
+  <% end %>
 
-    <dl>
+</div>
 
-      <%= content_tag(:dt, "Summary") unless @interview.summary.blank? %>
-      <%= content_tag(:dd, @interview.summary) unless @interview.summary.blank? %>
-
-      <%= content_tag(:dt, "Interviewer name") unless @interview.interviewer_name.blank? %>
-      <%= content_tag(:dd, @interview.interviewer_name) unless @interview.interviewer_name.blank? %>
-
+<div class="interview-data secondary-wrapper">
+  <h2>Interview Data</h2>
+  <dl>
+    <%= content_tag :div do %>
       <%= content_tag(:dt, "Date of Interview") unless @interview.interviewer_name.blank?%>
       <%= content_tag(:dd, @interview.interviewed_at.strftime("%B %e, %Y")) unless @interview.interviewer_name.blank? %>
+    <% end unless @interview.interviewer_name.blank? %>
 
+    <%= content_tag :div do %>
       <%= content_tag(:dt, "Location of Interview") unless @interview.location.blank? %>
       <%= content_tag(:dd, @interview.location) unless @interview.location.blank? %>
+    <% end unless @interview.location.blank? %>
 
+    <%= content_tag :div do %>
       <%= content_tag(:dt, "Date of birth") unless @interview.date_of_birth.blank? or @interview.date_of_birth.year < 1901 %>
       <%= content_tag(:dd, @interview.date_of_birth.strftime("%B %e, %Y")) unless @interview.date_of_birth.blank? or @interview.date_of_birth.year < 1901 %>
+    <% end unless @interview.date_of_birth.blank? or @interview.date_of_birth.year < 1901 %>
 
+    <%= content_tag :div do %>
       <%= content_tag(:dt, "Place of birth") unless @interview.place_of_birth.blank? %>
       <%= content_tag(:dd, @interview.place_of_birth) unless @interview.place_of_birth.blank? %>
+    <% end unless @interview.place_of_birth.blank? %>
 
+    <%= content_tag :div do %>
       <%= content_tag(:dt, "Occupations") unless @interview.occupations.blank? %>
       <%= content_tag(:dd, @interview.occupations) unless @interview.occupations.blank? %>
+    <% end unless @interview.occupations.blank? %>
 
+    <%= content_tag :div do %>
       <%= content_tag(:dt, "Dates in Neighborhood") unless @interview.dates_in_location.blank? %>
       <%= content_tag(:dd, @interview.dates_in_location) unless @interview.dates_in_location.blank? %>
+    <% end unless @interview.dates_in_location.blank? %>
 
+    <%= content_tag :div do %>
       <%= content_tag(:dt, "Locations in Neighborhood") unless @interview.other_locations.blank? %>
       <%= content_tag(:dd, @interview.other_locations) unless @interview.other_locations.blank? %>
+    <% end unless @interview.other_locations.blank? %>
 
+    <%= content_tag :div do %>
       <%= content_tag(:dt, "Family members") unless @interview.family_members.blank? %>
       <%= content_tag(:dd, @interview.family_members) unless @interview.family_members.blank? %>
+    <% end unless @interview.family_members.blank? %>
 
+    <%= content_tag :div, :class => "notes" do %>
       <%= content_tag(:dt, "Notes") unless @interview.notes.blank? %>
       <%= content_tag(:dd, @interview.notes) unless @interview.notes.blank? %>
+    <% end unless @interview.notes.blank? %>
 
+    <%= content_tag :div, :class => "rights" do %>
       <%= content_tag(:dt, "Rights Statement") unless @interview.rights_statement.blank? %>
       <%= content_tag(:dd, raw(@interview.rights_statement)) unless @interview.rights_statement.blank? %>
-
-    </dl>
-
+    <% end unless @interview.rights_statement.blank? %>
+  </dl>
 </div>
