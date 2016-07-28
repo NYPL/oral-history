@@ -29,11 +29,11 @@
     Interview.prototype.loadListeners = function(){
       var _this = this;
 
-      // listen for toggle annotations
-      $('.see-more-link').on('click',function(e){
+      // listen for toggle
+      $('.toggle-active').on('click',function(e){
         e.preventDefault();
-        $('.annotations-container').addClass('active');
-        $('.see-more').hide();
+        var target = $(this).attr('href');
+        $(target).toggleClass('active');
       });
 
       $(window).on('scroll', function(e){

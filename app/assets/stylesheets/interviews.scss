@@ -42,6 +42,7 @@ $container-width: 940px;
     margin: 0 auto;
     max-width: $container-width;
     padding: 2em 1em 0;
+    z-index: 1;
     @include box-sizing();
   }
 
@@ -53,6 +54,24 @@ $container-width: 940px;
   .interviewer-name h3 {
     text-transform: uppercase;
     margin: 0 0 1.5em;
+  }
+
+  .summary {
+    .full {
+      display: none;
+    }
+    .preview {
+      display: block;
+    }
+
+    &.active {
+      .full {
+        display: block;
+      }
+      .preview {
+        display: none;
+      }
+    }
   }
 
   .interview-player {
@@ -89,6 +108,13 @@ $container-width: 940px;
   }
 }
 
+.mejs-container {
+  min-height: 48px;
+}
+.mejs-mediaelement,
+.mejs-container .mejs-controls {
+  max-height: 48px;
+}
 .mejs-container .mejs-controls .mejs-time span {
   font-size: 16px;
   line-height: 16px;
@@ -106,7 +132,7 @@ $container-width: 940px;
 
 .secondary-wrapper {
   position: relative;
-  margin: 1em auto;
+  margin: 1em auto 0;
   max-width: $container-width;
   padding: 1em;
   @include box-sizing();
@@ -167,6 +193,9 @@ $container-width: 940px;
 
     &.active {
       max-height: 1000px;
+      .see-more {
+        display: none;
+      }
     }
   }
 
@@ -195,6 +224,7 @@ $container-width: 940px;
       &.rights {
         min-width: 100%;
         display: block;
+        margin-bottom: 0;
       }
     }
   }

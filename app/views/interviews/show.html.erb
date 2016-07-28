@@ -18,7 +18,14 @@
       <h3>Interviewed By <%= @interview.interviewer_name %></h3>
     </div>
     <% unless @interview.summary.blank? %>
+      <% if @interview.summary.length > 1000 %>
+      <div id="interview-summary" class="summary">
+        <p class="preview"><%= @interview.summary.slice(0,1000) %>... <a href="#interview-summary" class="toggle-active">Read more</a></p>
+        <p class="full"><%= @interview.summary %></p>
+      </div>
+      <% else %>
       <div class="summary"><p><%= @interview.summary %></p></div>
+      <% end %>
     <% end %>
     <div class="interview-player">
       <div class="player big with-status" data-id="<%= @interview.id %>">
@@ -33,14 +40,14 @@
   <% if @annotations.empty? %>
     <p>Not tags by users yet. <%= link_to "Click here to add some", mark_url(@interview.slug) %>.</p>
   <% else %>
-    <div class="annotations-container">
+    <div id="annotations-container" class="annotations-container">
       <div class="annotations">
         <% @annotations.each do |annotation| %>
         <div class="annotation seek-to" data-seconds="<%= annotation['start'] %>"><%= annotation['text'] %> (<%= seconds_to_string(annotation['start'].to_i) %>)</div>
         <% end %>
       </div>
       <div class="see-more">
-        <%= link_to "See All Tags", "#", :class => "see-more-link button small" %>
+        <%= link_to "See All Tags", "#annotations-container", :class => "see-more-link toggle-active button small" %>
       </div>
     </div>
   <% end %>
@@ -100,4 +107,11 @@
       <%= content_tag(:dd, raw(@interview.rights_statement)) unless @interview.rights_statement.blank? %>
     <% end unless @interview.rights_statement.blank? %>
   </dl>
+</div>
+
+<div class="collection-wrapper secondary-wrapper">
+  <h2>About This Collection</h2>
+  <h3><a href="<%= neighborhood_path(@interview.neighborhood) %>"><%= @interview.neighborhood.title %><%= ": #{@interview.neighborhood.subtitle}" unless @interview.neighborhood.subtitle.blank?  %></a></h3>
+
+  <%= @interview.neighborhood.long_description.html_safe %>
 </div>
