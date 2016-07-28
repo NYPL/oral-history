@@ -4,8 +4,13 @@
 <div class="caption">
   <a href="/interviews/<%= slug %>"><%= storyteller_name %></a>
 </div>
-<div class="annotations">
-<% _.each(matched_annotations,function(a){ %>
-  <a href="/interviews/<%= slug %>#<%= helper.formatTime(a.start) %>" class="annotation"><%= a.text %> (<%= helper.formatTime(a.start) %>)</a>
-<% }); %>
+<% if (summary.length) { %>
+<div class="summary">
+  <% if (summary.length > 300) {  %>
+    <%= summary.slice(0, 300) %>...
+  <% } else { %>
+    <%= summary %>
+  <% } %>
 </div>
+<% } %>
+<a href="/interviews/<%= slug %>" class="link-overlay"></a>

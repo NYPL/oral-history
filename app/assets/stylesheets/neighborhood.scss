@@ -124,11 +124,12 @@
     padding: 10px;
     overflow: hidden;
     background: $white;
+    cursor: pointer;
     @include box-shadow(1px, 1px, 2px, $color: rgba(0,0,0,.2));
-    @include transition-transform(0.5s);
+    @include transition-transform(0.2s);
     &:hover {
       @include box-shadow(2px, 2px, 4px, $color: rgba(0,0,0,.3));
-      @include transform(translateY(-6px));
+      @include transform(translateY(-3px));
     }
     .image {
       position: relative;
@@ -189,20 +190,15 @@
     z-index: 3;
     top: 0;
     left: 0;
+    cursor: pointer;
   }
   .caption {
     padding: 15px 0 0;
-    height: 20px;
-    line-height: 20px;
-    white-space: nowrap;
-    overflow: hidden;
+    line-height: 1.5;
     a {
       display: block;
       color: $gray;
       font-size: 1.1em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       &:hover {
         color: $grayLight;
       }
@@ -214,6 +210,10 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+  }
+  .summary {
+    font-size: 0.8em;
+    line-height: 1.5;
   }
   .annotations {
     padding-top: 6px;

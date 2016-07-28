@@ -8,7 +8,8 @@ app.models.Interview = Backbone.Model.extend({
       searchable: '',
       transcript_url: '',
       annotations: [],
-      matched_annotations: []
+      matched_annotations: [],
+      summary: ''
     };
   },
 
@@ -53,7 +54,8 @@ app.models.Interview = Backbone.Model.extend({
       url: resp.url,
       transcript_url: resp.transcript_url,
       branch_id: resp.branch_id,
-      branch_name: resp.branch_name
+      branch_name: resp.branch_name,
+      summary: resp.summary
     };
   },
 
