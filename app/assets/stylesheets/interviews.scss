@@ -81,8 +81,8 @@ $container-width: 940px;
     right: 20px;
 
     .button {
-      padding: 6px 12px;
-      font-size: 0.9em;
+      padding: 8px 12px 6px;
+      font-size: 1.5em;
     }
 
     &.active {
@@ -276,6 +276,16 @@ $container-width: 940px;
 
   &.active {
     display: block;
+  }
+
+  .edit-button-copy {
+    background: $blue;
+    color: $white;
+    padding: 0 4px;
+    display: inline-block;
+    vertical-align: middle;
+    font-style: normal;
+    margin: 0;
   }
 
   .last-updated-message {
