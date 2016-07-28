@@ -1,3 +1,5 @@
+//= require interview-transcript
+
 (function() {
   var Interview;
 
@@ -39,6 +41,20 @@
       $(window).on('scroll', function(e){
         _this.stickyPlayer();
       });
+
+      $('.scroll-to').on('click', function(e){
+        e.preventDefault();
+        _this.scrollTo($(this).attr('href'));
+      });
+    };
+
+    Interview.prototype.scrollTo = function(el, offset){
+      var $el = $(el);
+      offset = offset || $('#header').height() || 0;
+
+      $('html, body').animate({
+        scrollTop: $el.offset().top - offset
+      }, 2000);
     };
 
     Interview.prototype.stickyPlayer = function(){

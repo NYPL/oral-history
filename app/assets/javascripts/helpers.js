@@ -20,6 +20,10 @@
     dec = dec || 0;
     return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
   };
+  helper.formatDate = function(str) {
+    var d = new Date(str);
+    return d.toLocaleString();
+  };
   helper.formatTime = function( seconds, dec ) {
     var s = seconds || 0,
         h = parseInt( s / 3600 ) % 24,

@@ -74,6 +74,22 @@ $container-width: 940px;
     }
   }
 
+  .transcript-link {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 20px;
+
+    .button {
+      padding: 6px 12px;
+      font-size: 0.9em;
+    }
+
+    &.active {
+      display: block;
+    }
+  }
+
   .interview-player {
     .player {
       // @include transition(width, 0.5s);
@@ -143,6 +159,9 @@ $container-width: 940px;
     color: $grayDark;
     border-bottom: 1px solid $grayLightest;
     padding-bottom: 0.2em;
+    .button {
+      text-transform: none;
+    }
   }
 }
 
@@ -246,6 +265,68 @@ $container-width: 940px;
       > div {
         margin-right: 0;
         min-width: 100%;
+        display: block;
+      }
+    }
+  }
+}
+
+.transcript-wrapper {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+
+  .last-updated-message {
+    color: $grayLight;
+  }
+
+  .transcript-lines {
+    border-top: 1px solid $grayLightest;
+    padding-top: 1em;
+  }
+
+  .line {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1.4em;
+    position: relative;
+    @include clearfix();
+
+    &.active {
+      background: $highlight;
+    }
+
+    .timestamp {
+      width: 60px;
+      // color: $grayLight;
+      float: left;
+      display: block;
+    }
+
+    .text {
+      margin-left: 80px;
+      width: auto;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .edit-link {
+      display: none;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      margin: 0;
+      padding: 0 12px;
+      height: 30px;
+      line-height: 30px;
+    }
+
+    &:hover {
+      .edit-link {
         display: block;
       }
     }
