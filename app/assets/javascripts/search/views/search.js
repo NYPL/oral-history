@@ -98,7 +98,12 @@ app.views.Search = Backbone.View.extend({
       result = _.extend({}, result, hit._source);
 
       if (result.title) result.title = _this.highlight(result.title);
-      if (result.description) result.description = _this.highlight(result.description);
+      if (result.description) {
+        if (result.description.length > 1000) {
+          result.description = result.description.slice(0, 1000) + "...";
+        }
+        result.description = _this.highlight(result.description);
+      }
 
       if (hit.inner_hits) {
         // retrieve annotations
