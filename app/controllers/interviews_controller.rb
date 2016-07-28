@@ -43,6 +43,9 @@ class InterviewsController < ApplicationController
     @interview = Interview.find_by_slug(params[:id])
     @annotations = []
     @annotations = JSON.parse @interview.annotations unless @interview.annotations.blank?
+    @annotations = @annotations.select do |a|
+      a['text'].present?
+    end
     @interview[:neighborhood] = Neighborhood.find_by_id(@interview.neighborhood_id)
 
     respond_to do |format|

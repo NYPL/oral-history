@@ -50,7 +50,7 @@
 
     Interview.prototype.scrollTo = function(el, offset){
       var $el = $(el);
-      offset = offset || $('#header').height() || 0;
+      offset = offset || $('#header').height() * 3 || 0;
 
       $('html, body').animate({
         scrollTop: $el.offset().top - offset
