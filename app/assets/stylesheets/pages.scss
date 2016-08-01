@@ -10,10 +10,18 @@ p {
   line-height: 1.8;
 }
 
+p img {
+  width: 90%;
+  height: auto;
+  border: 1px solid $grayLight;
+  @include box-shadow();
+}
+
 video {
   width: 90%;
   height: auto;
-  border: 1px solid $grayLighter;
+  border: 1px solid $grayLight;
+  @include box-shadow();
 }
 
 .button {

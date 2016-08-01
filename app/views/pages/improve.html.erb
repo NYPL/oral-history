@@ -16,7 +16,7 @@ Join us in editing and polishing computer-generated transcripts of the Community
 
 <p>
   <a href="http://transcribe.oralhistory.nypl.org/" target="_blank">
-    <video src="https://s3.amazonaws.com/togetherwelisten.nypl.org/video/twl_sample.mp4" preload="auto" autoplay loop muted poster="https://s3.amazonaws.com/togetherwelisten.nypl.org/img/twl_sample.png"></video>
+    <video src="https://s3.amazonaws.com/togetherwelisten.nypl.org/video/twl_sample.mp4" preload="auto" autoplay loop muted poster="https://s3.amazonaws.com/togetherwelisten.nypl.org/img/twl_sample.png" title="Video example of how editing a transcript works"></video>
   </a>
 </p>
 
@@ -28,8 +28,44 @@ Join us in editing and polishing computer-generated transcripts of the Community
   <a href="http://transcribe.oralhistory.nypl.org/" target="_blank" class="button large">Pitch In!</a>
 </p>
 
+<p>Your contributions will help access to the stories on this website in two immediate ways. First, users will be able to search using terms that appear in a story's transcript:</p>
+
 <p>
-Live in NYC? Correct transcripts together in library branches throughout our city. <a href="http://www.nypl.org/events/calendar?keyword=&location=&type=&topic=&audience=&series=342176&date_op=GREATER_EQUAL&date1=03%2F21%2F2016">Click here</a> to sign up for a community transcription event and join other New Yorkers in person, in your community as we make our NYC story archive accessible.
+  <%= image_tag "transcript_search.jpg", :alt => "Screenshot of a search result with keyword: Central Park" %>
 </p>
 
-<!-- <h2>The NYPL Community Oral History Project Audio Tagger</h2> -->
+<p>
+  Second, users will be able to view a story's full transcript while they listen to the story's audio:
+</p>
+
+<p>
+  <%= image_tag "transcript_show.jpg", :alt => "Screenshot of a section from a story's transcript" %>
+</p>
+
+<p>Click "edit" on any line will bring you to the Transcript Editor interface where you can contribute your edits.</p>
+
+<!-- <p>
+Live in NYC? Correct transcripts together in library branches throughout our city. <a href="http://www.nypl.org/events/calendar?keyword=&location=&type=&topic=&audience=&series=342176&date_op=GREATER_EQUAL&date1=03%2F21%2F2016">Click here</a> to sign up for a community transcription event and join other New Yorkers in person, in your community as we make our NYC story archive accessible.
+</p> -->
+
+<h2>The NYPL Community Oral History Project Audio Tagger</h2>
+
+<p>Sometimes there are things that are not explicitly mentioned in a story's transcript, but may be relevant to how someone would look for the story. For example, someone might talk about their childhood without mentioning the word <em>childhood</em>, or someone would refer to a place without saying the full name of that place. This is where the <strong>Audio Tagger Tool</strong> comes in.</p>
+
+<p>This tool allows you to tag important people, places, events, or other subjects within the audio of the story.</p>
+
+<p>
+  <%= image_tag "tags_edit.jpg", :alt => "Screenshot of a user editing a story's tag" %>
+</p>
+
+<p>Tags will show up on a story's page, where users can "jump" to those points in the story. Click the "Add Tags" button from any story's page to add your own tags.</p>
+
+<p>
+  <%= image_tag "tags_show.jpg", :alt => "Screenshot of a story's tags" %>
+</p>
+
+<p>Lastly, tags are used when users search across all the stories:</p>
+
+<p>
+  <%= image_tag "tags_search.jpg", :alt => "Screenshot of a user searching for the term: Olympics" %>
+</p>
