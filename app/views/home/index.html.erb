@@ -1,6 +1,7 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag    "home", :media => "all" %>
   <%= javascript_include_tag "home" %>
+  <%= javascript_include_tag "player" %>
 <% end %>
 
 <%= render "shared/header" %>
@@ -43,13 +44,31 @@
     </div>
   </div>
 
-  <!-- <div class="home-featured row">
-    <div class="featured col"></div>
-    <div class="featured col"></div>
-  </div> -->
+  <div id="featured" class="home-featured">
+    <h2>Featured Stories</h2>
+
+    <div class="features">
+    <% @features.each do |feature| %>
+      <div class="feature">
+        <div class="image">
+          <img src="<%= feature.interview.image.thumb.url %>" alt="<%= feature.interview.storyteller_name %>" />
+          <div class="status" audio-id="audio-<%= feature.id %>">
+            <canvas class="progress"></canvas>
+          </div>
+          <div class="player" data-id="<%= feature.id %>">
+            <audio id="audio-<%= feature.id %>" class="auto-load" src="<%= feature.audio_url %>"></audio>
+          </div>
+        </div>
+        <div class="title"><%= feature.title %></div>
+        <div class="description"><%= feature.description %></div>
+        <div class="interview-link"><%= link_to "Listen To The Full Interview", feature.interview, :class => "button" %></div>
+      </div>
+    <% end %>
+    </div>
+  </div>
 
   <div id="listen" class="home-neighborhoods">
-    <h2>Start By Selecting A Community Project</h2>
+    <h2>Select A Community Project</h2>
     <ul class="neighborhoods-list">
       <% @neighborhoods.each do |neighborhood| %>
       <li>

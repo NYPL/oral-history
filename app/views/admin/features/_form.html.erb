@@ -1,4 +1,4 @@
-<%= form_for([:admin, @feature]) do |f| %>
+<%= form_for([:admin, @feature], :html => { :class => "form"}) do |f| %>
   <% if @feature.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@feature.errors.count, "error") %> prohibited this feature from being saved:</h2>
@@ -12,20 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :interview_id, "Interview" %><br />
-    <%= f.select(:interview_id, options_from_collection_for_select(Interview.order("storyteller_name"), :id, :storyteller_name, @feature.interview_id)) %>
+    <%= f.label :interview_id, "Interview" %>
+    <%= f.select(:interview_id, options_from_collection_for_select(Interview.where(is_demo: 0).order("storyteller_name"), :id, :storyteller_name, @feature.interview_id)) %>
   </div>
   <div class="field">
-    <%= f.label :title, "Summary" %><br />
+    <%= f.label :audio_url, "Audio URL" %>
+    <%= f.text_field :audio_url %>
+  </div>
+  <div class="field">
+    <%= f.label :title, "Title" %>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :description %>
     <%= f.text_area :description %>
   </div>
   <div class="field">
     <%= f.label :is_active, "Is this feature active on the homepage?" %>
-    <%= f.radio_button :is_active, 1, :checked => @feature.is_active===1 %> 
+    <%= f.radio_button :is_active, 1, :checked => @feature.is_active===1 %>
     <%= label :is_active_yes, 'Yes', :value => 1, :class => "radio-label" %>
     <%= f.radio_button :is_active, 0, :checked => @feature.is_active===0 %>
     <%= label :is_active_no, 'No', :value => 0, :class => "radio-label" %>
