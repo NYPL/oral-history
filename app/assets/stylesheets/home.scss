@@ -171,8 +171,9 @@ html,
     img {
       width: 100%;
       height: auto;
-      -webkit-clip-path: circle(50% at center);
-      clip-path: circle(50% at center);
+      // -webkit-clip-path: circle(50% at center);
+      // clip-path: circle(50% at center);
+      @include border-radius(50%);
     }
   }
 
