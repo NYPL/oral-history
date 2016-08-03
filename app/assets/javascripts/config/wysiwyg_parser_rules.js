@@ -9,7 +9,7 @@ var wysihtml5ParserRules = {
     small:  {},
     a:      {
       "check_attributes": {
-        "href": "href"
+        "href": "url"
       }
     }
   }
