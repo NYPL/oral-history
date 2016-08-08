@@ -12,7 +12,7 @@
 
     <div class="home-about main">
 
-      <h1><%= image_tag("oral_history_logo.svg", :alt => "The New York Public Library Community Oral History Project", :title => "The New York Public Library Community Oral History Project") %></h1>
+      <h1><%= image_tag("oral_history_logo.svg", :alt => "The New York Public Library Community Oral History Project") %></h1>
       <p><a href="http://nypl.org">The New York Public Library</a>'s Community Oral History Project is an initiative taking place at NYPL branches that aims to document,
       preserve, and celebrate the rich history of the city's unique neighborhoods by collecting the stories of people who have experienced it firsthand.
       </p>
@@ -73,7 +73,7 @@
       <% @neighborhoods.each do |neighborhood| %>
       <li>
         <%= link_to neighborhood, :title => "#{neighborhood.title} #{neighborhood.subtitle}", :class => "neighborhood" do %>
-          <img src="<%= neighborhood.image.thumb.url %>" alt="#{neighborhood.title} #{neighborhood.subtitle}" />
+          <img src="<%= neighborhood.image.thumb.url %>" alt="<%= "#{neighborhood.title} #{neighborhood.subtitle}" %>" />
           <div class="gradient"></div>
           <div class="copy">
             <div class="title">

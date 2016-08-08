@@ -83,6 +83,10 @@ body {
     line-height: $headerHeight;
     margin-right: 5px;
 
+    label {
+      display: none;
+    }
+
     input, button {
       display: inline-block;
     }
