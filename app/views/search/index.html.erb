@@ -13,8 +13,8 @@
   <form action="/search" method="get" class="search-filter-form <%= "big" unless params[:q].present? %>">
     <% if params[:q].present? %>
       <input type="hidden" name="q" value="<%= params[:q] %>" />
-      <label>Filter by Collection:</label>
-      <select name="filters[collection_id]">
+      <label for="search-form-filter-select">Filter by Collection:</label>
+      <select id="search-form-filter-select" name="filters[collection_id]">
         <option value="" <%= @collection_id.blank? ? "selected" : "" %>>All</option>
         <% @neighborhoods.each do |neighborhood| %>
         <option value="<%= neighborhood.slug %>"  <%= @collection_id==neighborhood.slug ? "selected" : "" %>><%= neighborhood.title %><%= neighborhood.subtitle.present? ? ": #{neighborhood.subtitle}" : ""  %></option>
