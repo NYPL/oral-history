@@ -1,6 +1,6 @@
 <div class="search-result">
   <% if (r.image_url) { %>
-  <div class="result-image"><a href="/interviews/<%= r.id %>"><img src="<%= r.image_url %>" /></a></div>
+  <div class="result-image"><a href="/interviews/<%= r.id %>"><img src="<%= r.image_url %>" alt="<%= r.title %>" /></a></div>
   <% } %>
   <div class="result-content">
     <div class="result-title text"><a href="/interviews/<%= r.id %>"><%= r.title %></a></div>

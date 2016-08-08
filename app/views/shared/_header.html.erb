@@ -13,8 +13,8 @@
     <nav class="main-nav nav">
       <% unless current_page?(search_path) && params[:q].blank? %>
       <form class="form-search" action="/search" method="get">
-        <label for="q">Enter keyword for search</label>
-        <input type="text" name="q" placeholder="Enter keyword" value="<%= params[:q] %>" title="Enter a keyword, then click search button" />
+        <label for="form-search-q">Enter keyword for search</label>
+        <input id="form-search-q" type="text" name="q" placeholder="Enter keyword" value="<%= params[:q] %>" title="Enter a keyword, then click search button" />
         <button type="submit">Search</button>
       </form>
       <% end %>
