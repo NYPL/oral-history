@@ -73,7 +73,7 @@
       <% @neighborhoods.each do |neighborhood| %>
       <li>
         <%= link_to neighborhood, :title => "#{neighborhood.title} #{neighborhood.subtitle}", :class => "neighborhood" do %>
-          <img src="<%= neighborhood.image.thumb.url %>" />
+          <img src="<%= neighborhood.image.thumb.url %>" alt="#{neighborhood.title} #{neighborhood.subtitle}" />
           <div class="gradient"></div>
           <div class="copy">
             <div class="title">
