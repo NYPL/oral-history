@@ -1,7 +1,7 @@
 <header id="header" class="header">
   <div class="header-container">
     <a href="http://nypl.org" target="_blank" title="Visit NYPL.org" class="nypl-logo-link"></a>
-    <a href="<%= root_path %>" class="title-link"><%= image_tag("oral_history_logo.svg") %></a>
+    <a href="<%= root_path %>" class="title-link"><%= image_tag("oral_history_logo.svg", :alt => "Oral History Logo") %></a>
     <% unless local_assigns[:crumbs].nil? %>
     <div class="crumbs">
       <% crumbs.each do |crumb| %>
@@ -13,7 +13,7 @@
     <nav class="main-nav nav">
       <% unless current_page?(search_path) && params[:q].blank? %>
       <form class="form-search" action="/search" method="get">
-        <input type="text" name="q" placeholder="Enter keyword" value="<%= params[:q] %>" />
+        <input type="text" name="q" placeholder="Enter keyword" value="<%= params[:q] %>" title="Enter a keyword, then click search button" />
         <button type="submit">Search</button>
       </form>
       <% end %>

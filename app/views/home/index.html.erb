@@ -12,7 +12,7 @@
 
     <div class="home-about main">
 
-      <h2><%= image_tag("oral_history_logo.svg") %></h2>
+      <h1><%= image_tag("oral_history_logo.svg", :alt => "The New York Public Library Community Oral History Project", :title => "The New York Public Library Community Oral History Project") %></h1>
       <p><a href="http://nypl.org">The New York Public Library</a>'s Community Oral History Project is an initiative taking place at NYPL branches that aims to document,
       preserve, and celebrate the rich history of the city's unique neighborhoods by collecting the stories of people who have experienced it firsthand.
       </p>
@@ -26,7 +26,7 @@
       <div class="home-listen action">
         <a href="#listen" class="circle scroll-to">
           <div>
-            <%= image_tag("home_headphones.png") %>
+            <%= image_tag("home_headphones.png", :alt => "Headphones") %>
             <h2>Listen</h2>
           </div>
         </a>
@@ -35,7 +35,7 @@
       <div class="home-improve action">
         <a href="<%= improve_path %>" class="circle">
           <div>
-            <%= image_tag("home_improve.png") %>
+            <%= image_tag("home_improve.png", :alt => "Improve our stories") %>
             <h2>Improve</h2>
           </div>
         </a>
@@ -72,7 +72,7 @@
     <ul class="neighborhoods-list">
       <% @neighborhoods.each do |neighborhood| %>
       <li>
-        <div class="neighborhood">
+        <%= link_to neighborhood, :title => "#{neighborhood.title} #{neighborhood.subtitle}", :class => "neighborhood" do %>
           <img src="<%= neighborhood.image.thumb.url %>" />
           <div class="gradient"></div>
           <div class="copy">
@@ -83,8 +83,7 @@
               <%= neighborhood.subtitle %>
             </div>
           </div>
-          <%= link_to "", neighborhood, :class => "link-overlay" %>
-        </div>
+        <% end %>
       </li>
       <% end %>
     </ul>

@@ -277,6 +277,7 @@ html,
   }
   .neighborhood {
     position: relative;
+    display: block;
     margin: 10px 20px 10px 0;
     // @include box-shadow(1px, 1px, 2px, $color: rgba(0,0,0,.2));
     @include transition-transform(0.5s);
