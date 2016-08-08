@@ -15,7 +15,7 @@
       <h1><%= @interview.storyteller_name %></h1>
     </div>
     <div class="interviewer-name">
-      <h3>Interviewed By <%= @interview.interviewer_name %></h3>
+      <h2>Interviewed By <%= @interview.interviewer_name %></h2>
     </div>
     <% unless @interview.summary.blank? %>
       <% if @interview.summary.length > 1000 %>

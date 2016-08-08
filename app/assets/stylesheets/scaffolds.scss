@@ -218,6 +218,10 @@ footer {
   a {
     display: inline-block;
     margin: 0 1em;
+    color: $blueDark;
+    &:hover {
+      color: lighten($blueDark, 10%);
+    }
   }
 }
 

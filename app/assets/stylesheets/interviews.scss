@@ -51,9 +51,10 @@ $container-width: 940px;
     margin: 0 0 0.2em;
   }
 
-  .interviewer-name h3 {
+  .interviewer-name h2 {
     text-transform: uppercase;
     margin: 0 0 1.5em;
+    font-size: 1.2em;
   }
 
   .summary {
@@ -175,14 +176,14 @@ $container-width: 940px;
 
   .annotation {
     display: inline-block;
-    background: $grayLight;
+    background: darken($gray, 5%);
     color: $white;
     font-size: 0.8em;
     padding: 0.2em 0.4em;
     margin: 0 0.2em 0.4em 0;
     cursor: pointer;
     &:hover {
-      background: lighten($grayLight, 10%);
+      background: $gray;
     }
   }
 
