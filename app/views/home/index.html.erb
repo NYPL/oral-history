@@ -56,7 +56,9 @@
             <canvas class="progress"></canvas>
           </div>
           <div class="player" data-id="<%= feature.id %>">
-            <audio id="audio-<%= feature.id %>" class="auto-load" src="<%= feature.audio_url %>"></audio>
+            <audio id="audio-<%= feature.id %>" class="auto-load" src="<%= feature.audio_url %>">
+              <p>Audio Description: <%= feature.description %> Read transcript on <%= link_to "interview page", feature.interview %></p>
+            </audio>
           </div>
         </div>
         <div class="title"><%= feature.title %></div>

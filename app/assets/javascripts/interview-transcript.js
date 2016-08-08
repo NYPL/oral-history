@@ -68,6 +68,8 @@
         if (resp && resp.lines && resp.lines.length) {
           // console.log('loaded '+resp.lines.length+' lines')
           _this.onTranscriptLoad(resp);
+        } else {
+          _this.onTranscriptFail();
         }
       });
     };
@@ -107,6 +109,10 @@
       $('.transcript-link').addClass('active');
       this.$el.addClass('active');
       this.transcriptLoaded = true;
+    };
+
+    Transcript.prototype.onTranscriptFail = function(){
+      $('audio .captions').remove();
     };
 
     Transcript.prototype.parseLines = function(lines){

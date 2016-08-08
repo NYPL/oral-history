@@ -30,7 +30,9 @@
     <div class="transcript-link"><a href="#transcript-wrapper" class="scroll-to button small">Read The Transcript</a></div>
     <div class="interview-player">
       <div class="player big with-status" data-id="<%= @interview.id %>">
-        <audio id="audio-<%= @interview.id %>" class="auto-load" src="<%= @interview.url %>" data-show-duration="true"></audio>
+        <audio id="audio-<%= @interview.id %>" class="auto-load" src="<%= @interview.url %>" data-show-duration="true">
+          <track class="captions" kind="captions" src="http://transcribe.oralhistory.nypl.org/transcript_files/<%= @interview.slug %>.vtt" srclang="en" label="English">
+        </audio>
       </div>
     </div>
   </div>
