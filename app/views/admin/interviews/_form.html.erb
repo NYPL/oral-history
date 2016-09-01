@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "admin/interviews" %>
+<% end %>
+
 <%= form_for([:admin, @interview], :html => { :class => "form",  :multipart => true }) do |f| %>
   <% if @interview.errors.any? %>
     <div id="error_explanation">
@@ -55,14 +59,14 @@
     <%= f.label :dates_in_location %>
     <%= f.text_area :dates_in_location %>
   </div>
-  <div class="field">
+  <!-- <div class="field">
     <%= f.label :other_locations %>
     <%= f.text_area :other_locations %>
-  </div>
-  <div class="field">
+  </div> -->
+  <!-- <div class="field">
     <%= f.label :family_members %>
     <%= f.text_area :family_members %>
-  </div>
+  </div> -->
   <div class="field">
     <%= f.label :notes %>
     <%= f.text_area :notes %>
@@ -79,6 +83,21 @@
     <%= f.label :url, "URL to transcript file" %>
     <%= f.text_field :transcript_url %>
   </div>
+  <div class="custom-fields">
+    <label>Custom Fields</label>
+    <% @custom_fields.each do |field| %>
+      <%= content_tag :div, class: "custom-field" do %>
+        <input type="text" class="custom-field-label" placeholder="Label" value="<%= field['label'] %>" />
+        <input type="text" class="custom-field-value" placeholder="Value" value="<%= field['value'] %>" />
+      <% end unless field['label'].blank? || field['value'].blank? %>
+    <% end %>
+    <div class="custom-field">
+      <input type="text" class="custom-field-label" placeholder="Label" />
+      <input type="text" class="custom-field-value" placeholder="Value" />
+    </div>
+    <button class="add-custom-field">Add Field</button>
+    <%= f.hidden_field :custom_fields %>
+  </div>
   <div class="field">
     <%= f.label :image %>
     <div class="image-wrapper">
@@ -86,12 +105,19 @@
     </div>
     <%= f.file_field :image %>
   </div>
-  <div class="field">
+  <!-- <div class="field">
     <%= f.label :is_demo, "Is this an excerpt?" %>
     <%= f.radio_button :is_demo, 1, :checked => @interview.is_demo===1 %>
     <%= label :is_demo_yes, 'Yes', :value => 1, :class => "radio-label" %>
     <%= f.radio_button :is_demo, 0, :checked => @interview.is_demo===0 %>
     <%= label :is_demo_no, 'No', :value => 0, :class => "radio-label" %>
+  </div> -->
+  <div class="field">
+    <%= f.label :needs_transcript, "Should this have a transcript?" %>
+    <%= f.radio_button :needs_transcript, 1, :checked => @interview.needs_transcript===1 %>
+    <%= label :needs_transcript_yes, 'Yes', :value => 1, :class => "radio-label" %>
+    <%= f.radio_button :needs_transcript, 0, :checked => @interview.needs_transcript===0 %>
+    <%= label :needs_transcript_no, 'No', :value => 0, :class => "radio-label" %>
   </div>
   <div class="actions">
     <button type="submit" class="button expand">Submit</button>

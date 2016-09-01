@@ -90,15 +90,22 @@
       <%= content_tag(:dd, @interview.dates_in_location) unless @interview.dates_in_location.blank? %>
     <% end unless @interview.dates_in_location.blank? %>
 
-    <%= content_tag :div do %>
+    <!-- <%= content_tag :div do %>
       <%= content_tag(:dt, "Locations in Neighborhood") unless @interview.other_locations.blank? %>
       <%= content_tag(:dd, @interview.other_locations) unless @interview.other_locations.blank? %>
-    <% end unless @interview.other_locations.blank? %>
+    <% end unless @interview.other_locations.blank? %> -->
 
-    <%= content_tag :div do %>
+    <!-- <%= content_tag :div do %>
       <%= content_tag(:dt, "Family members") unless @interview.family_members.blank? %>
       <%= content_tag(:dd, @interview.family_members) unless @interview.family_members.blank? %>
-    <% end unless @interview.family_members.blank? %>
+    <% end unless @interview.family_members.blank? %> -->
+
+    <% @custom_fields.each do |field| %>
+      <%= content_tag :div do %>
+        <%= content_tag(:dt, field['label']) %>
+        <%= content_tag(:dd, field['value']) %>
+      <% end unless field['label'].blank? || field['value'].blank? %>
+    <% end %>
 
     <%= content_tag :div, :class => "notes" do %>
       <%= content_tag(:dt, "Notes") unless @interview.notes.blank? %>
@@ -109,6 +116,8 @@
       <%= content_tag(:dt, "Rights Statement") unless @interview.rights_statement.blank? %>
       <%= content_tag(:dd, raw(@interview.rights_statement)) unless @interview.rights_statement.blank? %>
     <% end unless @interview.rights_statement.blank? %>
+
+
   </dl>
 </div>
 

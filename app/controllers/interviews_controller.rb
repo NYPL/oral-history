@@ -46,6 +46,10 @@ class InterviewsController < ApplicationController
     @annotations = @annotations.select do |a|
       a['text'].present?
     end
+    
+    @custom_fields = []
+    @custom_fields = JSON.parse @interview.custom_fields unless @interview.custom_fields.blank?
+
     @interview[:neighborhood] = Neighborhood.find_by_id(@interview.neighborhood_id)
 
     respond_to do |format|

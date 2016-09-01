@@ -116,6 +116,16 @@ table {
       height: 300px;
     }
   }
+  .custom-field {
+    input {
+      display: inline-block;
+      width: 47%;
+      margin-right: 10px;
+    }
+  }
+  .add-custom-field {
+    margin-top: 10px;
+  }
 }
 .button {
   background: $blue;
