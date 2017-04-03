@@ -5,8 +5,8 @@ This is the codebase that runs [The New York Public Library Community Oral Histo
 
 ## Requirements
 
-1. Ruby (currently on 1.9.3)
-2. Rails (currently on 3.2.13)
+1. Ruby (currently on 2.2.4)
+2. Rails (currently on 3.2.22)
 3. PostgreSQL Database
 4. [ImageMagick](http://www.imagemagick.org/script/binary-releases.php) - for thumbnail generation
 4. Amazon S3 account (for storing images) - unnecessary for local development
